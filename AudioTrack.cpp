@@ -170,6 +170,14 @@ bool CJNIAudioTrack::getTimestamp(CJNIAudioTimestamp &timestamp)
                                     timestamp.get_raw());
 }
 
+// Can be used in v23 for comparing with the opened buffer amount
+int CJNIAudioTrack::getBufferSizeInFrames()
+{
+  if (CJNIBase::GetSDKVersion() >= 23)
+    return call_method<int>(m_object, "getBufferSizeInFrames", "()I");
+  return -1;
+}
+
 int CJNIAudioTrack::getMinBufferSize(int sampleRateInHz, int channelConfig, int audioFormat)
 {
   return call_static_method<int>( "android/media/AudioTrack", "getMinBufferSize", "(III)I",

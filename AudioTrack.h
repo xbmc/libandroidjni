@@ -46,6 +46,7 @@ class CJNIAudioTrack : public CJNIBase
     int   getPlayState();
     int   getPlaybackHeadPosition();
     bool  getTimestamp (CJNIAudioTimestamp &timestamp);
+    int   getBufferSizeInFrames();
 
     static int  MODE_STREAM;
     static int  STATE_INITIALIZED;
