@@ -100,6 +100,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIDocument::PopulateStaticFields();
   CJNIRecognizerIntent::PopulateStaticFields();
   CJNIAudioDeviceInfo::PopulateStaticFields();
+  CJNIViewInputDevice::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
