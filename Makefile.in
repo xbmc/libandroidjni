@@ -69,6 +69,7 @@ SRCS      += AudioTimestamp.cpp
 SRCS      += ArrayList.cpp
 SRCS      += RecognizerIntent.cpp
 SRCS      += AudioDeviceInfo.cpp
+SRCS      += InputManager.cpp
 SRCS      += Os.cpp
 
 LIB        = jni.a
