@@ -543,6 +543,12 @@ Ret get_field(const char *clsname, const char *name)
 // Get static field
 
 template <typename Ret>
+Ret get_static_field(JNIEnv *env, jhclass const &cls, jfieldID fid)
+{
+    return details::jni_helper<Ret>::get_static_field(env, cls, fid);
+}
+
+template <typename Ret>
 Ret get_static_field(JNIEnv *env, jhobject const &obj, const char *name, const char *signature)
 {
     return details::jni_helper<Ret>::get_static_field(env, get_class(env, obj), get_static_field_id(env, obj, name, signature));
@@ -551,7 +557,7 @@ Ret get_static_field(JNIEnv *env, jhobject const &obj, const char *name, const c
 template <typename Ret>
 Ret get_static_field(JNIEnv *env, jhclass const &cls, const char *name, const char *signature)
 {
-    return details::jni_helper<Ret>::get_static_field(env, cls, get_static_field_id(env, cls, name, signature));
+    return get_static_field<Ret>(env, cls, get_static_field_id(env, cls, name, signature));
 }
 
 template <typename Ret, typename T>
@@ -595,6 +601,13 @@ Ret get_static_field(const char *clsname, const char *name)
 {
     return get_static_field<Ret>(xbmc_jnienv(), clsname, name);
 }
+
+template <typename Ret>
+Ret get_static_field(jhclass const &cls, jfieldID fid)
+{
+    return details::jni_helper<Ret>::get_static_field(xbmc_jnienv(), cls, fid);
+}
+
 
 // Set field
 
