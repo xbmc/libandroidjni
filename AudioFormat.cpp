@@ -57,9 +57,9 @@ int CJNIAudioFormat::ENCODING_TRUEHD      = -1;
 
 void CJNIAudioFormat::GetStaticValue(jhclass& c, int& field, const char* value)
 {
-  jfieldID id = get_static_field_id<jclass>(c, value, "I");
-  if (id != NULL)
-    field = get_static_field<int>(c, value);
+  jfieldID fid = get_static_field_id<jclass>(c, value, "I");
+  if (fid != NULL)
+    field = get_static_field<int>(c, fid);
   else
     xbmc_jnienv()->ExceptionClear();
 }
