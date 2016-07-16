@@ -24,6 +24,12 @@
 
 using namespace jni;
 
+int CJNIDisplayMode::getModeId()
+{
+  return call_method<jint>(m_object,
+    "getModeId", "()I");
+}
+
 int CJNIDisplayMode::getPhysicalHeight()
 {
   return call_method<jint>(m_object,
@@ -67,7 +73,7 @@ std::vector<float> CJNIDisplay::getSupportedRefreshRates()
 CJNIDisplayMode CJNIDisplay::getMode()
 {
   jhclass clazz = get_class(m_object);
-  jmethodID id = get_method_id(xbmc_jnienv(), clazz, "getMode", "()Landroid/view/Display$Mode;");
+  jmethodID id = get_method_id(clazz, "getMode", "()Landroid/view/Display$Mode;");
   if (id != NULL)
     return call_method<jhobject>(m_object, id);
   else
@@ -92,7 +98,7 @@ int CJNIDisplay::getHeight()
 std::vector<CJNIDisplayMode> CJNIDisplay::getSupportedModes()
 {
   jhclass clazz = get_class(m_object);
-  jmethodID id = get_method_id(xbmc_jnienv(), clazz, "getSupportedModes", "()[Landroid/view/Display$Mode;");
+  jmethodID id = get_method_id(clazz, "getSupportedModes", "()[Landroid/view/Display$Mode;");
   if (id != NULL)
     return jcast<CJNIDisplayModes>(call_method<jhobjectArray>(m_object, id));
   else

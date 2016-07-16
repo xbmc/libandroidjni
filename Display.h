@@ -29,6 +29,7 @@ public:
   ~CJNIDisplayMode() {};
   CJNIDisplayMode(const jni::jhobject &object) : CJNIBase(object) {};
 
+  int getModeId();
   int getPhysicalHeight();
   int getPhysicalWidth();
   float getRefreshRate();
