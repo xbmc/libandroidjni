@@ -102,10 +102,7 @@ void CJNIAudioFormat::PopulateStaticFields()
         GetStaticValue(c, CJNIAudioFormat::ENCODING_DTSHD, "ENCODING_DTSHD");
         GetStaticValue(c, CJNIAudioFormat::ENCODING_DTSHD_MA, "ENCODING_DTSHD_MA");
 
-        if (sdk >= 23)
-        {
-          GetStaticValue(c, CJNIAudioFormat::ENCODING_IEC61937, "ENCODING_IEC61937");
-        }
+        GetStaticValue(c, CJNIAudioFormat::ENCODING_IEC61937, "ENCODING_IEC61937");
       }
     }
 
