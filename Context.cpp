@@ -53,6 +53,7 @@
 #include "Document.h"
 #include "RecognizerIntent.h"
 #include "AudioDeviceInfo.h"
+#include "MediaSync.h"
 
 #include <android/native_activity.h>
 
@@ -101,6 +102,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIRecognizerIntent::PopulateStaticFields();
   CJNIAudioDeviceInfo::PopulateStaticFields();
   CJNIViewInputDevice::PopulateStaticFields();
+  CJNIMediaSync::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
