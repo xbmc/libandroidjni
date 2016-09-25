@@ -51,10 +51,7 @@ void CJNISurfaceTextureOnFrameAvailableListener::_onFrameAvailable(JNIEnv *env, 
   (void)env;
   (void)context;
   if (m_listenerInstance)
-  {
-    CJNISurfaceTexture jni_surface = jhobject(surface);
-    m_listenerInstance->OnFrameAvailable(jni_surface);
-  }
+    m_listenerInstance->OnFrameAvailable();
 }
 
 //////////////////////////////////////////////////////////////////////////////////
