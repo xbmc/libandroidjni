@@ -62,6 +62,8 @@ using namespace jni;
 
 jhobject CJNIContext::m_context(0);
 
+std::string CJNIContext::CONNECTIVITY_SERVICE;
+
 CJNIContext::CJNIContext(const ANativeActivity *nativeActivity)
 {
   m_context.reset(nativeActivity->clazz);
@@ -76,6 +78,9 @@ CJNIContext::~CJNIContext()
 
 void CJNIContext::PopulateStaticFields()
 {
+  jhclass clazz = find_class("android/content/Context");
+  CONNECTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_SERVICE"));
+
   CJNIBaseColumns::PopulateStaticFields();
   CJNIMediaStoreMediaColumns::PopulateStaticFields();
   CJNIPowerManager::PopulateStaticFields();

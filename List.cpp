@@ -24,6 +24,9 @@
 #include "WifiConfiguration.h"
 #include "ApplicationInfo.h"
 #include "URIPermission.h"
+#include "LinkAddress.h"
+#include "RouteInfo.h"
+#include "InetAddress.h"
 
 #include "jutils/jutils-details.hpp"
 
@@ -49,3 +52,6 @@ template class CJNIList<CJNIWifiConfiguration>;
 template class CJNIList<CJNIApplicationInfo>;
 template class CJNIList<CJNIViewInputDeviceMotionRange>;
 template class CJNIList<CJNIURIPermission>;
+template class CJNIList<CJNILinkAddress>;
+template class CJNIList<CJNIRouteInfo>;
+template class CJNIList<CJNIInetAddress>;
