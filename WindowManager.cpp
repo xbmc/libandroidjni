@@ -19,10 +19,17 @@
  */
 
 #include "WindowManager.h"
+#include "Display.h"
 
 #include "jutils/jutils-details.hpp"
 
 using namespace jni;
+
+CJNIDisplay CJNIWindowManager::getDefaultDisplay()
+{
+  return call_method<jhobject>(m_object,
+    "getDefaultDisplay", "()Landroid/view/Display;");
+}
 
 float CJNIWindowManagerLayoutParams::getpreferredRefreshRate() const
 {
@@ -62,3 +69,4 @@ void CJNIWindowManagerLayoutParams::setpreferredDisplayModeId(int modeid)
   else
     xbmc_jnienv()->ExceptionClear();
 }
+
