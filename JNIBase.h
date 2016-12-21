@@ -34,6 +34,7 @@ public:
   const static std::string ExceptionToString();
 
   static int RESULT_OK;
+  static int RESULT_CANCELED;
 
 protected:
   CJNIBase() {}
