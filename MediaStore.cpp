@@ -31,6 +31,11 @@ std::string CJNIMediaStoreMediaColumns::DATE_ADDED;
 std::string CJNIMediaStoreMediaColumns::DATE_MODIFIED;
 std::string CJNIMediaStoreMediaColumns::MIME_TYPE;
 
+std::string CJNIMediaStore::EXTRA_MEDIA_FOCUS;
+std::string CJNIMediaStore::EXTRA_MEDIA_ALBUM;
+std::string CJNIMediaStore::EXTRA_MEDIA_ARTIST;
+std::string CJNIMediaStore::EXTRA_MEDIA_TITLE;
+
 void CJNIMediaStoreMediaColumns::PopulateStaticFields()
 {
   jhclass clazz = find_class("android/provider/MediaStore$MediaColumns");
@@ -41,4 +46,13 @@ void CJNIMediaStoreMediaColumns::PopulateStaticFields()
   DATE_ADDED    = (jcast<std::string>(get_static_field<jhstring>(clazz, "DATE_ADDED")));
   DATE_MODIFIED = (jcast<std::string>(get_static_field<jhstring>(clazz, "DATE_MODIFIED")));
   MIME_TYPE     = (jcast<std::string>(get_static_field<jhstring>(clazz, "MIME_TYPE")));
+}
+
+void CJNIMediaStore::PopulateStaticFields()
+{
+  jhclass clazz = find_class("android/provider/MediaStore");
+  EXTRA_MEDIA_FOCUS   = (jcast<std::string>(get_static_field<jhstring>(clazz, "EXTRA_MEDIA_FOCUS")));
+  EXTRA_MEDIA_ALBUM   = (jcast<std::string>(get_static_field<jhstring>(clazz, "EXTRA_MEDIA_ALBUM")));
+  EXTRA_MEDIA_ARTIST  = (jcast<std::string>(get_static_field<jhstring>(clazz, "EXTRA_MEDIA_ARTIST")));
+  EXTRA_MEDIA_TITLE   = (jcast<std::string>(get_static_field<jhstring>(clazz, "EXTRA_MEDIA_TITLE")));
 }

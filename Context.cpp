@@ -83,9 +83,9 @@ void CJNIContext::PopulateStaticFields()
 
   CJNIBaseColumns::PopulateStaticFields();
   CJNIMediaStoreMediaColumns::PopulateStaticFields();
+  CJNIMediaStore::PopulateStaticFields();
   CJNIPowerManager::PopulateStaticFields();
   CJNIPackageManager::PopulateStaticFields();
-  CJNIMediaStoreMediaColumns::PopulateStaticFields();
   CJNICursor::PopulateStaticFields();
   CJNIContentResolver::PopulateStaticFields();
   CJNIConnectivityManager::PopulateStaticFields();

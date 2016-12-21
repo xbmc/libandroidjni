@@ -34,7 +34,7 @@ public:
   static std::string DATE_ADDED;
   static std::string DATE_MODIFIED;
   static std::string MIME_TYPE;
-
+  
 private:
   CJNIMediaStoreMediaColumns();
 };
@@ -44,4 +44,11 @@ class CJNIMediaStore : public CJNIBase
 public:
   CJNIMediaStore(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIMediaStore() {};
+
+  static void PopulateStaticFields();
+
+  static std::string EXTRA_MEDIA_FOCUS;
+  static std::string EXTRA_MEDIA_ALBUM;
+  static std::string EXTRA_MEDIA_ARTIST;
+  static std::string EXTRA_MEDIA_TITLE;
 };
