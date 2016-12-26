@@ -208,6 +208,14 @@ public:
     return m_object ? &jholder::non_null_object : 0;
   }
 
+  /*! \brief equal operator.
+       test whether two references points to the same instance
+  */
+  bool operator==(const T &other) const
+  {
+    return m_object ? xbmc_jnienv()->IsSameObject(m_object, other) : false;
+  }
+
 /*! \brief Change the internal object
   Unref the original object. The new ref type is invalid.
 
