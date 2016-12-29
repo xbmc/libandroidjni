@@ -83,6 +83,10 @@ SRCS      += RouteInfo.cpp
 SRCS      += InetAddress.cpp
 SRCS      += NetworkInterface.cpp
 SRCS      += Rect.cpp
+SRCS      += IInterface.cpp
+SRCS      += FileDescriptor.cpp
+SRCS      += Parcel.cpp
+SRCS      += IBinder.cpp
 
 LIB        = jni.a
 
