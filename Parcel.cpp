@@ -25,3 +25,35 @@ using namespace jni;
 
 
 
+
+CJNIParcel CJNIParcel::obtain()
+{
+  return call_static_method<jhobject>("android/os/Parcel",
+                                      "obtain", "()Landroid/os/Parcel;");
+}
+
+void CJNIParcel::recycle()
+{
+  call_method<void>(m_object,
+                    "recycle", "()V");
+}
+
+void CJNIParcel::writeInterfaceToken(const std::string& interfaceName)
+{
+  call_method<void>(m_object,
+                    "writeInterfaceToken", "(Ljava/lang/String;)V",
+                    jcast<jhstring>(interfaceName));
+}
+
+void CJNIParcel::writeString(const std::string& val)
+{
+  call_method<void>(m_object,
+                    "writeString", "(Ljava/lang/String;)V",
+                    jcast<jhstring>(val));
+}
+
+std::string CJNIParcel::readString()
+{
+  return jcast<std::string>(call_method<jhstring>(m_object,
+                                                  "readString", "()Ljava/lang/String;"));
+}

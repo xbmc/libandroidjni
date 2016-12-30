@@ -1,4 +1,3 @@
-#pragma once
 /*
  *      Copyright (C) 2016 Christian Browet
  *      http://xbmc.org
@@ -19,25 +18,17 @@
  *
  */
 
-#include "JNIBase.h"
+#include "ServiceManager.h"
+#include "jutils/jutils-details.hpp"
 
-namespace jni
+#include "IBinder.h"
+
+using namespace jni;
+
+
+CJNIIBinder CJNIServiceManager::getService(std::string name)
 {
-
-class CJNIParcel : public CJNIBase
-{
-public:
-  CJNIParcel(const jni::jhobject &object) : CJNIBase(object) {}
-  virtual ~CJNIParcel() {}
-
-  static CJNIParcel obtain();
-  void recycle();
-
-  void writeInterfaceToken(const std::string& interfaceName);
-  void writeString(const std::string& val);
-
-  std::string readString();
-};
-
+  return call_static_method<jhobject>("android/os/ServiceManager",
+                                      "getService", "(Ljava/lang/String;)Landroid/os/IBinder;",
+                                      jcast<jhstring>(name));
 }
-

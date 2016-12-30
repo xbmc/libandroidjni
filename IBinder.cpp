@@ -34,6 +34,14 @@ void CJNIIBinderDeathRecipient::binderDied()
 
 /*********************/
 
+int CJNIIBinder::FIRST_CALL_TRANSACTION;
+
+void CJNIIBinder::PopulateStaticFields()
+{
+  jhclass clazz = find_class("android/os/IBinder");
+  FIRST_CALL_TRANSACTION  = (get_static_field<int>(clazz, "FIRST_CALL_TRANSACTION"));
+}
+
 void CJNIIBinder::dump(const CJNIFileDescriptor& fd, const std::vector<std::string>& args)
 {
   call_method<void>(m_object,

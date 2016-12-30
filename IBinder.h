@@ -37,8 +37,12 @@ public:
 class CJNIIBinder : public CJNIBase
 {
 public:
+  CJNIIBinder() : CJNIBase() {}
   CJNIIBinder(const jni::jhobject &object) : CJNIBase(object) {}
   virtual ~CJNIIBinder() {}
+
+  static void PopulateStaticFields();
+  static int FIRST_CALL_TRANSACTION;
 
   void dump(const CJNIFileDescriptor& fd, const std::vector<std::string>& args);
   void dumpAsync(const CJNIFileDescriptor& fd, const std::vector<std::string>& args);
@@ -49,9 +53,6 @@ public:
   CJNIIInterface queryLocalInterface(const std::string& descriptor);
   bool transact(int code, const CJNIParcel& data, const CJNIParcel& reply, int flags);
   bool unlinkToDeath(const CJNIIBinderDeathRecipient& recipient, int flags);
-
-protected:
-  CJNIIBinder();
 };
 
 }

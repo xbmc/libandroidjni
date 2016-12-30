@@ -24,19 +24,17 @@
 namespace jni
 {
 
-class CJNIParcel : public CJNIBase
+class CJNIIBinder;
+
+class CJNIServiceManager : public CJNIBase
 {
 public:
-  CJNIParcel(const jni::jhobject &object) : CJNIBase(object) {}
-  virtual ~CJNIParcel() {}
 
-  static CJNIParcel obtain();
-  void recycle();
+  static CJNIIBinder getService(std::string name);
 
-  void writeInterfaceToken(const std::string& interfaceName);
-  void writeString(const std::string& val);
-
-  std::string readString();
+protected:
+  CJNIServiceManager();
+  virtual ~CJNIServiceManager();
 };
 
 }
