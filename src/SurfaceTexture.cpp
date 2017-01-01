@@ -30,39 +30,13 @@
 
 using namespace jni;
 
-//////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-CJNISurfaceTextureOnFrameAvailableListener* CJNISurfaceTextureOnFrameAvailableListener::m_listenerInstance(NULL);
-
-CJNISurfaceTextureOnFrameAvailableListener::CJNISurfaceTextureOnFrameAvailableListener()
-: CJNIBase(CJNIContext::getPackageName() + ".XBMCOnFrameAvailableListener")
-{
-  // Convert "the/class/name" to "the.class.name" as loadClass() expects it.
-  std::string dotClassName = GetClassName();
-  std::replace(dotClassName.begin(), dotClassName.end(), '/', '.');
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(dotClassName));
-  m_object.setGlobal();
-
-  m_listenerInstance = this;
-}
-
-void CJNISurfaceTextureOnFrameAvailableListener::_onFrameAvailable(JNIEnv *env, jobject context, jobject surface)
-{
-  (void)env;
-  (void)context;
-  if (m_listenerInstance)
-    m_listenerInstance->OnFrameAvailable();
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
 CJNISurfaceTexture::CJNISurfaceTexture(int texName) : CJNIBase("android/graphics/SurfaceTexture")
 {
   m_object = new_object(GetClassName(), "<init>", "(I)V", texName);
   m_object.setGlobal();
 }
 
-void CJNISurfaceTexture::setOnFrameAvailableListener(const CJNISurfaceTextureOnFrameAvailableListener &listener)
+void CJNISurfaceTexture::setOnFrameAvailableListener(const CJNISurfaceTextureOnFrameAvailableListener& listener)
 {
   call_method<void>(m_object,
     "setOnFrameAvailableListener",

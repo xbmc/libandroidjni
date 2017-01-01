@@ -30,14 +30,7 @@ using namespace jni;
 CJNIBroadcastReceiver *CJNIBroadcastReceiver::m_receiverInstance(NULL);
 CJNIBroadcastReceiver::CJNIBroadcastReceiver(const std::string &className) : CJNIBase(className)
 {
-  // Convert "the/class/name" to "the.class.name" as loadClass() expects it.
-  std::string dotClassName = GetClassName();
-  for (std::string::iterator it = dotClassName.begin(); it != dotClassName.end(); ++it)
-  {
-    if (*it == '/')
-      *it = '.';
-  }
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(dotClassName));
+  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName(className)));
   m_receiverInstance = this;
   m_object.setGlobal();
 }

@@ -23,21 +23,11 @@
 
 #include "AudioDeviceInfo.h"
 
-class CJNIAudioManagerAudioFocusChangeListener : public CJNIBase
+class CJNIAudioManagerAudioFocusChangeListener : virtual public CJNIBase
 {
 public:
-  CJNIAudioManagerAudioFocusChangeListener(const jni::jhobject &object) : CJNIBase(object) {};
-  virtual ~CJNIAudioManagerAudioFocusChangeListener() {};
+  virtual void onAudioFocusChange(int focusChange) = 0;
 
-  static void _onAudioFocusChange(JNIEnv *env, jobject context, jint focusChange);
-
-protected:
-  CJNIAudioManagerAudioFocusChangeListener();
-
-  virtual void onAudioFocusChange(int focusChange)=0;
-
-private:
-  static CJNIAudioManagerAudioFocusChangeListener *m_listenerInstance;
 };
 
 class CJNIAudioManager : public CJNIBase
@@ -51,8 +41,8 @@ public:
   int  getStreamVolume();
   void setStreamVolume(int index = 0, int flags = 0);
 
-  int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener &listener, int streamType, int durationHint);
-  int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener &listener);
+  int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint);
+  int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener& listener);
   bool isBluetoothA2dpOn();
   bool isWiredHeadsetOn();
   

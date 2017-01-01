@@ -28,6 +28,6 @@ void CJNIRecognizerIntent::PopulateStaticFields()
 CJNIRecognizerIntent::CJNIRecognizerIntent()
 : CJNIBase(CJNIRecognizerIntent::m_classname)
 {
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName()));
+  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName(m_classname)));
   m_object.setGlobal();
 }

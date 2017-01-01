@@ -80,14 +80,14 @@ void CJNIAudioManager::setStreamVolume(int index /* 0 */, int flags /* NONE */)
                     STREAM_MUSIC, index, flags);
 }
 
-int CJNIAudioManager::requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener &listener, int streamType, int durationHint)
+int CJNIAudioManager::requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint)
 {
   return call_method<int>(m_object,
                           "requestAudioFocus",
                           "(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I", listener.get_raw(), streamType, durationHint);
 }
 
-int CJNIAudioManager::abandonAudioFocus(const CJNIAudioManagerAudioFocusChangeListener &listener)
+int CJNIAudioManager::abandonAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener)
 {
   return call_method<int>(m_object,
                           "abandonAudioFocus",
@@ -112,30 +112,4 @@ CJNIAudioDeviceInfos CJNIAudioManager::getDevices(int flags)
 {
   return jcast<CJNIAudioDeviceInfos>(call_method<jhobjectArray>(m_object,
                                 "getDevices", "(I)[Landroid/media/AudioDeviceInfo;", flags));
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-CJNIAudioManagerAudioFocusChangeListener* CJNIAudioManagerAudioFocusChangeListener::m_listenerInstance(NULL);
-
-CJNIAudioManagerAudioFocusChangeListener::CJNIAudioManagerAudioFocusChangeListener()
-: CJNIBase(CJNIContext::getPackageName() + ".XBMCOnAudioFocusChangeListener")
-{
-  // Convert "the/class/name" to "the.class.name" as loadClass() expects it.
-  std::string dotClassName = GetClassName();
-  std::replace(dotClassName.begin(), dotClassName.end(), '/', '.');
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(dotClassName));
-  m_object.setGlobal();
-
-  m_listenerInstance = this;
-}
-
-void CJNIAudioManagerAudioFocusChangeListener::_onAudioFocusChange(JNIEnv *env, jobject context, jint focusChange)
-{
-  (void)env;
-  (void)context;
-  if (m_listenerInstance)
-  {
-    m_listenerInstance->onAudioFocusChange(focusChange);
-  }
 }
