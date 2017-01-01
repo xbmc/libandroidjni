@@ -91,6 +91,8 @@ SRCS      += ServiceManager.cpp
 SRCS      += Map.cpp
 SRCS      += Set.cpp
 SRCS      += Iterator.cpp
+SRCS      += NsdManager.cpp
+SRCS      += NsdServiceInfo.cpp
 
 LIB        = jni.a
 

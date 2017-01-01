@@ -39,6 +39,7 @@ public:
   const jni::jhobject& get_raw() const { return m_context; }
 
   static std::string CONNECTIVITY_SERVICE;
+  static std::string NSD_SERVICE;
 
   static CJNIPackageManager GetPackageManager();
   static void startActivity(const CJNIIntent &intent);
