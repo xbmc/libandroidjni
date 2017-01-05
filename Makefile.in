@@ -88,6 +88,7 @@ SRCS      += FileDescriptor.cpp
 SRCS      += Parcel.cpp
 SRCS      += IBinder.cpp
 SRCS      += ServiceManager.cpp
+SRCS      += Map.cpp
 
 LIB        = jni.a
 
