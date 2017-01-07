@@ -89,6 +89,8 @@ SRCS      += Parcel.cpp
 SRCS      += IBinder.cpp
 SRCS      += ServiceManager.cpp
 SRCS      += Map.cpp
+SRCS      += Set.cpp
+SRCS      += Iterator.cpp
 
 LIB        = jni.a
 
