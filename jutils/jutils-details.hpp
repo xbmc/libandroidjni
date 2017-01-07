@@ -80,6 +80,29 @@ struct jcast_helper<std::vector<T>, jobjectArray>
 };
 
 template <>
+struct jcast_helper<std::vector<char>, jbyteArray>
+{
+    static std::vector<char> cast(jbyteArray const &v)
+    {
+        JNIEnv *env = xbmc_jnienv();
+        jsize size = 0;
+        if(v)
+            size = env->GetArrayLength(v);
+
+        std::vector<char> vec;
+        vec.reserve(size);
+
+        jbyte *elements = env->GetByteArrayElements(v, NULL);
+        for (int i = 0; i < size; i++)
+        {
+            vec.emplace_back(static_cast<char>(elements[i]));
+        }
+        env->ReleaseByteArrayElements(v, elements, JNI_ABORT);
+        return vec;
+    }
+};
+
+template <>
 struct jcast_helper<std::vector<int>, jintArray>
 {
     static std::vector<int> cast(jintArray const &v)
@@ -184,6 +207,15 @@ struct jcast_helper<std::vector<T>, jhobjectArray>
     static std::vector<T> cast(jhobjectArray const &v)
     {
         return jcast_helper<std::vector<T>, jobjectArray>::cast(v.get());
+    }
+};
+
+template <>
+struct jcast_helper<std::vector<char>, jhbyteArray>
+{
+    static std::vector<char> cast(jhbyteArray const &v)
+    {
+        return jcast_helper<std::vector<char>, jbyteArray>::cast(v.get());
     }
 };
 
