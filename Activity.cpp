@@ -44,15 +44,22 @@ CJNIWindowManager CJNIActivity::getWindowManager()
 
 bool CJNIActivity::moveTaskToBack(bool nonRoot)
 {
-  return call_method<jboolean>(jhobject(m_context),
+  return call_method<jboolean>(m_context,
     "moveTaskToBack", "(Z)Z",
     nonRoot);
 }
 
 void CJNIActivity::startActivityForResult(const CJNIIntent &intent, int requestCode)
 {
-  call_method<void>(jhobject(m_context),
+  call_method<void>(m_context,
     "startActivityForResult", "(Landroid/content/Intent;I)V",
-    intent.get_raw(), requestCode);
+                    intent.get_raw(), requestCode);
+}
+
+bool CJNIActivity::requestVisibleBehind(bool visible)
+{
+  return call_method<jboolean>(m_context,
+    "requestVisibleBehind", "(Z)Z",
+                               visible);
 }
 

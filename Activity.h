@@ -36,6 +36,9 @@ public:
   static CJNIWindowManager getWindowManager();
   static bool moveTaskToBack(bool nonRoot);
   static void startActivityForResult(const CJNIIntent &intent, int requestCode);
+  static bool requestVisibleBehind(bool visible);
+
+  virtual void onVisibleBehindCanceled() = 0;
 
 private:
   CJNIActivity();
