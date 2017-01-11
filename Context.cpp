@@ -56,6 +56,7 @@
 #include "AudioDeviceInfo.h"
 #include "MediaSync.h"
 #include "IBinder.h"
+#include "MediaMetadata.h"
 
 #include <android/native_activity.h>
 
@@ -114,6 +115,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIViewInputDevice::PopulateStaticFields();
   CJNIMediaSync::PopulateStaticFields();
   CJNIIBinder::PopulateStaticFields();
+  CJNIMediaMetadata::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()

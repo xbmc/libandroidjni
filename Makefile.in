@@ -93,6 +93,7 @@ SRCS      += Set.cpp
 SRCS      += Iterator.cpp
 SRCS      += NsdManager.cpp
 SRCS      += NsdServiceInfo.cpp
+SRCS      += MediaMetadata.cpp
 
 LIB        = jni.a
 
