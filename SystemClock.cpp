@@ -29,3 +29,9 @@ int64_t CJNISystemClock::uptimeMillis()
     "uptimeMillis", "()J");
 }
 
+
+int64_t CJNISystemClock::elapsedRealtime()
+{
+  return call_static_method<jlong>("android/os/SystemClock",
+    "elapsedRealtime", "()J");
+}

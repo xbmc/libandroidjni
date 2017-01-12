@@ -26,6 +26,7 @@ class CJNISystemClock
 {
 public:
   static int64_t uptimeMillis();
+  static int64_t elapsedRealtime();
 
 private:
   CJNISystemClock()  {};
