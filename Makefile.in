@@ -95,6 +95,7 @@ SRCS      += NsdManager.cpp
 SRCS      += NsdServiceInfo.cpp
 SRCS      += MediaMetadata.cpp
 SRCS      += PlaybackState.cpp
+SRCS      += BitmapFactory.cpp
 
 LIB        = jni.a
 
