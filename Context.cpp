@@ -57,6 +57,7 @@
 #include "MediaSync.h"
 #include "IBinder.h"
 #include "MediaMetadata.h"
+#include "PlaybackState.h"
 
 #include <android/native_activity.h>
 
@@ -116,6 +117,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIMediaSync::PopulateStaticFields();
   CJNIIBinder::PopulateStaticFields();
   CJNIMediaMetadata::PopulateStaticFields();
+  CJNIPlaybackState::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
