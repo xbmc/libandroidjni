@@ -166,13 +166,13 @@ int CJNIAudioTrack::write(char* audioData, int offsetInBytes, int sizeInBytes)
     jenv->ReleasePrimitiveArrayCritical(m_buffer, pArray, 0);
     if (CJNIBase::GetSDKVersion() >= 21 && m_audioFormat == CJNIAudioFormat::ENCODING_PCM_FLOAT)
     {
-      written = call_method<int>(m_object, "write", "([FIII)I", m_buffer, (int)(offsetInBytes / sizeof(float)), (int)(sizeInBytes / sizeof(float)), CJNIAudioTrack::WRITE_BLOCKING);
+      written = call_method<int>(m_object, "write", "([FIII)I", m_buffer, (int)(offsetInBytes / sizeof(float)), (int)(sizeInBytes / sizeof(float)), CJNIAudioTrack::WRITE_NON_BLOCKING);
       written *= sizeof(float);
     }
     else if (m_audioFormat == CJNIAudioFormat::ENCODING_IEC61937)
     {
       if (CJNIBase::GetSDKVersion() >= 23)
-        written = call_method<int>(m_object, "write", "([SIII)I", m_buffer, (int)(offsetInBytes / sizeof(uint16_t)), (int)(sizeInBytes / sizeof(uint16_t)), CJNIAudioTrack::WRITE_BLOCKING);
+        written = call_method<int>(m_object, "write", "([SIII)I", m_buffer, (int)(offsetInBytes / sizeof(uint16_t)), (int)(sizeInBytes / sizeof(uint16_t)), CJNIAudioTrack::WRITE_NON_BLOCKING);
       else
         written = call_method<int>(m_object, "write", "([SII)I", m_buffer, (int)(offsetInBytes / sizeof(uint16_t)), (int)(sizeInBytes / sizeof(uint16_t)));
       written *= sizeof(uint16_t);
@@ -180,7 +180,7 @@ int CJNIAudioTrack::write(char* audioData, int offsetInBytes, int sizeInBytes)
     else
     {
       if (CJNIBase::GetSDKVersion() >= 23)
-        written = call_method<int>(m_object, "write", "([BIII)I", m_buffer, offsetInBytes, sizeInBytes, CJNIAudioTrack::WRITE_BLOCKING);
+        written = call_method<int>(m_object, "write", "([BIII)I", m_buffer, offsetInBytes, sizeInBytes, CJNIAudioTrack::WRITE_NON_BLOCKING);
       else
         written = call_method<int>(m_object, "write", "([BII)I", m_buffer, offsetInBytes, sizeInBytes);
     }
