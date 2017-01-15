@@ -21,12 +21,16 @@
 
 #include "JNIBase.h"
 #include "ArrayList.h"
+#include "Context.h"
+#include "URI.h"
 
 class CJNIURI;
 class CJNIIntent : public CJNIBase
 {
 public:
   CJNIIntent(const std::string &action = "");
+  CJNIIntent(const CJNIContext& context, const jni::jhclass& cls);
+  CJNIIntent(const std::string &action, const CJNIURI& uri, const CJNIContext& packageContext, const jni::jhclass& cls);
   CJNIIntent(const jni::jhobject &intent) : CJNIBase(intent) {};
   ~CJNIIntent() {};
 

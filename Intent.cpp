@@ -28,22 +28,41 @@ using namespace jni;
 std::string CJNIIntent::EXTRA_KEY_EVENT;
 std::string CJNIIntent::ACTION_OPEN_DOCUMENT_TREE;
 
+static std::string s_className = "android/content/Intent";
+
 void CJNIIntent::PopulateStaticFields()
 {
-  jhclass clazz = find_class("android/content/Intent");
+  jhclass clazz = find_class(s_className.c_str());
   EXTRA_KEY_EVENT  = jcast<std::string>(get_static_field<jhstring>(clazz,"EXTRA_KEY_EVENT"));
   if (CJNIIntent::GetSDKVersion() >= 21)
     ACTION_OPEN_DOCUMENT_TREE  = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_OPEN_DOCUMENT_TREE"));
 }
 
-CJNIIntent::CJNIIntent(const std::string &action) : CJNIBase("android/content/Intent")
+CJNIIntent::CJNIIntent(const std::string &action)
+  : CJNIBase(s_className)
 {
   if(action.empty())
-    m_object = new_object(GetClassName());
+    m_object = new_object(s_className);
   else
-    m_object = new_object(GetClassName(),
+    m_object = new_object(s_className,
       "<init>", "(Ljava/lang/String;)V",
-      jcast<jhstring>(action));
+                          jcast<jhstring>(action));
+}
+
+CJNIIntent::CJNIIntent(const CJNIContext& context, const jhclass& cls)
+  : CJNIBase(s_className)
+{
+  m_object = new_object(s_className,
+                        "<init>", "(Landroid/content/Context;Ljava/lang/Class;)V",
+                        context.get_raw(), cls);
+}
+
+CJNIIntent::CJNIIntent(const std::string& action, const CJNIURI& uri, const CJNIContext& packageContext, const jhclass& cls)
+  : CJNIBase(s_className)
+{
+  m_object = new_object(s_className,
+                        "<init>", "(Ljava/lang/String;Landroid/net/Uri;Landroid/content/Context;Ljava/lang/Class;)V",
+                        jcast<jhstring>(action), uri.get_raw(), packageContext.get_raw(), cls);
 }
 
 std::string CJNIIntent::getAction() const
