@@ -23,9 +23,19 @@
 
 using namespace jni;
 
+CJNIURI CJNIURI::EMPTY;
+
+static std::string s_className = "android/net/Uri";
+
+void CJNIURI::PopulateStaticFields()
+{
+  jhclass clazz = find_class(s_className.c_str());
+  EMPTY = get_static_field<jhobject>(clazz, "EMPTY", "Landroid/net/Uri;");
+}
+
 CJNIURI CJNIURI::parse(std::string uriString)
 {
-  return call_static_method<jhobject>("android/net/Uri",
+  return call_static_method<jhobject>(s_className.c_str(),
     "parse", "(Ljava/lang/String;)Landroid/net/Uri;",
     jcast<jhstring>(uriString));
 }

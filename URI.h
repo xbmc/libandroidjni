@@ -24,8 +24,11 @@
 class CJNIURI : public CJNIBase
 {
 public:
-  CJNIURI(const jni::jhobject &uri) : CJNIBase(uri) {};
-  ~CJNIURI() {};
+  CJNIURI(const jni::jhobject &uri) : CJNIBase(uri) {}
+  ~CJNIURI() {}
+
+  static CJNIURI EMPTY;
+  static void PopulateStaticFields();
 
   std::string getScheme() const;
   std::string toString()  const;
@@ -34,5 +37,5 @@ public:
   static CJNIURI parse(std::string uriString);
 
 private:
-  CJNIURI();
+  CJNIURI() : CJNIBase() {}
 };

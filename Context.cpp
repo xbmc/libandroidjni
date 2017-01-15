@@ -58,6 +58,7 @@
 #include "IBinder.h"
 #include "MediaMetadata.h"
 #include "PlaybackState.h"
+#include "URI.h"
 
 #include <android/native_activity.h>
 
@@ -118,6 +119,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIIBinder::PopulateStaticFields();
   CJNIMediaMetadata::PopulateStaticFields();
   CJNIPlaybackState::PopulateStaticFields();
+  CJNIURI::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
