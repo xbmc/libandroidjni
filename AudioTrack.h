@@ -27,14 +27,13 @@
 #include "AudioFormat.h"
 #include "AudioAttributes.h"
 
+#include <vector>
+
 namespace jni
 {
 
 class CJNIAudioTrack : public CJNIBase
 {
-  jharray m_buffer;
-  int     m_audioFormat;
-
   public:
     CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) throw(std::invalid_argument);
     CJNIAudioTrack (const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) throw(std::invalid_argument);
@@ -44,8 +43,13 @@ class CJNIAudioTrack : public CJNIBase
     void  stop();
     void  flush();
     void  release();
-    int   write(char* audioData, int offsetInBytes, int sizeInBytes);
-    int   write(char *audioData, int sizeInBytes, int64_t timestamp);
+    int   write(const std::vector<float>& audioData, int offsetInFloats, int sizeInFloats, int writeMode);
+    int   write(const std::vector<int16_t>& audioData, int offsetInShorts, int sizeInShorts);
+    int   write(const std::vector<char>& audioData, int offsetInBytes, int sizeInBytes);
+    int   write(const CJNIByteBuffer& audioData, int sizeInBytes, int writeMode);
+    int   write(const CJNIByteBuffer& audioData, int sizeInBytes, int writeMode, int64_t timestamp);
+    int   write(const std::vector<int16_t>& audioData, int offsetInShorts, int sizeInShorts, int writeMode);
+    int   write(const std::vector<char>& audioData, int offsetInBytes, int sizeInBytes, int writeMode);
     int   getState();
     int   getPlayState();
     int   getPlaybackHeadPosition();

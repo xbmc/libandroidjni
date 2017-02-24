@@ -74,17 +74,7 @@ CJNIAudioTrack::CJNIAudioTrack(int streamType, int sampleRateInHz, int channelCo
     jhstring msg = call_method<jhstring>(exception, toStrMethod);
     throw std::invalid_argument(jcast<std::string>(msg));
   }
-
-  m_audioFormat = audioFormat;
-  if (m_audioFormat == CJNIAudioFormat::ENCODING_PCM_FLOAT)
-    m_buffer = jharray(xbmc_jnienv()->NewFloatArray(bufferSizeInBytes / sizeof(float)));
-  else if (m_audioFormat == CJNIAudioFormat::ENCODING_IEC61937)
-    m_buffer = jharray(xbmc_jnienv()->NewShortArray(bufferSizeInBytes / sizeof(uint16_t)));
-  else
-    m_buffer = jharray(xbmc_jnienv()->NewByteArray(bufferSizeInBytes));
-
   m_object.setGlobal();
-  m_buffer.setGlobal();
 }
 
 CJNIAudioTrack::CJNIAudioTrack(const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) throw(std::invalid_argument)
@@ -105,15 +95,7 @@ CJNIAudioTrack::CJNIAudioTrack(const CJNIAudioAttributes &attributes, const CJNI
     jhstring msg = call_method<jhstring>(exception, toStrMethod);
     throw std::invalid_argument(jcast<std::string>(msg));
   }
-
-  m_audioFormat = format.getEncoding();
-  if (m_audioFormat == CJNIAudioFormat::ENCODING_PCM_FLOAT)
-    m_buffer = jharray(xbmc_jnienv()->NewFloatArray(bufferSizeInBytes / sizeof(float)));
-  else
-    m_buffer = jharray(xbmc_jnienv()->NewByteArray(bufferSizeInBytes));
-
   m_object.setGlobal();
-  m_buffer.setGlobal();
 }
 
 void CJNIAudioTrack::play()
@@ -151,59 +133,46 @@ void CJNIAudioTrack::release()
   call_method<void>(m_object, "release", "()V");
 }
 
-int CJNIAudioTrack::write(char* audioData, int offsetInBytes, int sizeInBytes)
+int CJNIAudioTrack::write(const std::vector<float>& audioData, int offsetInFloats, int sizeInFloats, int writeMode)
 {
-  int     written = 0;
-  JNIEnv* jenv    = xbmc_jnienv();
-  char*   pArray;
-
-  // Write a buffer of audio data to Java AudioTrack.
-  // Warning, no other JNI function can be called after
-  // GetPrimitiveArrayCritical until ReleasePrimitiveArrayCritical.
-  if ((pArray = (char*)jenv->GetPrimitiveArrayCritical(m_buffer, NULL)))
-  {
-    memcpy(pArray + offsetInBytes, audioData, sizeInBytes);
-    jenv->ReleasePrimitiveArrayCritical(m_buffer, pArray, 0);
-    if (CJNIBase::GetSDKVersion() >= 21 && m_audioFormat == CJNIAudioFormat::ENCODING_PCM_FLOAT)
-    {
-      written = call_method<int>(m_object, "write", "([FIII)I", m_buffer, (int)(offsetInBytes / sizeof(float)), (int)(sizeInBytes / sizeof(float)), CJNIAudioTrack::WRITE_NON_BLOCKING);
-      written *= sizeof(float);
-    }
-    else if (m_audioFormat == CJNIAudioFormat::ENCODING_IEC61937)
-    {
-      if (CJNIBase::GetSDKVersion() >= 23)
-        written = call_method<int>(m_object, "write", "([SIII)I", m_buffer, (int)(offsetInBytes / sizeof(uint16_t)), (int)(sizeInBytes / sizeof(uint16_t)), CJNIAudioTrack::WRITE_NON_BLOCKING);
-      else
-        written = call_method<int>(m_object, "write", "([SII)I", m_buffer, (int)(offsetInBytes / sizeof(uint16_t)), (int)(sizeInBytes / sizeof(uint16_t)));
-      written *= sizeof(uint16_t);
-    }
-    else
-    {
-      if (CJNIBase::GetSDKVersion() >= 23)
-        written = call_method<int>(m_object, "write", "([BIII)I", m_buffer, offsetInBytes, sizeInBytes, CJNIAudioTrack::WRITE_NON_BLOCKING);
-      else
-        written = call_method<int>(m_object, "write", "([BII)I", m_buffer, offsetInBytes, sizeInBytes);
-    }
-  }
-
-  return written;
+  return call_method<int>(m_object, "write", "([FIII)I", 
+                          jcast<jhfloatArray>(audioData), offsetInFloats, sizeInFloats, writeMode);
 }
 
-int CJNIAudioTrack::write(char* audioData, int sizeInBytes, int64_t timestamp)
+int CJNIAudioTrack::write(const std::vector<int16_t>& audioData, int offsetInShorts, int sizeInShorts)
 {
-  int     written = 0;
-  JNIEnv* jenv    = xbmc_jnienv();
-  char*   pArray;
+  return call_method<int>(m_object, "write", "([SII)I", 
+                          jcast<jhshortArray>(audioData), offsetInShorts, sizeInShorts);
+}
 
-  if ((pArray = (char*)jenv->GetPrimitiveArrayCritical(m_buffer, NULL)))
-  {
-    memcpy(pArray, audioData, sizeInBytes);
-    jenv->ReleasePrimitiveArrayCritical(m_buffer, pArray, 0);
-    CJNIByteBuffer buf = CJNIByteBuffer::wrap(m_buffer);
-    written = call_method<int>(m_object, "write", "(Ljava/nio/ByteBuffer;IIJ)I", buf.get_raw(), sizeInBytes, CJNIAudioTrack::WRITE_BLOCKING, timestamp);
-  }
+int CJNIAudioTrack::write(const std::vector<char>& audioData, int offsetInBytes, int sizeInBytes)
+{
+  return call_method<int>(m_object, "write", "([BII)I", 
+                          jcast<jhbyteArray>(audioData), offsetInBytes, sizeInBytes);
+}
 
-  return written;
+int CJNIAudioTrack::write(const CJNIByteBuffer& audioData, int sizeInBytes, int writeMode)
+{
+  return call_method<int>(m_object, "write", "(Ljava/nio/ByteBuffer;II)I", 
+                          audioData.get_raw(), sizeInBytes, writeMode);
+}
+
+int CJNIAudioTrack::write(const CJNIByteBuffer& audioData, int sizeInBytes, int writeMode, int64_t timestamp)
+{
+  return call_method<int>(m_object, "write", "(Ljava/nio/ByteBuffer;IIJ)I", 
+                          audioData.get_raw(), sizeInBytes, writeMode, timestamp);
+}
+
+int CJNIAudioTrack::write(const std::vector<int16_t>& audioData, int offsetInShorts, int sizeInShorts, int writeMode)
+{
+  return call_method<int>(m_object, "write", "([SIII)I", 
+                          jcast<jhshortArray>(audioData), offsetInShorts, sizeInShorts, writeMode);
+}
+
+int CJNIAudioTrack::write(const std::vector<char>& audioData, int offsetInBytes, int sizeInBytes, int writeMode)
+{
+  return call_method<int>(m_object, "write", "([BIII)I", 
+                          jcast<jhbyteArray>(audioData), offsetInBytes, sizeInBytes, writeMode);
 }
 
 int CJNIAudioTrack::getState()
