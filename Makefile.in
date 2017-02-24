@@ -1,3 +1,4 @@
+SRCS      += jutils/jutils.cpp
 SRCS      += JNIBase.cpp
 SRCS      += JNIThreading.cpp
 SRCS      += Context.cpp
@@ -13,7 +14,6 @@ SRCS      += Environment.cpp
 SRCS      += File.cpp
 SRCS      += IntentFilter.cpp
 SRCS      += SystemClock.cpp
-SRCS      += jutils.cpp
 SRCS      += URI.cpp
 SRCS      += WifiInfo.cpp
 SRCS      += WifiManager.cpp

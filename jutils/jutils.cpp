@@ -48,7 +48,7 @@
 
 #define DBG(fmt, ...)
 #include <string>
-#include "jutils/jutils-details.hpp"
+#include "jutils-details.hpp"
 
 namespace jni
 {
@@ -81,6 +81,58 @@ jhstring jcast_helper<jhstring, std::string>::cast(const std::string &s)
       ret = env->NewStringUTF(s.c_str());
     }
     return jhstring(ret);
+}
+
+jhbyteArray jcast_helper<jhbyteArray, std::vector<char> >::cast(const std::vector<char> &s)
+{
+  JNIEnv *env = xbmc_jnienv();
+  jbyteArray ret = NULL;
+  if (!s.empty())
+  {
+    char*   pArray;
+    ret = env->NewByteArray(s.size());
+    if ((pArray = (char*)env->GetPrimitiveArrayCritical(ret, NULL)))
+    {
+      memcpy(pArray, s.data(), s.size());
+      env->ReleasePrimitiveArrayCritical(ret, pArray, 0);
+    }
+  }
+  return jhbyteArray(ret);
+}
+
+
+jhshortArray jcast_helper<jhshortArray, std::vector<int16_t> >::cast(const std::vector<int16_t> &s)
+{
+  JNIEnv *env = xbmc_jnienv();
+  jshortArray ret = NULL;
+  if (!s.empty())
+  {
+    char*   pArray;
+    ret = env->NewShortArray(s.size());
+    if ((pArray = (char*)env->GetPrimitiveArrayCritical(ret, NULL)))
+    {
+      memcpy(pArray, s.data(), s.size() * sizeof(int16_t));
+      env->ReleasePrimitiveArrayCritical(ret, pArray, 0);
+    }
+  }
+  return jhshortArray(ret);
+}
+
+jhfloatArray jcast_helper<jhfloatArray, std::vector<float> >::cast(const std::vector<float> &s)
+{
+  JNIEnv *env = xbmc_jnienv();
+  jfloatArray ret = NULL;
+  if (!s.empty())
+  {
+    char*   pArray;
+    ret = env->NewFloatArray(s.size());
+    if ((pArray = (char*)env->GetPrimitiveArrayCritical(ret, NULL)))
+    {
+      memcpy(pArray, s.data(), s.size() * sizeof(float));
+      env->ReleasePrimitiveArrayCritical(ret, pArray, 0);
+    }
+  }
+  return jhfloatArray(ret);
 }
 
 jhobjectArray jcast_helper<jhobjectArray, std::vector<std::string> >::cast(const std::vector<std::string> &s)
@@ -244,7 +296,7 @@ struct result_helper<jholder<T> >
         va_end(vl); \
         return result_helper<type>::make_result(env, result); \
     }
-#include "jutils/jni.inc"
+#include "jni.inc"
 #undef CRYSTAX_PP_STEP
 
 template <> const char *jni_signature<jboolean>::signature = "Z";
