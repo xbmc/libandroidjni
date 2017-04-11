@@ -26,6 +26,7 @@
 class CJNIMediaCodecCryptoInfo : public CJNIBase
 {
 public:
+  CJNIMediaCodecCryptoInfo();
   CJNIMediaCodecCryptoInfo(const jni::jhobject &object) : CJNIBase(object) {};
   //~CJNIMediaCodecCryptoInfo() {};
 
@@ -41,7 +42,4 @@ public:
                       const std::vector<char> &newKey,
                       const std::vector<char> &newIV,
                       int newMode);
-
-private:
-  CJNIMediaCodecCryptoInfo();
 };
