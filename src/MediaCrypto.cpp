@@ -74,6 +74,6 @@ void CJNIMediaCrypto::release()
   if (!m_object)
     return;
 
-  call_method<jboolean>(m_object,
+  call_method<void>(m_object,
     "release", "()V");
 }
