@@ -39,7 +39,7 @@ void CJNIWifiManagerMulticastLock::setReferenceCounted(bool refCounted)
 
 bool CJNIWifiManagerMulticastLock::isHeld()
 {
-  return call_method<jboolean>(m_object, "setReferenceCounted", "()Z");
+  return call_method<jboolean>(m_object, "isHeld", "()Z");
 }
 
 std::string CJNIWifiManagerMulticastLock::toString()
