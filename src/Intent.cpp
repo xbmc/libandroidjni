@@ -47,6 +47,7 @@ CJNIIntent::CJNIIntent(const std::string &action)
     m_object = new_object(s_className,
       "<init>", "(Ljava/lang/String;)V",
                           jcast<jhstring>(action));
+  m_object.setGlobal();
 }
 
 CJNIIntent::CJNIIntent(const CJNIContext& context, const jhclass& cls)
@@ -55,6 +56,7 @@ CJNIIntent::CJNIIntent(const CJNIContext& context, const jhclass& cls)
   m_object = new_object(s_className,
                         "<init>", "(Landroid/content/Context;Ljava/lang/Class;)V",
                         context.get_raw(), cls);
+  m_object.setGlobal();
 }
 
 CJNIIntent::CJNIIntent(const std::string& action, const CJNIURI& uri, const CJNIContext& packageContext, const jhclass& cls)
@@ -63,6 +65,7 @@ CJNIIntent::CJNIIntent(const std::string& action, const CJNIURI& uri, const CJNI
   m_object = new_object(s_className,
                         "<init>", "(Ljava/lang/String;Landroid/net/Uri;Landroid/content/Context;Ljava/lang/Class;)V",
                         jcast<jhstring>(action), uri.get_raw(), packageContext.get_raw(), cls);
+  m_object.setGlobal();
 }
 
 std::string CJNIIntent::getAction() const
