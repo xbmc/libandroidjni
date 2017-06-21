@@ -20,6 +20,7 @@
  */
 
 #include "JNIBase.h"
+#include "ClassLoader.h"
 #include "BroadcastReceiver.h"
 
 struct ANativeActivity;
@@ -27,7 +28,6 @@ class CJNIIntent;
 class CJNIPackageManager;
 class CJNIBroadcastReceiver;
 class CJNIIntentFilter;
-class CJNIClassLoader;
 class CJNIApplicationInfo;
 class CJNIFile;
 class CJNIContentResolver;

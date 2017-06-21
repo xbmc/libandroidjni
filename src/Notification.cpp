@@ -154,6 +154,6 @@ void CJNINotification::PopulateStaticFields()
 CJNINotification::CJNINotification()
 : CJNIBase(CJNINotification::m_classname)
 {
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName()));
+  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName(CJNINotification::m_classname)));
   m_object.setGlobal();
 }

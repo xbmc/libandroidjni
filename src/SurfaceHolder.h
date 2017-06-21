@@ -23,7 +23,7 @@
 
 class CJNISurfaceHolder;
 
-class CJNISurfaceHolderCallback
+class CJNISurfaceHolderCallback : virtual public CJNIBase
 {
 public:
   virtual void surfaceChanged(CJNISurfaceHolder holder, int format, int width, int height) = 0;

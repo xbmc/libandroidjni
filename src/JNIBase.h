@@ -21,6 +21,8 @@
 
 #include "jutils.hpp"
 
+#include <list>
+
 class CJNIBase
 {
   friend class CJNIContext; //for SetSDKVersion()
@@ -41,10 +43,10 @@ protected:
   CJNIBase() {}
   CJNIBase(jni::jhobject const& object);
   CJNIBase(std::string classname);
-  ~CJNIBase();
+  virtual ~CJNIBase();
 
   const std::string & GetClassName() {return m_className;}
-  const std::string GetDotClassName();
+  static const std::string GetDotClassName(const std::string & classname);
 
   jni::jhobject m_object;
 
@@ -54,3 +56,38 @@ private:
   static int m_sdk_version;
 };
 
+template <typename I>
+class CJNIInterfaceImplem
+{
+protected:
+  static std::list<std::pair<jni::jhobject, I*>> s_object_map;  
+
+  static void add_instance(const jni::jhobject& o, I* inst)
+  {
+    s_object_map.push_back(std::pair<jni::jhobject, I*>(o, inst));
+  }
+
+  static I* find_instance(const jni::jhobject& o)
+  {
+    for( auto it = s_object_map.begin(); it != s_object_map.end(); ++it )
+    {
+      if (it->first == o)
+        return it->second;
+    }
+    return nullptr;
+  }
+  
+  static void remove_instance(I* inst)
+  {
+    for( auto it = s_object_map.begin(); it != s_object_map.end(); ++it )
+    {
+      if (it->second == inst)
+      {
+        s_object_map.erase(it);
+        break;
+      }
+    }
+  }
+};
+
+template <typename I> std::list<std::pair<jni::jhobject, I*>> CJNIInterfaceImplem<I>::s_object_map;  
