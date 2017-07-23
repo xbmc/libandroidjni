@@ -167,6 +167,17 @@ public:
     setscope(JNILocalRefType);
   }
 
+/*! \brief jholder static unref'ed constructor.
+     Object is copied, scope is invalid
+*/
+  static jholder<T> fromJNI(const T& obj)
+  {
+    jholder<T> o;
+    o.m_refType = JNIInvalidRefType;
+    o.m_object = obj;
+    return o;
+  }
+
 /*! \brief jholder dtor.
    Held objects are deref'd and destroyed.
 */
