@@ -40,5 +40,5 @@ void CJNIBroadcastReceiver::_onReceive(JNIEnv *env, jobject context, jobject int
   (void)env;
   (void)context;
   if(m_receiverInstance)
-    m_receiverInstance->onReceive(CJNIIntent(jhobject(intent)));
+    m_receiverInstance->onReceive(CJNIIntent(jhobject::fromJNI(intent)));
 }

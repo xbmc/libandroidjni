@@ -130,7 +130,7 @@ CJNIPackageManager CJNIContext::GetPackageManager()
 
 void CJNIContext::startActivity(const CJNIIntent &intent)
 {
-  call_method<void>(jhobject(m_context),
+  call_method<void>(m_context,
     "startActivity", "(Landroid/content/Intent;)V",
     intent.get_raw());
 }
