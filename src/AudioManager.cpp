@@ -31,9 +31,12 @@ using namespace jni;
 int CJNIAudioManager::STREAM_MUSIC(3);
 
 int CJNIAudioManager::AUDIOFOCUS_GAIN(0x00000001);
-int CJNIAudioManager::AUDIOFOCUS_LOSS(0xffffffff);
 int CJNIAudioManager::AUDIOFOCUS_GAIN_TRANSIENT(0x00000002);
+int CJNIAudioManager::AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE(0x00000004);
+int CJNIAudioManager::AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK(0x00000003);
+int CJNIAudioManager::AUDIOFOCUS_LOSS(0xffffffff);
 int CJNIAudioManager::AUDIOFOCUS_LOSS_TRANSIENT(0xfffffffe);
+int CJNIAudioManager::AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK(0xfffffffd);
 int CJNIAudioManager::AUDIOFOCUS_REQUEST_GRANTED(0x00000001);
 int CJNIAudioManager::AUDIOFOCUS_REQUEST_FAILED(0x00000000);
 
@@ -46,7 +49,12 @@ void CJNIAudioManager::PopulateStaticFields()
   jhclass clazz = find_class("android/media/AudioManager");
   STREAM_MUSIC = (get_static_field<int>(clazz, "STREAM_MUSIC"));
   AUDIOFOCUS_GAIN = (get_static_field<int>(clazz, "AUDIOFOCUS_GAIN"));
+  AUDIOFOCUS_GAIN_TRANSIENT = (get_static_field<int>(clazz, "AUDIOFOCUS_GAIN_TRANSIENT"));
+  AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE = (get_static_field<int>(clazz, "AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE"));
+  AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK = (get_static_field<int>(clazz, "AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK"));
   AUDIOFOCUS_LOSS = (get_static_field<int>(clazz, "AUDIOFOCUS_LOSS"));
+  AUDIOFOCUS_LOSS_TRANSIENT = (get_static_field<int>(clazz, "AUDIOFOCUS_LOSS_TRANSIENT"));
+  AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK = (get_static_field<int>(clazz, "AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK"));
   AUDIOFOCUS_REQUEST_GRANTED = (get_static_field<int>(clazz, "AUDIOFOCUS_REQUEST_GRANTED"));
   AUDIOFOCUS_REQUEST_FAILED = (get_static_field<int>(clazz, "AUDIOFOCUS_REQUEST_FAILED"));
 
