@@ -31,4 +31,7 @@ CJNIIterator<T> CJNISet<T>::iterator()
                                "iterator", "()Ljava/util/Iterator;");
 }
 
+namespace jni
+{
 template class CJNISet<jhstring>;
+}

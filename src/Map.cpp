@@ -107,4 +107,7 @@ int CJNIMap<K, V>::size()
                            "size", "()I");
 }
 
+namespace jni
+{
 template class CJNIMap<jhstring, jhbyteArray>;
+}

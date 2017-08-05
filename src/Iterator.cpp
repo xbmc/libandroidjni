@@ -45,4 +45,7 @@ void CJNIIterator<T>::remove()
                     "remove", "()V");
 }
 
+namespace jni
+{
 template class CJNIIterator<jhstring>;
+}
