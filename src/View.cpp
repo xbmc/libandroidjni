@@ -84,8 +84,30 @@ bool CJNIViewInputDeviceMotionRange::isFromSource(int source) const
 
 /************************************************************************/
 /************************************************************************/
+int CJNIViewInputDevice::SOURCE_ANY = 0;
+int CJNIViewInputDevice::SOURCE_BLUETOOTH_STYLUS = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_BUTTON = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_JOYSTICK = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_MASK = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_NONE = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_POINTER = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_POSITION = 0;
+int CJNIViewInputDevice::SOURCE_CLASS_TRACKBALL = 0;
+int CJNIViewInputDevice::SOURCE_DPAD = 0;
 int CJNIViewInputDevice::SOURCE_GAMEPAD = 0;
+int CJNIViewInputDevice::SOURCE_HDMI = 0;
 int CJNIViewInputDevice::SOURCE_JOYSTICK = 0;
+int CJNIViewInputDevice::SOURCE_KEYBOARD = 0;
+int CJNIViewInputDevice::SOURCE_MOUSE = 0;
+int CJNIViewInputDevice::SOURCE_MOUSE_RELATIVE = 0;
+int CJNIViewInputDevice::SOURCE_ROTARY_ENCODER = 0;
+int CJNIViewInputDevice::SOURCE_STYLUS = 0;
+int CJNIViewInputDevice::SOURCE_TOUCHPAD = 0;
+int CJNIViewInputDevice::SOURCE_TOUCHSCREEN = 0;
+int CJNIViewInputDevice::SOURCE_TOUCH_NAVIGATION = 0;
+int CJNIViewInputDevice::SOURCE_TRACKBALL = 0;
+int CJNIViewInputDevice::SOURCE_UNKNOWN = 0;
+
 const char *CJNIViewInputDevice::m_classname = "android/view/InputDevice";
 
 const CJNIViewInputDevice CJNIViewInputDevice::getDevice(int id)
@@ -185,8 +207,36 @@ const CJNIViewInputDeviceMotionRange CJNIViewInputDevice::getMotionRange(int axi
 void CJNIViewInputDevice::PopulateStaticFields()
 {
   jhclass clazz = find_class(m_classname);
+
+  SOURCE_ANY = get_static_field<int>(clazz, "SOURCE_ANY");
+  if (GetSDKVersion() >= 23)
+    SOURCE_BLUETOOTH_STYLUS = get_static_field<int>(clazz, "SOURCE_BLUETOOTH_STYLUS");
+  SOURCE_CLASS_BUTTON = get_static_field<int>(clazz, "SOURCE_CLASS_BUTTON");
+  SOURCE_CLASS_JOYSTICK = get_static_field<int>(clazz, "SOURCE_CLASS_JOYSTICK");
+  SOURCE_CLASS_MASK = get_static_field<int>(clazz, "SOURCE_CLASS_MASK");
+  if (GetSDKVersion() >= 18)
+    SOURCE_CLASS_NONE = get_static_field<int>(clazz, "SOURCE_CLASS_NONE");
+  SOURCE_CLASS_POINTER = get_static_field<int>(clazz, "SOURCE_CLASS_POINTER");
+  SOURCE_CLASS_POSITION = get_static_field<int>(clazz, "SOURCE_CLASS_POSITION");
+  SOURCE_CLASS_TRACKBALL = get_static_field<int>(clazz, "SOURCE_CLASS_TRACKBALL");
+  SOURCE_DPAD = get_static_field<int>(clazz, "SOURCE_DPAD");
   SOURCE_GAMEPAD = get_static_field<int>(clazz, "SOURCE_GAMEPAD");
+  if (GetSDKVersion() >= 21)
+    SOURCE_HDMI = get_static_field<int>(clazz, "SOURCE_HDMI");
   SOURCE_JOYSTICK = get_static_field<int>(clazz, "SOURCE_JOYSTICK");
+  SOURCE_KEYBOARD = get_static_field<int>(clazz, "SOURCE_KEYBOARD");
+  SOURCE_MOUSE = get_static_field<int>(clazz, "SOURCE_MOUSE");
+  if (GetSDKVersion() >= 26)
+    SOURCE_MOUSE_RELATIVE = get_static_field<int>(clazz, "SOURCE_MOUSE_RELATIVE");
+  if (GetSDKVersion() >= 26)
+    SOURCE_ROTARY_ENCODER = get_static_field<int>(clazz, "SOURCE_ROTARY_ENCODER");
+  SOURCE_STYLUS = get_static_field<int>(clazz, "SOURCE_STYLUS");
+  SOURCE_TOUCHPAD = get_static_field<int>(clazz, "SOURCE_TOUCHPAD");
+  SOURCE_TOUCHSCREEN = get_static_field<int>(clazz, "SOURCE_TOUCHSCREEN");
+  if (GetSDKVersion() >= 18)
+    SOURCE_TOUCH_NAVIGATION = get_static_field<int>(clazz, "SOURCE_TOUCH_NAVIGATION");
+  SOURCE_TRACKBALL = get_static_field<int>(clazz, "SOURCE_TRACKBALL");
+  SOURCE_UNKNOWN = get_static_field<int>(clazz, "SOURCE_UNKNOWN");
 }
 
 /************************************************************************/
