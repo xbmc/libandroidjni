@@ -165,6 +165,21 @@ const CJNIOsVibrator CJNIViewInputDevice::getVibrator() const
     "getVibrator", "()Landroid/os/Vibrator;");
 }
 
+std::vector<bool> CJNIViewInputDevice::hasKeys(const std::vector<int> &keys) const
+{
+  JNIEnv *env = xbmc_jnienv();
+  jsize size  = keys.size();
+  jintArray intArray = env->NewIntArray(size);
+  env->SetIntArrayRegion(intArray, 0, size, keys.data());
+
+  auto ret = jcast<std::vector<bool>>(call_method<jhbooleanArray>(m_object,
+    "hasKeys", "([I)[Z", intArray));
+
+  env->DeleteLocalRef(intArray);
+
+  return ret;
+}
+
 bool CJNIViewInputDevice::hasMicrophone() const
 {
   return call_method<jboolean>(m_object,

@@ -23,6 +23,8 @@
 #include "List.h"
 #include "Os.h"
 
+#include <vector>
+
 class CJNIDisplay;
 
 class CJNIViewInputDeviceMotionRange : public CJNIBase
@@ -64,6 +66,7 @@ public:
   int          getSources() const;
   int          getVendorId() const;
   const CJNIOsVibrator getVibrator() const;
+  std::vector<bool> hasKeys(const std::vector<int> &keys) const;
   bool         hasMicrophone() const;
   bool         isVirtual() const;
   bool         supportsSource(int source) const;
