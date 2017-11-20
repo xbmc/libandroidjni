@@ -21,6 +21,8 @@
 #include "MediaSync.h"
 #include "jutils-details.hpp"
 
+#include <string.h>
+
 using namespace jni;
 
 int CJNIMediaSync::MEDIASYNC_ERROR_AUDIOTRACK_FAIL         = 0x00000001;

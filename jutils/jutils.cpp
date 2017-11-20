@@ -48,6 +48,7 @@
 
 #define DBG(fmt, ...)
 #include <string>
+#include <string.h>
 #include "jutils-details.hpp"
 
 namespace jni
