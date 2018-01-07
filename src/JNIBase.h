@@ -67,7 +67,7 @@ protected:
     s_object_map.push_back(std::pair<jni::jhobject, I*>(o, inst));
   }
 
-  static I* find_instance(const jni::jhobject& o)
+  static I* find_instance(const jobject& o)
   {
     for( auto it = s_object_map.begin(); it != s_object_map.end(); ++it )
     {
