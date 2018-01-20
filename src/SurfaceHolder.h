@@ -21,6 +21,7 @@
 
 #include "JNIBase.h"
 
+class CJNISurface;
 class CJNISurfaceHolder;
 
 class CJNISurfaceHolderCallback : virtual public CJNIBase
@@ -37,4 +38,6 @@ public:
   CJNISurfaceHolder() : CJNIBase() {}
   CJNISurfaceHolder(const jni::jhobject &object) : CJNIBase(object) {}
   ~CJNISurfaceHolder() {}
+
+  CJNISurface getSurface();
 };

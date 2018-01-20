@@ -18,8 +18,15 @@
  *
  */
 
+#include "Surface.h"
 #include "SurfaceHolder.h"
 #include "jutils-details.hpp"
 
 using namespace jni;
 
+
+CJNISurface CJNISurfaceHolder::getSurface()
+{
+  return call_method<jhobject>(m_object,
+    "getSurface", "()Landroid/view/Surface;");
+}
