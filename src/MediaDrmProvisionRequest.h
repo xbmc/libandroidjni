@@ -1,7 +1,7 @@
 #pragma once
 /*
- *      Copyright (C) 2016 Team Kodi
- *      http://xbmc.org
+ *      Copyright (C) 2018 Team Kodi
+ *      http://kodi.org
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,17 +14,20 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with XBMC; see the file COPYING.  If not, see
+ *  along with KODI; see the file COPYING.  If not, see
  *  <http://www.gnu.org/licenses/>.
  *
  */
 
 #include "JNIBase.h"
 
-class CJNIUUID : public CJNIBase
+class CJNIMediaDrmProvisionRequest : public CJNIBase
 {
 public:
-  CJNIUUID(int64_t mostSigBits, int64_t leastSigBits);
-  CJNIUUID(const jni::jhobject &object) : CJNIBase(object) {}
-  ~CJNIUUID() {}
+  CJNIMediaDrmProvisionRequest();
+  CJNIMediaDrmProvisionRequest(const jni::jhobject &object) : CJNIBase(object) {};
+
+  std::vector<char> getData() const;
+  std::string getDefaultUrl() const;
 };
+
