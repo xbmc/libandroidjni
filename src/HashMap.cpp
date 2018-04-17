@@ -1,7 +1,6 @@
-#pragma once
 /*
- *      Copyright (C) 2016 Team Kodi
- *      http://xbmc.org
+ *      Copyright (C) 2018 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -14,17 +13,26 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with XBMC; see the file COPYING.  If not, see
+ *  along with KODI; see the file COPYING.  If not, see
  *  <http://www.gnu.org/licenses/>.
  *
  */
 
-#include "JNIBase.h"
+#include "HashMap.h"
+#include "jutils-details.hpp"
 
-class CJNIUUID : public CJNIBase
+using namespace jni;
+
+CJNIHashMap::CJNIHashMap()
+  : CJNIBase("java/util/HashMap")
 {
-public:
-  CJNIUUID(int64_t mostSigBits, int64_t leastSigBits);
-  CJNIUUID(const jni::jhobject &object) : CJNIBase(object) {}
-  ~CJNIUUID() {}
-};
+  m_object = new_object(GetClassName(), "<init>", "(I)V", 1);
+  m_object.setGlobal();
+}
+
+jhstring CJNIHashMap::put(const jhstring key, const jhstring value)
+{
+  return call_method<jhstring>(m_object,
+                               "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;",
+                               key, value);
+}
