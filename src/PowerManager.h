@@ -37,6 +37,7 @@ public:
 
   static int FULL_WAKE_LOCK;
   static int SCREEN_BRIGHT_WAKE_LOCK;
+  static int ON_AFTER_RELEASE;
 
 private:
   CJNIPowerManager();

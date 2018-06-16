@@ -32,6 +32,7 @@ void CJNIPowerManager::PopulateStaticFields()
   jhclass clazz  = find_class("android/os/PowerManager");
   FULL_WAKE_LOCK = (get_static_field<int>(clazz, "FULL_WAKE_LOCK"));
   SCREEN_BRIGHT_WAKE_LOCK = (get_static_field<int>(clazz, "SCREEN_BRIGHT_WAKE_LOCK"));
+  ON_AFTER_RELEASE = (get_static_field<int>(clazz, "ON_AFTER_RELEASE"));
 }
 
 CJNIWakeLock CJNIPowerManager::newWakeLock(int levelAndFlags, const std::string &tag)
