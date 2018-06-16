@@ -26,6 +26,7 @@ using namespace jni;
 
 int CJNIPowerManager::FULL_WAKE_LOCK(0);
 int CJNIPowerManager::SCREEN_BRIGHT_WAKE_LOCK(0xa);
+int CJNIPowerManager::ON_AFTER_RELEASE(0x20000000);
 
 void CJNIPowerManager::PopulateStaticFields()
 {
