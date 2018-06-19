@@ -44,6 +44,8 @@ int CJNIAudioManager::GET_DEVICES_ALL(0x00000003);
 int CJNIAudioManager::GET_DEVICES_INPUTS(0x00000001);
 int CJNIAudioManager::GET_DEVICES_OUTPUTS(0x00000002);
 
+int CJNIAudioManager::AUDIO_SESSION_ID_GENERATE(0);
+
 void CJNIAudioManager::PopulateStaticFields()
 {
   jhclass clazz = find_class("android/media/AudioManager");
@@ -59,6 +61,11 @@ void CJNIAudioManager::PopulateStaticFields()
   AUDIOFOCUS_REQUEST_FAILED = (get_static_field<int>(clazz, "AUDIOFOCUS_REQUEST_FAILED"));
 
   int sdk = CJNIBase::GetSDKVersion();
+  if (sdk >=21)
+  {
+    AUDIO_SESSION_ID_GENERATE = (get_static_field<int>(clazz, "AUDIO_SESSION_ID_GENERATE"));
+  }
+
   if (sdk >= 23)
   {
     GET_DEVICES_ALL = (get_static_field<int>(clazz, "GET_DEVICES_ALL"));

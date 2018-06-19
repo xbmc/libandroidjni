@@ -28,7 +28,15 @@ using namespace jni;
 
 int CJNIAudioAttributes::CONTENT_TYPE_MOVIE       = -1;
 int CJNIAudioAttributes::CONTENT_TYPE_MUSIC       = -1;
-int CJNIAudioAttributes::FLAG_HW_AV_SYNC          = -1;
+
+
+int CJNIAudioAttributes::FLAG_AUDIBILITY_ENFORCED = -1;
+int CJNIAudioAttributes::FLAG_BEACON = -1;
+int CJNIAudioAttributes::FLAG_HW_AV_SYNC = -1;
+int CJNIAudioAttributes::FLAG_HW_HOTWORD = -1;
+int CJNIAudioAttributes::FLAG_BYPASS_INTERRUPTION_POLICY = -1;
+int CJNIAudioAttributes::FLAG_BYPASS_MUTE = -1;
+
 int CJNIAudioAttributes::USAGE_MEDIA              = -1;
 
 const char *CJNIAudioAttributes::m_classname = "android/media/AudioAttributes";
@@ -55,9 +63,15 @@ void CJNIAudioAttributes::PopulateStaticFields()
     {
       GetStaticValue(c, CJNIAudioAttributes::CONTENT_TYPE_MOVIE, "CONTENT_TYPE_MOVIE");
       GetStaticValue(c, CJNIAudioAttributes::CONTENT_TYPE_MUSIC, "CONTENT_TYPE_MUSIC");
-      GetStaticValue(c, CJNIAudioAttributes::FLAG_HW_AV_SYNC, "FLAG_HW_AV_SYNC");
-      GetStaticValue(c, CJNIAudioAttributes::USAGE_MEDIA, "USAGE_MEDIA");
 
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_AUDIBILITY_ENFORCED, "FLAG_AUDIBILITY_ENFORCED");
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_BEACON, "FLAG_BEACON");
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_HW_AV_SYNC, "FLAG_HW_AV_SYNC");
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_HW_HOTWORD, "FLAG_HW_HOTWORD");
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_BYPASS_INTERRUPTION_POLICY, "FLAG_BYPASS_INTERRUPTION_POLICY");
+      GetStaticValue(c, CJNIAudioAttributes::FLAG_BYPASS_MUTE, "FLAG_BYPASS_MUTE");
+
+      GetStaticValue(c, CJNIAudioAttributes::USAGE_MEDIA, "USAGE_MEDIA");
     }
 
   }

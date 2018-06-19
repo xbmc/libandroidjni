@@ -45,7 +45,7 @@ public:
   int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener& listener);
   bool isBluetoothA2dpOn();
   bool isWiredHeadsetOn();
-  
+
   CJNIAudioDeviceInfos getDevices(int flags);
 
   static void PopulateStaticFields();
@@ -60,10 +60,12 @@ public:
   static int AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
   static int AUDIOFOCUS_REQUEST_GRANTED;
   static int AUDIOFOCUS_REQUEST_FAILED;
-  
+
   static int GET_DEVICES_ALL;
   static int GET_DEVICES_INPUTS;
   static int GET_DEVICES_OUTPUTS;
+
+  static int AUDIO_SESSION_ID_GENERATE;
 
 private:
   CJNIAudioManager();

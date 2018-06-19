@@ -34,7 +34,12 @@ public:
   static int CONTENT_TYPE_MOVIE;
   static int CONTENT_TYPE_MUSIC;
 
+  static int FLAG_AUDIBILITY_ENFORCED;
+  static int FLAG_BEACON;
   static int FLAG_HW_AV_SYNC;
+  static int FLAG_HW_HOTWORD;
+  static int FLAG_BYPASS_INTERRUPTION_POLICY;
+  static int FLAG_BYPASS_MUTE;
 
   static int USAGE_MEDIA;
 
