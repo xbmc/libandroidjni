@@ -45,19 +45,19 @@ CJNINetworkInterface CJNINetworkInterface::getByInetAddress(const CJNIInetAddres
     "getByInetAddress", "(Ljava/net/InetAddress;)Ljava/net/NetworkInterface;", addr.get_raw()));
 }
 
-std::string CJNINetworkInterface::getName()
+std::string CJNINetworkInterface::getName() const
 {
   return jcast<std::string>(call_method<jhstring>(m_object,
     "getName", "()Ljava/lang/String;"));
 }
 
-std::string CJNINetworkInterface::getDisplayName()
+std::string CJNINetworkInterface::getDisplayName() const
 {
   return jcast<std::string>(call_method<jhstring>(m_object,
     "getDisplayName", "()Ljava/lang/String;"));
 }
 
-std::vector<char> CJNINetworkInterface::getHardwareAddress()
+std::vector<char> CJNINetworkInterface::getHardwareAddress() const
 {
   JNIEnv *env = xbmc_jnienv();
   jhbyteArray array = call_method<jhbyteArray>(m_object,
@@ -75,49 +75,49 @@ std::vector<char> CJNINetworkInterface::getHardwareAddress()
   return result;
 }
 
-int CJNINetworkInterface::getIndex()
+int CJNINetworkInterface::getIndex() const
 {
   return call_method<jboolean>(m_object,
     "getIndex", "()I");
 }
 
-int CJNINetworkInterface::getMTU()
+int CJNINetworkInterface::getMTU() const
 {
   return call_method<jboolean>(m_object,
     "getMTU", "()I");
 }
 
-bool CJNINetworkInterface::isLoopback()
+bool CJNINetworkInterface::isLoopback() const
 {
   return call_method<jboolean>(m_object,
     "isLoopback", "()Z");
 }
 
-bool CJNINetworkInterface::isPointToPoint()
+bool CJNINetworkInterface::isPointToPoint() const
 {
   return call_method<jboolean>(m_object,
     "isPointToPoint", "()Z");
 }
 
-bool CJNINetworkInterface::isUp()
+bool CJNINetworkInterface::isUp() const
 {
   return call_method<jboolean>(m_object,
     "isUp", "()Z");
 }
 
-bool CJNINetworkInterface::isVirtual()
+bool CJNINetworkInterface::isVirtual() const
 {
   return call_method<jboolean>(m_object,
     "isVirtual", "()Z");
 }
 
-bool CJNINetworkInterface::supportsMulticast()
+bool CJNINetworkInterface::supportsMulticast() const
 {
   return call_method<jboolean>(m_object,
     "supportsMulticast", "()Z");
 }
 
-bool CJNINetworkInterface::equals(const CJNINetworkInterface& other)
+bool CJNINetworkInterface::equals(const CJNINetworkInterface& other) const
 {
   return call_method<jboolean>(m_object,
     "equals", "(Ljava/lang/Object;)Z", other.get_raw());

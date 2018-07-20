@@ -33,14 +33,14 @@ public:
   CJNILinkProperties(const jni::jhobject &object) : CJNIBase(object){}
   ~CJNILinkProperties(){}
 
-  std::string getDomains();
-  std::string getInterfaceName();
+  std::string getDomains() const;
+  std::string getInterfaceName() const;
   
-  CJNIList<CJNIRouteInfo> getRoutes();
-  CJNIList<CJNILinkAddress> getLinkAddresses();
-  CJNIList<CJNIInetAddress> getDnsServers();
+  CJNIList<CJNIRouteInfo> getRoutes() const;
+  CJNIList<CJNILinkAddress> getLinkAddresses() const;
+  CJNIList<CJNIInetAddress> getDnsServers() const;
   
-  bool        equals(const CJNILinkProperties &other);
+  bool        equals(const CJNILinkProperties &other) const;
   std::string toString()    const;
   int         describeContents() const;
   
