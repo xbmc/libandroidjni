@@ -26,38 +26,38 @@
 
 using namespace jni;
 
-std::string CJNILinkProperties::getDomains()
+std::string CJNILinkProperties::getDomains() const
 {
   return jcast<std::string>(call_method<jhstring>(m_object,
     "getDomains", "()Ljava/lang/String;"));
 }
 
-std::string CJNILinkProperties::getInterfaceName()
+std::string CJNILinkProperties::getInterfaceName() const
 {
   return jcast<std::string>(call_method<jhstring>(m_object,
     "getInterfaceName", "()Ljava/lang/String;"));
 }
 
-CJNIList<CJNIRouteInfo> CJNILinkProperties::getRoutes()
+CJNIList<CJNIRouteInfo> CJNILinkProperties::getRoutes() const
 {
   return call_method<jhobject>(m_object,
                                "getRoutes", "()Ljava/util/List;");
 }
 
-CJNIList<CJNILinkAddress> CJNILinkProperties::getLinkAddresses()
+CJNIList<CJNILinkAddress> CJNILinkProperties::getLinkAddresses() const
 {
   return call_method<jhobject>(m_object,
                                "getLinkAddresses", "()Ljava/util/List;");
 }
 
-CJNIList<CJNIInetAddress> CJNILinkProperties::getDnsServers()
+CJNIList<CJNIInetAddress> CJNILinkProperties::getDnsServers() const
 {
   return call_method<jhobject>(m_object,
                                "getDnsServers", "()Ljava/util/List;");
 }
 
 
-bool CJNILinkProperties::equals(const CJNILinkProperties& other)
+bool CJNILinkProperties::equals(const CJNILinkProperties& other) const
 {
   return call_method<jboolean>(m_object,
     "equals", "(Ljava/lang/Object;)Z", other.get_raw());

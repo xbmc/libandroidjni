@@ -33,19 +33,19 @@ public:
   static CJNINetworkInterface getByIndex(int index);
   static CJNINetworkInterface getByInetAddress(const CJNIInetAddress& addr);
   
-  std::string getName();
-  std::string getDisplayName();
-  std::vector<char> getHardwareAddress();
-  int getIndex();
-  int getMTU();
+  std::string getName() const;
+  std::string getDisplayName() const;
+  std::vector<char> getHardwareAddress() const;
+  int getIndex() const;
+  int getMTU() const;
   
-  bool isLoopback();
-  bool isPointToPoint();
-  bool isUp();
-  bool isVirtual();
-  bool supportsMulticast();
+  bool isLoopback() const;
+  bool isPointToPoint() const;
+  bool isUp() const;
+  bool isVirtual() const;
+  bool supportsMulticast() const;
   
-  bool        equals(const CJNINetworkInterface &other);
+  bool        equals(const CJNINetworkInterface &other) const;
   std::string toString()    const;
   
 protected:

@@ -23,7 +23,7 @@
 
 using namespace jni;
 
-bool CJNINetwork::equals(const CJNINetwork& other)
+bool CJNINetwork::equals(const CJNINetwork& other) const
 {
   return call_method<jboolean>(m_object,
     "equals", "(Ljava/lang/Object;)Z", other.get_raw());

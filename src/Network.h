@@ -27,7 +27,7 @@ public:
   CJNINetwork(const jni::jhobject &object) : CJNIBase(object){}
   ~CJNINetwork(){}
 
-  bool        equals(const CJNINetwork &other);
+  bool        equals(const CJNINetwork &other) const;
   std::string toString()    const;
   int         describeContents() const;
   
