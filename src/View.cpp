@@ -182,8 +182,10 @@ std::vector<bool> CJNIViewInputDevice::hasKeys(const std::vector<int> &keys) con
 
 bool CJNIViewInputDevice::hasMicrophone() const
 {
-  return call_method<jboolean>(m_object,
-    "hasMicrophone", "()Z");
+  if (GetSDKVersion() >= 23)
+    return call_method<jboolean>(m_object,
+      "hasMicrophone", "()Z");
+  return false;
 }
 
 bool CJNIViewInputDevice::isVirtual() const
