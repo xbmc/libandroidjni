@@ -188,6 +188,14 @@ bool CJNIViewInputDevice::hasMicrophone() const
   return false;
 }
 
+bool CJNIViewInputDevice::isEnabled() const
+{
+  if (GetSDKVersion() >= 27)
+    return call_method<jboolean>(m_object,
+      "isEnabled", "()Z");
+  return true;
+}
+
 bool CJNIViewInputDevice::isVirtual() const
 {
   return call_method<jboolean>(m_object,

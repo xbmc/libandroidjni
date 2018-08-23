@@ -68,6 +68,7 @@ public:
   const CJNIOsVibrator getVibrator() const;
   std::vector<bool> hasKeys(const std::vector<int> &keys) const;
   bool         hasMicrophone() const;
+  bool         isEnabled() const;
   bool         isVirtual() const;
   bool         supportsSource(int source) const;
 
