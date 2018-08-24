@@ -51,6 +51,7 @@
 
 #include <jni.h>
 #include <string>
+#include <vector>
 #include "jutils.hpp"
 namespace jni
 {
@@ -195,6 +196,29 @@ struct jcast_helper<std::vector<float>, jfloatArray>
 };
 
 template <>
+struct jcast_helper<std::vector<bool>, jbooleanArray>
+{
+    static std::vector<bool> cast(jbooleanArray const &v)
+    {
+        JNIEnv *env = xbmc_jnienv();
+        jsize size = 0;
+        if(v)
+            size = env->GetArrayLength(v);
+
+        std::vector<bool> vec;
+        vec.resize(size);
+
+        jboolean *elements = env->GetBooleanArrayElements(v, NULL);
+        for (int i = 0; i < size; i++)
+        {
+            vec[i] = static_cast<bool>(elements[i]);
+        }
+        env->ReleaseBooleanArrayElements(v, elements, JNI_ABORT);
+        return vec;
+    }
+};
+
+template <>
 struct jcast_helper<jhstring, std::string>
 {
     static jhstring cast(const std::string &v);
@@ -284,6 +308,15 @@ struct jcast_helper<std::vector<int64_t>, jhlongArray>
     static std::vector<int64_t> cast(jhlongArray const &v)
     {
         return jcast_helper<std::vector<int64_t>, jlongArray>::cast(v.get());
+    }
+};
+
+template <>
+struct jcast_helper<std::vector<bool>, jhbooleanArray>
+{
+    static std::vector<bool> cast(jhbooleanArray const &v)
+    {
+        return jcast_helper<std::vector<bool>, jbooleanArray>::cast(v.get());
     }
 };
 

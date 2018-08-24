@@ -23,6 +23,8 @@
 #include "List.h"
 #include "Os.h"
 
+#include <vector>
+
 class CJNIDisplay;
 
 class CJNIViewInputDeviceMotionRange : public CJNIBase
@@ -64,13 +66,37 @@ public:
   int          getSources() const;
   int          getVendorId() const;
   const CJNIOsVibrator getVibrator() const;
+  std::vector<bool> hasKeys(const std::vector<int> &keys) const;
   bool         hasMicrophone() const;
+  bool         isEnabled() const;
   bool         isVirtual() const;
   bool         supportsSource(int source) const;
 
   static void PopulateStaticFields();
+
+  static int SOURCE_ANY;
+  static int SOURCE_BLUETOOTH_STYLUS;
+  static int SOURCE_CLASS_BUTTON;
+  static int SOURCE_CLASS_JOYSTICK;
+  static int SOURCE_CLASS_MASK;
+  static int SOURCE_CLASS_NONE;
+  static int SOURCE_CLASS_POINTER;
+  static int SOURCE_CLASS_POSITION;
+  static int SOURCE_CLASS_TRACKBALL;
+  static int SOURCE_DPAD;
   static int SOURCE_GAMEPAD;
+  static int SOURCE_HDMI;
   static int SOURCE_JOYSTICK;
+  static int SOURCE_KEYBOARD;
+  static int SOURCE_MOUSE;
+  static int SOURCE_MOUSE_RELATIVE;
+  static int SOURCE_ROTARY_ENCODER;
+  static int SOURCE_STYLUS;
+  static int SOURCE_TOUCHPAD;
+  static int SOURCE_TOUCHSCREEN;
+  static int SOURCE_TOUCH_NAVIGATION;
+  static int SOURCE_TRACKBALL;
+  static int SOURCE_UNKNOWN;
 
 private:
   CJNIViewInputDevice();

@@ -33,7 +33,7 @@ void CJNIURI::PopulateStaticFields()
   EMPTY = get_static_field<jhobject>(clazz, "EMPTY", "Landroid/net/Uri;");
 }
 
-CJNIURI CJNIURI::parse(std::string uriString)
+CJNIURI CJNIURI::parse(const std::string &uriString)
 {
   return call_static_method<jhobject>(s_className.c_str(),
     "parse", "(Ljava/lang/String;)Landroid/net/Uri;",

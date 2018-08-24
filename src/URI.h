@@ -34,7 +34,7 @@ public:
   std::string toString()  const;
   std::string getLastPathSegment() const;
   std::string getPath()   const;
-  static CJNIURI parse(std::string uriString);
+  static CJNIURI parse(const std::string &uriString);
 
 private:
   CJNIURI() : CJNIBase() {}
