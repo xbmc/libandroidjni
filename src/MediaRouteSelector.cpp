@@ -1,6 +1,6 @@
 /*
- *      Copyright (C) 2016 Christian Browet
- *      http://xbmc.org
+ *      Copyright (C) 2018 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,32 +13,22 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with XBMC; see the file COPYING.  If not, see
+ *  along with Kodi; see the file COPYING.  If not, see
  *  <http://www.gnu.org/licenses/>.
  *
  */
 
-#include "Surface.h"
-#include "SurfaceHolder.h"
+#include "MediaRouteSelector.h"
+
 #include "jutils-details.hpp"
 
 using namespace jni;
 
+/*************/
 
-CJNISurface CJNISurfaceHolder::getSurface()
+CJNIMediaRouteSelector::CJNIMediaRouteSelector()
+  : CJNIBase("android/support/v7/media/MediaRouteSelector")
 {
-  return call_method<jhobject>(m_object,
-    "getSurface", "()Landroid/view/Surface;");
-}
-
-void CJNISurfaceHolder::setFixedSize(int width, int height)
-{
-  call_method<jhobject>(m_object,
-    "setFixedSize", "(II)V");
-}
-
-void CJNISurfaceHolder::setSizeFromLayout()
-{
-  call_method<jhobject>(m_object,
-    "setSizeFromLayout", "()V");
+  m_object = new_object(GetClassName());
+  m_object.setGlobal();
 }

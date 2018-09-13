@@ -48,3 +48,15 @@ CJNIView CJNIWindow::getDecorView()
   return call_method<jhobject>(m_object,
     "getDecorView", "()Landroid/view/View;");
 }
+
+const jni::jhobject CJNIWindow::getCallback()
+{
+  return call_method<jhobject>(m_object,
+    "getCallback", "()Landroid/view/Window$Callback;");
+}
+
+void CJNIWindow::setCallback(const jni::jhobject &object)
+{
+  call_method<void>(m_object,
+    "setCallback", "(Landroid/view/Window$Callback;)V", object);
+}

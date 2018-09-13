@@ -108,6 +108,7 @@ class CJNIView : public CJNIBase
 {
 public:
   CJNIView(const jni::jhobject &object) : CJNIBase(object) {};
+  CJNIView(const char *className) : CJNIBase(className) {};
   ~CJNIView() {};
 
   void setSystemUiVisibility(int visibility);

@@ -55,6 +55,12 @@ CJNIDisplay::CJNIDisplay()
 {
 }
 
+long CJNIDisplay::getAppVsyncOffsetNanos()
+{
+  return call_method<jlong>(m_object,
+    "getAppVsyncOffsetNanos", "()J");
+}
+
 float CJNIDisplay::getRefreshRate()
 {
   return call_method<jfloat>(m_object,
@@ -106,5 +112,11 @@ std::vector<CJNIDisplayMode> CJNIDisplay::getSupportedModes()
     xbmc_jnienv()->ExceptionClear();
     return CJNIDisplayModes();
   }
+}
+
+int CJNIDisplay::getState()
+{
+  return call_method<jint>(m_object,
+    "getState", "()I");
 }
 
