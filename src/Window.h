@@ -32,6 +32,8 @@ public:
 
   CJNIWindowManagerLayoutParams getAttributes();
   void setAttributes(const CJNIWindowManagerLayoutParams& attributes);
+  const jni::jhobject getCallback();
+  void setCallback(const jni::jhobject &object);
 
   CJNIView getDecorView();
 };

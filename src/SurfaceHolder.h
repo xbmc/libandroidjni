@@ -40,4 +40,6 @@ public:
   ~CJNISurfaceHolder() {}
 
   CJNISurface getSurface();
+  void setFixedSize(int width, int height);
+  void setSizeFromLayout();
 };

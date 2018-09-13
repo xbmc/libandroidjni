@@ -45,12 +45,14 @@ public:
   CJNIDisplay(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIDisplay() {};
 
+  long getAppVsyncOffsetNanos();
   float getRefreshRate();
   std::vector<float> getSupportedRefreshRates();
   CJNIDisplayMode getMode();
   int getWidth();
   int getHeight();
   std::vector<CJNIDisplayMode> getSupportedModes();
+  int getState();
 };
 
 typedef std::vector<CJNIDisplayMode> CJNIDisplayModes;

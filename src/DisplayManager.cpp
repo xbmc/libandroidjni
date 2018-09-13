@@ -1,6 +1,6 @@
 /*
- *      Copyright (C) 2016 Christian Browet
- *      http://xbmc.org
+ *      Copyright (C) 2018 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -13,32 +13,29 @@
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with XBMC; see the file COPYING.  If not, see
+ *  along with Kodi; see the file COPYING.  If not, see
  *  <http://www.gnu.org/licenses/>.
  *
  */
 
-#include "Surface.h"
-#include "SurfaceHolder.h"
+#include "DisplayManager.h"
+
 #include "jutils-details.hpp"
 
 using namespace jni;
 
+/*************/
 
-CJNISurface CJNISurfaceHolder::getSurface()
+void CJNIDisplayManager::registerDisplayListener(const jni::jhobject &listener)
 {
-  return call_method<jhobject>(m_object,
-    "getSurface", "()Landroid/view/Surface;");
+  call_method<void>(m_object,
+    "registerDisplayListener", "(Landroid/hardware/display/DisplayManager$DisplayListener;Landroid/os/Handler;)V",
+    listener, jhobject(nullptr));
 }
 
-void CJNISurfaceHolder::setFixedSize(int width, int height)
+void CJNIDisplayManager::unregisterDisplayListener(const jni::jhobject &listener)
 {
-  call_method<jhobject>(m_object,
-    "setFixedSize", "(II)V");
-}
-
-void CJNISurfaceHolder::setSizeFromLayout()
-{
-  call_method<jhobject>(m_object,
-    "setSizeFromLayout", "()V");
+  call_method<void>(m_object,
+    "unregisterDisplayListener", "(Landroid/hardware/display/DisplayManager$DisplayLister;)V",
+    listener);
 }
