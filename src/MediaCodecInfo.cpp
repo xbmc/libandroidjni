@@ -338,7 +338,7 @@ std::vector<CJNIMediaCodecInfoCodecProfileLevel> CJNIMediaCodecInfoCodecCapabili
 {
   JNIEnv *env = xbmc_jnienv();
 
-  jhobjectArray oprofileLevels = get_field<jhobjectArray>(m_object, "profileLevels");
+  jhobjectArray oprofileLevels = get_field<jhobjectArray>(m_object, "profileLevels", "[Landroid/media/MediaCodecInfo$CodecProfileLevel;");
   jsize size = env->GetArrayLength(oprofileLevels.get());
   std::vector<CJNIMediaCodecInfoCodecProfileLevel> profileLevels;
   profileLevels.reserve(size);
