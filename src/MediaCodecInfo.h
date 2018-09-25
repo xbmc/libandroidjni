@@ -134,6 +134,8 @@ public:
   std::vector<int> colorFormats() const;
   std::vector<CJNIMediaCodecInfoCodecProfileLevel> profileLevels() const;
 
+  static const CJNIMediaCodecInfoCodecCapabilities createFromProfileLevel(const std::string &mime, int profile, int level);
+
   static void PopulateStaticFields();
 
   static int COLOR_FormatMonochrome;

@@ -243,6 +243,13 @@ int CJNIMediaCodecInfoCodecCapabilities::COLOR_QCOM_FormatYUV420SemiPlanar(0);
 int CJNIMediaCodecInfoCodecCapabilities::OMX_QCOM_COLOR_FormatYVU420SemiPlanarInterlace(0x7FA30C04);
 const char *CJNIMediaCodecInfoCodecCapabilities::m_classname = "android/media/MediaCodecInfo$CodecCapabilities";
 
+const CJNIMediaCodecInfoCodecCapabilities CJNIMediaCodecInfoCodecCapabilities::createFromProfileLevel(const std::string &mime, int profile, int level)
+{
+  return call_static_method<jhobject>(m_classname,
+    "createFromProfileLevel", "(Ljava/lang/String;II)Landroid/media/MediaCodecInfo$CodecCapabilities;",
+    jcast<jhstring>(mime), profile, level);
+}
+
 void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
 {
   if(GetSDKVersion() >= 16)
