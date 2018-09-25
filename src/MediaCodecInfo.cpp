@@ -98,13 +98,21 @@ int CJNIMediaCodecInfoCodecProfileLevel::AACObjectERLC(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectLD(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectHE_PS(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectELD(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile0(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile1(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR(0);
+
 const char *CJNIMediaCodecInfoCodecProfileLevel::m_classname = "android/media/MediaCodecInfo$CodecProfileLevel";
 
 void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
 {
+  jhclass clazz;
   if(GetSDKVersion() >= 16)
   {
-    jhclass clazz = find_class(m_classname);
+    clazz = find_class(m_classname);
     AVCProfileBaseline          = (get_static_field<int>(clazz, "AVCProfileBaseline"));
     AVCProfileMain              = (get_static_field<int>(clazz, "AVCProfileMain"));
     AVCProfileExtended          = (get_static_field<int>(clazz, "AVCProfileExtended"));
@@ -179,6 +187,16 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     AACObjectLD                 = (get_static_field<int>(clazz, "AACObjectLD"));
     AACObjectHE_PS              = (get_static_field<int>(clazz, "AACObjectHE_PS"));
     AACObjectELD                = (get_static_field<int>(clazz, "AACObjectELD"));
+  }
+
+  if(GetSDKVersion() >= 24)
+  {
+    VP9Profile0                = (get_static_field<int>(clazz, "VP9Profile0"));
+    VP9Profile1                = (get_static_field<int>(clazz, "VP9Profile1"));
+    VP9Profile2                = (get_static_field<int>(clazz, "VP9Profile2"));
+    VP9Profile2HDR             = (get_static_field<int>(clazz, "VP9Profile2HDR"));
+    VP9Profile3                = (get_static_field<int>(clazz, "VP9Profile3"));
+    VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
   }
 }
 
