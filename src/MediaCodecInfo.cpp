@@ -98,13 +98,21 @@ int CJNIMediaCodecInfoCodecProfileLevel::AACObjectERLC(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectLD(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectHE_PS(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AACObjectELD(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile0(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile1(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR(0);
+
 const char *CJNIMediaCodecInfoCodecProfileLevel::m_classname = "android/media/MediaCodecInfo$CodecProfileLevel";
 
 void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
 {
+  jhclass clazz;
   if(GetSDKVersion() >= 16)
   {
-    jhclass clazz = find_class(m_classname);
+    clazz = find_class(m_classname);
     AVCProfileBaseline          = (get_static_field<int>(clazz, "AVCProfileBaseline"));
     AVCProfileMain              = (get_static_field<int>(clazz, "AVCProfileMain"));
     AVCProfileExtended          = (get_static_field<int>(clazz, "AVCProfileExtended"));
@@ -180,6 +188,16 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     AACObjectHE_PS              = (get_static_field<int>(clazz, "AACObjectHE_PS"));
     AACObjectELD                = (get_static_field<int>(clazz, "AACObjectELD"));
   }
+
+  if(GetSDKVersion() >= 24)
+  {
+    VP9Profile0                = (get_static_field<int>(clazz, "VP9Profile0"));
+    VP9Profile1                = (get_static_field<int>(clazz, "VP9Profile1"));
+    VP9Profile2                = (get_static_field<int>(clazz, "VP9Profile2"));
+    VP9Profile2HDR             = (get_static_field<int>(clazz, "VP9Profile2HDR"));
+    VP9Profile3                = (get_static_field<int>(clazz, "VP9Profile3"));
+    VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
+  }
 }
 
 int CJNIMediaCodecInfoCodecProfileLevel::profile() const
@@ -242,6 +260,13 @@ int CJNIMediaCodecInfoCodecCapabilities::COLOR_QCOM_FormatYUV420SemiPlanar(0);
 /* This one isn't exposed in 4.4 */
 int CJNIMediaCodecInfoCodecCapabilities::OMX_QCOM_COLOR_FormatYVU420SemiPlanarInterlace(0x7FA30C04);
 const char *CJNIMediaCodecInfoCodecCapabilities::m_classname = "android/media/MediaCodecInfo$CodecCapabilities";
+
+const CJNIMediaCodecInfoCodecCapabilities CJNIMediaCodecInfoCodecCapabilities::createFromProfileLevel(const std::string &mime, int profile, int level)
+{
+  return call_static_method<jhobject>(m_classname,
+    "createFromProfileLevel", "(Ljava/lang/String;II)Landroid/media/MediaCodecInfo$CodecCapabilities;",
+    jcast<jhstring>(mime), profile, level);
+}
 
 void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
 {
@@ -313,7 +338,7 @@ std::vector<CJNIMediaCodecInfoCodecProfileLevel> CJNIMediaCodecInfoCodecCapabili
 {
   JNIEnv *env = xbmc_jnienv();
 
-  jhobjectArray oprofileLevels = get_field<jhobjectArray>(m_object, "profileLevels");
+  jhobjectArray oprofileLevels = get_field<jhobjectArray>(m_object, "profileLevels", "[Landroid/media/MediaCodecInfo$CodecProfileLevel;");
   jsize size = env->GetArrayLength(oprofileLevels.get());
   std::vector<CJNIMediaCodecInfoCodecProfileLevel> profileLevels;
   profileLevels.reserve(size);

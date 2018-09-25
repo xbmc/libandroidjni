@@ -108,6 +108,12 @@ public:
   static int AACObjectLD;
   static int AACObjectHE_PS;
   static int AACObjectELD;
+  static int VP9Profile0;
+  static int VP9Profile1;
+  static int VP9Profile2;
+  static int VP9Profile2HDR;
+  static int VP9Profile3;
+  static int VP9Profile3HDR;
 
 private:
   CJNIMediaCodecInfoCodecProfileLevel();
@@ -133,6 +139,8 @@ public:
 
   std::vector<int> colorFormats() const;
   std::vector<CJNIMediaCodecInfoCodecProfileLevel> profileLevels() const;
+
+  static const CJNIMediaCodecInfoCodecCapabilities createFromProfileLevel(const std::string &mime, int profile, int level);
 
   static void PopulateStaticFields();
 
