@@ -85,14 +85,14 @@ const CJNIMediaFormat CJNIMediaFormat::createVideoFormat(const std::string &mime
     jcast<jhstring>(mime), width, height);
 }
 
-bool CJNIMediaFormat::containsKey(const std::string &name)
+bool CJNIMediaFormat::containsKey(const std::string &name) const
 {
   return call_method<jboolean>(m_object,
     "containsKey", "(Ljava/lang/String;)Z",
     jcast<jhstring>(name));
 }
 
-int CJNIMediaFormat::getInteger(const std::string &name)
+int CJNIMediaFormat::getInteger(const std::string &name) const
 {
   return call_method<jint>(m_object,
     "getInteger",
@@ -100,21 +100,21 @@ int CJNIMediaFormat::getInteger(const std::string &name)
     jcast<jhstring>(name));
 }
 
-int64_t CJNIMediaFormat::getLong(const std::string &name)
+int64_t CJNIMediaFormat::getLong(const std::string &name) const
 {
   return call_method<jlong>(m_object,
     "getLong", "(Ljava/lang/String;)J",
     jcast<jhstring>(name));
 }
 
-float CJNIMediaFormat::getFloat(const std::string &name)
+float CJNIMediaFormat::getFloat(const std::string &name) const
 {
   return call_method<jfloat>(m_object,
     "getFloat", "(Ljava/lang/String;)F",
     jcast<jhstring>(name));
 }
 
-std::string CJNIMediaFormat::getString(const std::string &name)
+std::string CJNIMediaFormat::getString(const std::string &name) const
 {
   jhstring jhstring_rtn = call_method<jhstring>(m_object,
     "getString", "(Ljava/lang/String;)Ljava/lang/String;",
@@ -122,7 +122,7 @@ std::string CJNIMediaFormat::getString(const std::string &name)
   return jcast<std::string>(jhstring_rtn);
 }
 
-const CJNIByteBuffer CJNIMediaFormat::getByteBuffer(const std::string &name)
+const CJNIByteBuffer CJNIMediaFormat::getByteBuffer(const std::string &name) const
 {
   return call_method<jhobject>(m_object,
     "getByteBuffer", "(Ljava/lang/String;)Ljava/nio/ByteBuffer;",

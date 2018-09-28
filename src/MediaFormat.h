@@ -28,12 +28,12 @@ public:
   CJNIMediaFormat(const jni::jhobject &object) : CJNIBase(object) {};
   //~CJNIMediaFormat() {};
 
-  bool        containsKey(const std::string &name);
-  int         getInteger( const std::string &name);
-  int64_t     getLong(    const std::string &name);
-  float       getFloat(   const std::string &name);
-  std::string getString(  const std::string &name);
-  const       CJNIByteBuffer getByteBuffer(const std::string &name);
+  bool        containsKey(const std::string &name) const;
+  int         getInteger( const std::string &name) const;
+  int64_t     getLong(    const std::string &name) const;
+  float       getFloat(   const std::string &name) const;
+  std::string getString(  const std::string &name) const;
+  const       CJNIByteBuffer getByteBuffer(const std::string &name) const;
   void        setInteger( const std::string &name, int     value);
   void        setLong(    const std::string &name, int64_t value);
   void        setFloat(   const std::string &name, float   value);

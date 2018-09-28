@@ -156,6 +156,13 @@ void CJNIMediaCodec::releaseOutputBuffer(int index, bool render)
     index, jboolean_render);
 }
 
+void CJNIMediaCodec::releaseOutputBufferAtTime(int index, int64_t timeUs)
+{
+  call_method<void>(m_object,
+    "releaseOutputBuffer", "(IJ)V",
+    index, timeUs);
+}
+
 const CJNIMediaFormat CJNIMediaCodec::getOutputFormat()
 {
   return call_method<jhobject>(m_object,
@@ -191,4 +198,11 @@ void CJNIMediaCodec::setVideoScalingMode(int mode)
   call_method<void>(m_object,
     "setVideoScalingMode", "(I)V",
     mode);
+}
+
+void CJNIMediaCodec::setCallback(const jni::jhobject &object)
+{
+  call_method<void>(m_object,
+    "setCallback", "(Landroid/media/MediaCodec$Callback;)V",
+    object);
 }
