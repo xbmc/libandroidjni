@@ -25,6 +25,7 @@ class CJNIMediaCodecBufferInfo : public CJNIBase
 {
 public:
   CJNIMediaCodecBufferInfo();
+  CJNIMediaCodecBufferInfo(const jni::jhobject &object) : CJNIBase(object) {};
   //~CJNIMediaCodecBufferInfo() {};
 
   void  set(int newOffset, int newSize, int64_t newTimeUs, int newFlags);
