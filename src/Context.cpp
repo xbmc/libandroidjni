@@ -68,6 +68,7 @@ jhobject CJNIContext::m_context(0);
 
 std::string CJNIContext::CONNECTIVITY_SERVICE;
 std::string CJNIContext::NSD_SERVICE;
+std::string CJNIContext::ACTIVITY_SERVICE;
 
 CJNIContext::CJNIContext(const ANativeActivity *nativeActivity)
 {
@@ -86,6 +87,7 @@ void CJNIContext::PopulateStaticFields()
   jhclass clazz = find_class("android/content/Context");
   CONNECTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_SERVICE"));
   NSD_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"NSD_SERVICE"));
+  ACTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTIVITY_SERVICE"));
 
   CJNIBaseColumns::PopulateStaticFields();
   CJNIMediaStoreMediaColumns::PopulateStaticFields();

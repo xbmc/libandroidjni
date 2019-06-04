@@ -40,6 +40,7 @@ public:
 
   static std::string CONNECTIVITY_SERVICE;
   static std::string NSD_SERVICE;
+  static std::string ACTIVITY_SERVICE;
 
   static CJNIPackageManager GetPackageManager();
   static void startActivity(const CJNIIntent &intent);
