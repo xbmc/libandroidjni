@@ -50,6 +50,14 @@ float CJNIDisplayMode::getRefreshRate()
 
 /*************/
 
+std::vector<int> CJNIDisplayHdrCapabilities::getSupportedHdrTypes()
+{
+  return jcast<std::vector<int> >(
+    call_method<jhintArray>(m_object, "getSupportedHdrTypes", "()[I"));
+}
+
+/*************/
+
 CJNIDisplay::CJNIDisplay()
  : CJNIBase("android.view.Display")
 {
@@ -112,6 +120,32 @@ std::vector<CJNIDisplayMode> CJNIDisplay::getSupportedModes()
     xbmc_jnienv()->ExceptionClear();
     return CJNIDisplayModes();
   }
+}
+
+CJNIDisplayHdrCapabilities CJNIDisplay::getHdrCapabilities()
+{
+  jhclass clazz = get_class(m_object);
+  jmethodID id = get_method_id(clazz, "getHdrCapabilities", "()Landroid/view/Display$HdrCapabilities;");
+  if (id != NULL)
+    return call_method<jhobject>(m_object, id);
+  else
+  {
+    xbmc_jnienv()->ExceptionClear();
+    return jhobject();
+  }
+}
+
+bool CJNIDisplay::isHdr()
+{
+  if (GetSDKVersion() >= 26)
+    return call_method<jint>(m_object,
+      "isHdr", "()Z");
+
+  CJNIDisplayHdrCapabilities caps = getHdrCapabilities();
+  if (caps)
+    return !caps.getSupportedHdrTypes().empty();
+
+  return false;
 }
 
 int CJNIDisplay::getState()

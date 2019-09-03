@@ -38,6 +38,20 @@ protected:
   CJNIDisplayMode();
 };
 
+
+class CJNIDisplayHdrCapabilities : public CJNIBase
+{
+public:
+  ~CJNIDisplayHdrCapabilities() {};
+  CJNIDisplayHdrCapabilities(const jni::jhobject &object) : CJNIBase(object) {};
+
+  std::vector<int> getSupportedHdrTypes();
+
+protected:
+  CJNIDisplayHdrCapabilities();
+};
+
+
 class CJNIDisplay : public CJNIBase
 {
 public:
@@ -52,7 +66,9 @@ public:
   int getWidth();
   int getHeight();
   std::vector<CJNIDisplayMode> getSupportedModes();
+  CJNIDisplayHdrCapabilities getHdrCapabilities();
   int getState();
+  bool isHdr();
 };
 
 typedef std::vector<CJNIDisplayMode> CJNIDisplayModes;
