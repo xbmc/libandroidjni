@@ -138,7 +138,7 @@ CJNIDisplayHdrCapabilities CJNIDisplay::getHdrCapabilities()
 bool CJNIDisplay::isHdr()
 {
   if (GetSDKVersion() >= 26)
-    return call_method<jint>(m_object,
+    return call_method<jboolean>(m_object,
       "isHdr", "()Z");
 
   CJNIDisplayHdrCapabilities caps = getHdrCapabilities();
