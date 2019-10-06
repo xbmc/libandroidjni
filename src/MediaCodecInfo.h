@@ -139,6 +139,8 @@ public:
 
   std::vector<int> colorFormats() const;
   std::vector<CJNIMediaCodecInfoCodecProfileLevel> profileLevels() const;
+  bool isFeatureSupported(const std::string& name);
+  bool isFeatureRequired(const std::string& name);
 
   static const CJNIMediaCodecInfoCodecCapabilities createFromProfileLevel(const std::string &mime, int profile, int level);
 
@@ -190,6 +192,15 @@ public:
   static int COLOR_TI_FormatYUV420PackedSemiPlanar;
   static int COLOR_QCOM_FormatYUV420SemiPlanar;
   static int OMX_QCOM_COLOR_FormatYVU420SemiPlanarInterlace;
+
+  static std::string FEATURE_AdaptivePlayback;
+  static std::string FEATURE_DynamicTimestamp;
+  static std::string FEATURE_FrameParsing;
+  static std::string FEATURE_IntraRefresh;
+  static std::string FEATURE_MultipleFrames;
+  static std::string FEATURE_PartialFrame;
+  static std::string FEATURE_SecurePlayback;
+  static std::string FEATURE_TunneledPlayback;
 
 private:
   CJNIMediaCodecInfoCodecCapabilities();

@@ -257,6 +257,16 @@ int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format24BitARGB6666(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format24BitABGR6666(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_TI_FormatYUV420PackedSemiPlanar(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_QCOM_FormatYUV420SemiPlanar(0);
+
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_AdaptivePlayback;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_DynamicTimestamp;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_FrameParsing;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_IntraRefresh;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_MultipleFrames;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_PartialFrame;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_SecurePlayback;
+std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_TunneledPlayback;
+
 /* This one isn't exposed in 4.4 */
 int CJNIMediaCodecInfoCodecCapabilities::OMX_QCOM_COLOR_FormatYVU420SemiPlanarInterlace(0x7FA30C04);
 const char *CJNIMediaCodecInfoCodecCapabilities::m_classname = "android/media/MediaCodecInfo$CodecCapabilities";
@@ -270,9 +280,9 @@ const CJNIMediaCodecInfoCodecCapabilities CJNIMediaCodecInfoCodecCapabilities::c
 
 void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
 {
+  jhclass clazz = find_class(m_classname);
   if(GetSDKVersion() >= 16)
   {
-    jhclass clazz = find_class(m_classname);
     COLOR_FormatMonochrome            = (get_static_field<int>(clazz, "COLOR_FormatMonochrome"));
     COLOR_Format8bitRGB332            = (get_static_field<int>(clazz, "COLOR_Format8bitRGB332"));
     COLOR_Format12bitRGB444           = (get_static_field<int>(clazz, "COLOR_Format12bitRGB444"));
@@ -319,6 +329,34 @@ void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
     COLOR_TI_FormatYUV420PackedSemiPlanar = (get_static_field<int>(clazz, "COLOR_TI_FormatYUV420PackedSemiPlanar"));
     COLOR_QCOM_FormatYUV420SemiPlanar = (get_static_field<int>(clazz, "COLOR_QCOM_FormatYUV420SemiPlanar"));
   }
+
+  if(GetSDKVersion() >= 19)
+  {
+    FEATURE_AdaptivePlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_AdaptivePlayback")));
+  }
+
+  if(GetSDKVersion() >= 21)
+  {
+    FEATURE_SecurePlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_SecurePlayback")));
+    FEATURE_TunneledPlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_TunneledPlayback")));
+  }
+
+  if(GetSDKVersion() >= 24)
+  {
+    FEATURE_IntraRefresh = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_IntraRefresh")));
+  }
+
+  if(GetSDKVersion() >= 26)
+  {
+    FEATURE_PartialFrame = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_PartialFrame")));
+  }
+
+  if(GetSDKVersion() >= 29)
+  {
+    FEATURE_DynamicTimestamp = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_DynamicTimestamp")));
+    FEATURE_FrameParsing = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_FrameParsing")));
+    FEATURE_MultipleFrames = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_MultipleFrames")));
+  }
 }
 
 std::vector<int> CJNIMediaCodecInfoCodecCapabilities::colorFormats() const
@@ -346,6 +384,16 @@ std::vector<CJNIMediaCodecInfoCodecProfileLevel> CJNIMediaCodecInfoCodecCapabili
     profileLevels.push_back(CJNIMediaCodecInfoCodecProfileLevel(jhobject(env->GetObjectArrayElement(oprofileLevels.get(), i))));
 
   return profileLevels;
+}
+
+bool CJNIMediaCodecInfoCodecCapabilities::isFeatureSupported(const std::string& name)
+{
+  return call_method<jboolean>(m_object, "isFeatureSupported", "(Ljava/lang/String;)Z");
+}
+
+bool CJNIMediaCodecInfoCodecCapabilities::isFeatureRequired(const std::string& name)
+{
+  return call_method<jboolean>(m_object, "isFeatureRequired", "(Ljava/lang/String;)Z");
 }
 
 /**********************************************************************************/
