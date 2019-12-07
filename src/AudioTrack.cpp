@@ -106,6 +106,15 @@ void CJNIAudioTrack::play()
 void CJNIAudioTrack::pause()
 {
   call_method<void>(m_object, "pause", "()V");
+  JNIEnv* jenv = xbmc_jnienv();
+
+  // might toss an exception on release so catch it.
+  jthrowable exception = jenv->ExceptionOccurred();
+  if (exception)
+  {
+    jenv->ExceptionDescribe();
+    jenv->ExceptionClear();
+  }
 }
 
 void CJNIAudioTrack::stop()
