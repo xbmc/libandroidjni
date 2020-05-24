@@ -156,6 +156,13 @@ void CJNIMediaCodec::releaseOutputBuffer(int index, bool render)
     index, jboolean_render);
 }
 
+void CJNIMediaCodec::releaseOutputBuffer(int index, int64_t renderTimestampNs)
+{
+  call_method<void>(m_object,
+    "releaseOutputBuffer", "(IJ)V",
+    index, renderTimestampNs);
+}
+
 const CJNIMediaFormat CJNIMediaCodec::getOutputFormat()
 {
   return call_method<jhobject>(m_object,
