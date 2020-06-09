@@ -28,9 +28,9 @@ using namespace jni;
 
 // Not in public API
 
-std::vector<CJNIStorageVolume> CJNIStorageManager::getVolumeList()
+std::vector<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
 {
-  jmethodID mid = get_method_id(m_object, "getVolumeList", "()[Landroid/os/storage/StorageVolume;");
+  jmethodID mid = get_method_id(m_object, "getStorageVolumes", "()[Landroid/os/storage/StorageVolume;");
   if (mid != NULL)
     return jcast<CJNIStorageVolumes>(call_method<jhobjectArray>(m_object, mid));
   else
