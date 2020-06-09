@@ -29,7 +29,7 @@ public:
   CJNIStorageManager(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIStorageManager() {};
 
-  std::vector<CJNIStorageVolume> getVolumeList();
+  std::vector<CJNIStorageVolume> getStorageVolumes();
   std::vector<std::string> getVolumePaths();
   std::string getVolumeState(const std::string& mountPoint);
 
