@@ -41,6 +41,9 @@ public:
   static std::string CONNECTIVITY_SERVICE;
   static std::string NSD_SERVICE;
   static std::string ACTIVITY_SERVICE;
+  static std::string DISPLAY_SERVICE;
+  static std::string AUDIO_SERVICE;
+  static std::string HARDWARE_PROPERTIES_SERVICE;
 
   static CJNIPackageManager GetPackageManager();
   static void startActivity(const CJNIIntent &intent);

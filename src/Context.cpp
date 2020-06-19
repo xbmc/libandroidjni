@@ -59,6 +59,7 @@
 #include "MediaMetadata.h"
 #include "PlaybackState.h"
 #include "URI.h"
+#include "HardwarePropertiesManager.h"
 
 #include <android/native_activity.h>
 
@@ -69,6 +70,10 @@ jhobject CJNIContext::m_context(0);
 std::string CJNIContext::CONNECTIVITY_SERVICE;
 std::string CJNIContext::NSD_SERVICE;
 std::string CJNIContext::ACTIVITY_SERVICE;
+std::string CJNIContext::DISPLAY_SERVICE;
+std::string CJNIContext::AUDIO_SERVICE;
+std::string CJNIContext::HARDWARE_PROPERTIES_SERVICE;
+
 
 CJNIContext::CJNIContext(const ANativeActivity *nativeActivity)
 {
@@ -88,6 +93,9 @@ void CJNIContext::PopulateStaticFields()
   CONNECTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_SERVICE"));
   NSD_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"NSD_SERVICE"));
   ACTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTIVITY_SERVICE"));
+  DISPLAY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"DISPLAY_SERVICE"));
+  AUDIO_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"AUDIO_SERVICE"));
+  HARDWARE_PROPERTIES_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"HARDWARE_PROPERTIES_SERVICE"));
 
   CJNIBaseColumns::PopulateStaticFields();
   CJNIMediaStoreMediaColumns::PopulateStaticFields();
@@ -122,6 +130,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIMediaMetadata::PopulateStaticFields();
   CJNIPlaybackState::PopulateStaticFields();
   CJNIURI::PopulateStaticFields();
+  CJNIHardwarePropertiesManager::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
