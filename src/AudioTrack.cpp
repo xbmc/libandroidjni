@@ -55,7 +55,7 @@ void CJNIAudioTrack::PopulateStaticFields()
   }
 }
 
-CJNIAudioTrack::CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) throw(std::invalid_argument)
+CJNIAudioTrack::CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) noexcept(false)
   : CJNIBase("android/media/AudioTrack")
 {
   m_object = new_object(GetClassName(), "<init>", "(IIIIII)V",
@@ -77,7 +77,7 @@ CJNIAudioTrack::CJNIAudioTrack(int streamType, int sampleRateInHz, int channelCo
   m_object.setGlobal();
 }
 
-CJNIAudioTrack::CJNIAudioTrack(const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) throw(std::invalid_argument)
+CJNIAudioTrack::CJNIAudioTrack(const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) noexcept(false)
   : CJNIBase("android/media/AudioTrack")
 {
   m_object = new_object(GetClassName(), "<init>", "(Landroid/media/AudioAttributes;Landroid/media/AudioFormat;III)V",
