@@ -35,8 +35,8 @@ namespace jni
 class CJNIAudioTrack : public CJNIBase
 {
   public:
-    CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) throw(std::invalid_argument);
-    CJNIAudioTrack (const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) throw(std::invalid_argument);
+    CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) noexcept(false);
+    CJNIAudioTrack (const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) noexcept(false);
 
     void  play();
     void  pause();
