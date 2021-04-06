@@ -25,32 +25,21 @@
 
 using namespace jni;
 
-
-// Not in public API
-
-std::vector<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
+CJNIList<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
 {
-  jmethodID mid = get_method_id(m_object, "getStorageVolumes", "()[Landroid/os/storage/StorageVolume;");
-  if (mid != NULL)
-    return jcast<CJNIStorageVolumes>(call_method<jhobjectArray>(m_object, mid));
-  else
-    return std::vector<CJNIStorageVolume>();
+  return call_method<jhobject>(m_object, "getStorageVolumes", "()Ljava/util/List;");
 }
 
 std::vector<std::string> CJNIStorageManager::getVolumePaths()
 {
-  jmethodID mid = get_method_id(m_object, "getVolumePaths", "()[Ljava/lang/String;");
-  if (mid != NULL)
-    return jcast<std::vector<std::string>>(call_method<jhobjectArray>(m_object, mid));
-  else
-    return std::vector<std::string>();
+  return jcast<std::vector<std::string>>(call_method<jhobjectArray>(m_object,
+                                                                    "getVolumePaths",
+                                                                    "()[Ljava/lang/String;"));
 }
 
 std::string CJNIStorageManager::getVolumeState(const std::string& mountPoint)
 {
-  jmethodID mid = get_method_id(m_object, "getVolumeState", "(Ljava/lang/String;)Ljava/lang/String;");
-  if (mid != NULL)
-    return jcast<std::string>(call_method<jhstring>(m_object, mid, jcast<jhstring>(mountPoint)));
-  else
-    return "";
+  return jcast<std::string>(call_method<jhstring>(m_object, "getVolumeState",
+                                                  "(Ljava/lang/String;)Ljava/lang/String;",
+                                                  jcast<jhstring>(mountPoint)));
 }

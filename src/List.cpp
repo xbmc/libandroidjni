@@ -27,6 +27,7 @@
 #include "LinkAddress.h"
 #include "RouteInfo.h"
 #include "InetAddress.h"
+#include "StorageVolume.h"
 
 #include "jutils-details.hpp"
 
@@ -55,3 +56,4 @@ template class CJNIList<CJNIURIPermission>;
 template class CJNIList<CJNILinkAddress>;
 template class CJNIList<CJNIRouteInfo>;
 template class CJNIList<CJNIInetAddress>;
+template class CJNIList<CJNIStorageVolume>;
