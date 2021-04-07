@@ -22,6 +22,7 @@
 #include "JNIBase.h"
 
 #include "Context.h"
+#include "List.h"
 
 class CJNIStorageVolume : public CJNIBase
 {
@@ -48,4 +49,4 @@ private:
   CJNIStorageVolume();
 };
 
-typedef std::vector<CJNIStorageVolume> CJNIStorageVolumes;
+typedef CJNIList<CJNIStorageVolume> CJNIStorageVolumes;

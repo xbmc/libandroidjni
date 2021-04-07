@@ -21,7 +21,9 @@
 
 #include "JNIBase.h"
 
-#include "StorageVolume.h"
+#include "List.h"
+
+class CJNIStorageVolume;
 
 class CJNIStorageManager : public CJNIBase
 {
@@ -29,12 +31,8 @@ public:
   CJNIStorageManager(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIStorageManager() {};
 
-  std::vector<CJNIStorageVolume> getStorageVolumes();
-  std::vector<std::string> getVolumePaths();
-  std::string getVolumeState(const std::string& mountPoint);
+  CJNIList<CJNIStorageVolume> getStorageVolumes();
 
 private:
   CJNIStorageManager();
 };
-
-typedef std::vector<CJNIStorageVolume> CJNIStorageVolumes;
