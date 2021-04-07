@@ -19,7 +19,6 @@
  */
 
 #include "StorageManager.h"
-#include "ClassLoader.h"
 
 #include "jutils-details.hpp"
 
@@ -28,18 +27,4 @@ using namespace jni;
 CJNIList<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
 {
   return call_method<jhobject>(m_object, "getStorageVolumes", "()Ljava/util/List;");
-}
-
-std::vector<std::string> CJNIStorageManager::getVolumePaths()
-{
-  return jcast<std::vector<std::string>>(call_method<jhobjectArray>(m_object,
-                                                                    "getVolumePaths",
-                                                                    "()[Ljava/lang/String;"));
-}
-
-std::string CJNIStorageManager::getVolumeState(const std::string& mountPoint)
-{
-  return jcast<std::string>(call_method<jhstring>(m_object, "getVolumeState",
-                                                  "(Ljava/lang/String;)Ljava/lang/String;",
-                                                  jcast<jhstring>(mountPoint)));
 }

@@ -32,8 +32,6 @@ public:
   ~CJNIStorageManager() {};
 
   CJNIList<CJNIStorageVolume> getStorageVolumes();
-  std::vector<std::string> getVolumePaths();
-  std::string getVolumeState(const std::string& mountPoint);
 
 private:
   CJNIStorageManager();
