@@ -26,5 +26,8 @@ using namespace jni;
 
 CJNIList<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
 {
-  return call_method<jhobject>(m_object, "getStorageVolumes", "()Ljava/util/List;");
+  if (GetSDKVersion() >= 24)
+    return call_method<jhobject>(m_object, "getStorageVolumes", "()Ljava/util/List;");
+
+  return CJNIList<CJNIStorageVolume>(jhobject());
 }
