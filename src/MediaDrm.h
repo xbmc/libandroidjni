@@ -52,6 +52,7 @@ public:
 
   std::string getPropertyString(const std::string &propertyName) const;
   void setPropertyString(const std::string &propertyName, const std::string &value) const;
+  std::vector<char> getPropertyByteArray(const std::string &propertyName) const;
   void setPropertyByteArray(const std::string &propertyName, const std::vector<char> &value) const;
 
   CJNIMediaDrmCryptoSession getCryptoSession(const std::vector<char> &sessionId,
