@@ -39,6 +39,8 @@ void CJNISurface::PopulateStaticFields()
   ROTATION_90 = get_static_field<int>(clazz, "ROTATION_90");
   ROTATION_180= get_static_field<int>(clazz, "ROTATION_180");
   ROTATION_270= get_static_field<int>(clazz, "ROTATION_270");
+  FRAME_RATE_COMPATIBILITY_DEFAULT = get_static_field<int>(clazz, "FRAME_RATE_COMPATIBILITY_DEFAULT");
+  FRAME_RATE_COMPATIBILITY_FIXED_SOURCE = get_static_field<int>(clazz, "FRAME_RATE_COMPATIBILITY_FIXED_SOURCE");
 }
 
 CJNISurface::CJNISurface()
@@ -77,6 +79,11 @@ void CJNISurface::unlockCanvas(const CJNICanvas &canvas)
 {
 }
 */
+
+void CJNISurface::setFrameRate(float frameRate, int compatibility)
+{
+  call_method<void>(m_object,"setFrameRate", "(FI)V");
+}
 
 std::string CJNISurface::toString()
 {
