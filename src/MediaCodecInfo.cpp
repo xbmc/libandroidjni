@@ -104,6 +104,10 @@ int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10Plus(0);
+int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain8(0);
 
 const char *CJNIMediaCodecInfoCodecProfileLevel::m_classname = "android/media/MediaCodecInfo$CodecProfileLevel";
 
@@ -197,6 +201,14 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     VP9Profile2HDR             = (get_static_field<int>(clazz, "VP9Profile2HDR"));
     VP9Profile3                = (get_static_field<int>(clazz, "VP9Profile3"));
     VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
+  }
+
+  if(GetSDKVersion() >= 29)
+  {
+    AV1ProfileMain10           = (get_static_field<int>(clazz, "AV1ProfileMain10"));
+    AV1ProfileMain10HDR10      = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10"));
+    AV1ProfileMain10HDR10Plus  = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10Plus"));
+    AV1ProfileMain8            = (get_static_field<int>(clazz, "AV1ProfileMain8"));
   }
 }
 

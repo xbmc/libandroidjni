@@ -114,6 +114,10 @@ public:
   static int VP9Profile2HDR;
   static int VP9Profile3;
   static int VP9Profile3HDR;
+  static int AV1ProfileMain10;
+  static int AV1ProfileMain10HDR10;
+  static int AV1ProfileMain10HDR10Plus;
+  static int AV1ProfileMain8;
 
 private:
   CJNIMediaCodecInfoCodecProfileLevel();
