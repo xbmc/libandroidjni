@@ -95,6 +95,13 @@ void CJNIAudioManager::setStreamVolume(int index /* 0 */, int flags /* NONE */)
                     STREAM_MUSIC, index, flags);
 }
 
+int CJNIAudioManager::requestAudioFocus(const CJNIAudioFocusRequestClass& request)
+{
+  return call_method<int>(m_object,
+                          "requestAudioFocus",
+                          "(Landroid/media/AudioFocusRequest;)I", request.get_raw());
+}
+
 int CJNIAudioManager::requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint)
 {
   return call_method<int>(m_object,

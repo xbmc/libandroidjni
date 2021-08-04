@@ -22,6 +22,7 @@
 #include "JNIBase.h"
 
 #include "AudioDeviceInfo.h"
+#include "AudioFocusRequest.h"
 
 class CJNIAudioManagerAudioFocusChangeListener : virtual public CJNIBase
 {
@@ -41,6 +42,7 @@ public:
   int  getStreamVolume();
   void setStreamVolume(int index = 0, int flags = 0);
 
+  int requestAudioFocus(const jni::CJNIAudioFocusRequestClass& request);
   int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint);
   int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener& listener);
   bool isBluetoothA2dpOn();
