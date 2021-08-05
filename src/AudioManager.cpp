@@ -109,6 +109,13 @@ int CJNIAudioManager::requestAudioFocus(const CJNIAudioManagerAudioFocusChangeLi
                           "(Landroid/media/AudioManager$OnAudioFocusChangeListener;II)I", listener.get_raw(), streamType, durationHint);
 }
 
+int CJNIAudioManager::abandonAudioFocusRequest(const CJNIAudioFocusRequestClass& request)
+{
+  return call_method<int>(m_object,
+                          "abandonAudioFocusRequest",
+                          "(Landroid/media/AudioFocusRequest;)I", request.get_raw());
+}
+
 int CJNIAudioManager::abandonAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener)
 {
   return call_method<int>(m_object,

@@ -44,6 +44,7 @@ public:
 
   int requestAudioFocus(const jni::CJNIAudioFocusRequestClass& request);
   int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint);
+  int abandonAudioFocusRequest(const jni::CJNIAudioFocusRequestClass& request);
   int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener& listener);
   bool isBluetoothA2dpOn();
   bool isWiredHeadsetOn();
