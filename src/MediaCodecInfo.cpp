@@ -108,6 +108,17 @@ int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10Plus(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain8(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvav110(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavPen(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavPer(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavSe(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDen(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDer(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDtb(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDth(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDtr(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheSt(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheStn(0);
 
 const char *CJNIMediaCodecInfoCodecProfileLevel::m_classname = "android/media/MediaCodecInfo$CodecProfileLevel";
 
@@ -201,6 +212,20 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     VP9Profile2HDR             = (get_static_field<int>(clazz, "VP9Profile2HDR"));
     VP9Profile3                = (get_static_field<int>(clazz, "VP9Profile3"));
     VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
+    DolbyVisionProfileDvavPen = (get_static_field<int>(clazz, "DolbyVisionProfileDvavPen"));
+    DolbyVisionProfileDvavPer = (get_static_field<int>(clazz, "DolbyVisionProfileDvavPer"));
+    DolbyVisionProfileDvheDen = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDen"));
+    DolbyVisionProfileDvheDer = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDer"));
+    DolbyVisionProfileDvheDtb = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDtb"));
+    DolbyVisionProfileDvheDth = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDth"));
+    DolbyVisionProfileDvheDtr = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDtr"));
+    DolbyVisionProfileDvheStn = (get_static_field<int>(clazz, "DolbyVisionProfileDvheStn"));
+  }
+
+  if (GetSDKVersion >= 27)
+  {
+    DolbyVisionProfileDvavSe = (get_static_field<int>(clazz, "DolbyVisionProfileDvavSe"));
+    DolbyVisionProfileDvheSt = (get_static_field<int>(clazz, "DolbyVisionProfileDvheSt"));
   }
 
   if(GetSDKVersion() >= 29)
@@ -209,6 +234,11 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     AV1ProfileMain10HDR10      = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10"));
     AV1ProfileMain10HDR10Plus  = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10Plus"));
     AV1ProfileMain8            = (get_static_field<int>(clazz, "AV1ProfileMain8"));
+  }
+
+  if (GetSDKVersion >= 30)
+  {
+    DolbyVisionProfileDvav110 = (get_static_field<int>(clazz, "DolbyVisionProfileDvav110"));
   }
 }
 

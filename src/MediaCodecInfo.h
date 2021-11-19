@@ -118,6 +118,17 @@ public:
   static int AV1ProfileMain10HDR10;
   static int AV1ProfileMain10HDR10Plus;
   static int AV1ProfileMain8;
+  static int DolbyVisionProfileDvav110;
+  static int DolbyVisionProfileDvavPen;
+  static int DolbyVisionProfileDvavPer;
+  static int DolbyVisionProfileDvavSe;
+  static int DolbyVisionProfileDvheDen;
+  static int DolbyVisionProfileDvheDer;
+  static int DolbyVisionProfileDvheDtb;
+  static int DolbyVisionProfileDvheDth;
+  static int DolbyVisionProfileDvheDtr;
+  static int DolbyVisionProfileDvheSt;
+  static int DolbyVisionProfileDvheStn;
 
 private:
   CJNIMediaCodecInfoCodecProfileLevel();
