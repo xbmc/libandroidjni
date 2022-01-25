@@ -132,3 +132,13 @@ void CJNIMediaCodecCryptoInfo::set(int newNumSubSamples,
   env->DeleteLocalRef(Key);
   env->DeleteLocalRef(IV);
 }
+
+void CJNIMediaCodecCryptoInfo::setPattern(const CJNIMediaCodecCryptoInfoPattern &pattern)
+{
+  if(GetSDKVersion() >= 24)
+  {
+    call_method<void>(m_object, "setPattern",
+      "(Landroid/media/MediaCodec$CryptoInfo$Pattern;)V",
+      pattern.get_raw());
+  }
+}

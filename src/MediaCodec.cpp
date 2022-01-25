@@ -33,6 +33,7 @@ int CJNIMediaCodec::BUFFER_FLAG_END_OF_STREAM(4);
 int CJNIMediaCodec::BUFFER_FLAG_SYNC_FRAME(1);
 int CJNIMediaCodec::CONFIGURE_FLAG_ENCODE(1);
 int CJNIMediaCodec::CONFIGURE_FLAG_DECODE(0);
+int CJNIMediaCodec::CRYPTO_MODE_AES_CBC(2);
 int CJNIMediaCodec::CRYPTO_MODE_AES_CTR(1);
 int CJNIMediaCodec::CRYPTO_MODE_UNENCRYPTED(0);
 int CJNIMediaCodec::INFO_OUTPUT_BUFFERS_CHANGED(-3);
@@ -59,6 +60,10 @@ void CJNIMediaCodec::PopulateStaticFields()
     INFO_TRY_AGAIN_LATER      = (get_static_field<int>(clazz, "INFO_TRY_AGAIN_LATER"));
     VIDEO_SCALING_MODE_SCALE_TO_FIT = (get_static_field<int>(clazz, "VIDEO_SCALING_MODE_SCALE_TO_FIT"));
     VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING = (get_static_field<int>(clazz, "VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING"));
+    if(GetSDKVersion() >= 24)
+    {
+      CRYPTO_MODE_AES_CBC = (get_static_field<int>(clazz, "CRYPTO_MODE_AES_CBC"));
+    }
   }
 }
 

@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "JNIBase.h"
+#include "MediaCodecCryptoInfoPattern.h"
 
 class CJNIMediaCodecCryptoInfo : public CJNIBase
 {
@@ -42,4 +43,5 @@ public:
                       const std::vector<char> &newKey,
                       const std::vector<char> &newIV,
                       int newMode);
+  void              setPattern(const CJNIMediaCodecCryptoInfoPattern &pattern);
 };
