@@ -65,6 +65,7 @@ public:
   static int BUFFER_FLAG_SYNC_FRAME;
   static int CONFIGURE_FLAG_ENCODE;
   static int CONFIGURE_FLAG_DECODE;
+  static int CRYPTO_MODE_AES_CBC;
   static int CRYPTO_MODE_AES_CTR;
   static int CRYPTO_MODE_UNENCRYPTED;
   static int INFO_OUTPUT_BUFFERS_CHANGED;
