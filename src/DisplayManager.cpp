@@ -36,6 +36,6 @@ void CJNIDisplayManager::registerDisplayListener(const jni::jhobject &listener)
 void CJNIDisplayManager::unregisterDisplayListener(const jni::jhobject &listener)
 {
   call_method<void>(m_object,
-    "unregisterDisplayListener", "(Landroid/hardware/display/DisplayManager$DisplayLister;)V",
+    "unregisterDisplayListener", "(Landroid/hardware/display/DisplayManager$DisplayListener;)V",
     listener);
 }
