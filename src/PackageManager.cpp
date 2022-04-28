@@ -28,12 +28,18 @@
 #include "jutils-details.hpp"
 
 using namespace jni;
+
 int CJNIPackageManager::GET_ACTIVITIES(0);
+int CJNIPackageManager::PERMISSION_DENIED;
+int CJNIPackageManager::PERMISSION_GRANTED;
 
 void CJNIPackageManager::PopulateStaticFields()
 {
   jhclass clazz  = find_class("android/content/pm/PackageManager");
-  GET_ACTIVITIES = (get_static_field<int>(clazz, "GET_ACTIVITIES"));
+
+  GET_ACTIVITIES = get_static_field<int>(clazz, "GET_ACTIVITIES");
+  PERMISSION_DENIED = get_static_field<int>(clazz, "PERMISSION_DENIED");
+  PERMISSION_GRANTED = get_static_field<int>(clazz, "PERMISSION_GRANTED");
 }
 
 bool CJNIPackageManager::hasSystemFeature(const std::string &feature)
