@@ -54,7 +54,7 @@ CJNISpeechRecognizer CJNISpeechRecognizer::createSpeechRecognizer(const CJNICont
     "(Landroid/content/Context;)Landroid/speech/SpeechRecognizer;", context.get_raw());
 }
 
-void CJNISpeechRecognizer::setRecognitionListener(const CJNISpeedRecognitionListener& listener)
+void CJNISpeechRecognizer::setRecognitionListener(const CJNISpeechRecognitionListener& listener)
 {
   call_method<void>(m_object, "setRecognitionListener", 
     "(Landroid/speech/RecognitionListener;)V", listener.get_raw());
