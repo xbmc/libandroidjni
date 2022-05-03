@@ -59,6 +59,7 @@
 #include "MediaMetadata.h"
 #include "PlaybackState.h"
 #include "URI.h"
+#include "SpeechRecognizer.h"
 
 #include <android/native_activity.h>
 
@@ -122,6 +123,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIMediaMetadata::PopulateStaticFields();
   CJNIPlaybackState::PopulateStaticFields();
   CJNIURI::PopulateStaticFields();
+  CJNISpeechRecognizer::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()

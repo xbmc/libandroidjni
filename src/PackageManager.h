@@ -45,6 +45,8 @@ public:
 
   static void       PopulateStaticFields();
   static int        GET_ACTIVITIES;
+  static int        PERMISSION_DENIED;
+  static int        PERMISSION_GRANTED;
 
 private:
   CJNIPackageManager();
