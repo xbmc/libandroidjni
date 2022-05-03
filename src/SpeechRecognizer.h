@@ -12,7 +12,7 @@
 #include "Context.h"
 #include "Intent.h"
 
-class CJNIRecognitionListener : virtual public CJNIBase
+class CJNISpeechRecognitionListener : virtual public CJNIBase
 {
 public:
   virtual void onReadyForSpeech(CJNIBundle bundle) = 0;
@@ -41,6 +41,6 @@ public:
   
   static bool isRecognitionAvailable (const CJNIContext& context);
   static CJNISpeechRecognizer createSpeechRecognizer(const CJNIContext& context);
-  void setRecognitionListener(const CJNIRecognitionListener& listener);
+  void setRecognitionListener(const CJNISpeechRecognitionListener& listener);
   void startListening(const CJNIIntent& intent);
 };
