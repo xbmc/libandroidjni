@@ -31,6 +31,7 @@ public:
   CJNIMediaTimestamp(const jni::jhobject &object);
 
   int64_t getAnchorMediaTimeUs();
+  // Deprecated in API level 29
   int64_t getAnchorSytemNanoTime();
   float getMediaClockRate();
 };

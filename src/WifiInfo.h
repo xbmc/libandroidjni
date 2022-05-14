@@ -45,6 +45,7 @@ public:
   int         getLinkSpeed()  const;
   std::string getMacAddress() const;
   int         getNetworkId()  const;
+  // Deprecated in API level 31
   int         getIpAddress()  const;
   bool        getHiddenSSID() const;
   std::string toString() const;

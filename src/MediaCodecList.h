@@ -28,7 +28,9 @@ public:
   CJNIMediaCodecList(const jni::jhobject &object) : CJNIBase(object) {};
   //~CJNIMediaCodecList() {};
 
+  // Deprecated in API level 21
   static int   getCodecCount();
+  // Deprecated in API level 21
   static const CJNIMediaCodecInfo getCodecInfoAt(int index);
 
 private:

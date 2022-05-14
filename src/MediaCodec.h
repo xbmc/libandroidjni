@@ -49,8 +49,10 @@ public:
   void  releaseOutputBuffer(int index, bool render);
   void  releaseOutputBufferAtTime(int index, int64_t renderTimestampNs);
   const CJNIMediaFormat getOutputFormat();
-  std::vector<CJNIByteBuffer> getInputBuffers(); // Deprecated as of API 21
-  std::vector<CJNIByteBuffer> getOutputBuffers(); // Deprecated as of API 21
+  // Deprecated in API level 21
+  std::vector<CJNIByteBuffer> getInputBuffers();
+  // Deprecated in API level 21
+  std::vector<CJNIByteBuffer> getOutputBuffers();
   const CJNIByteBuffer getInputBuffer(int index); // API 21+
   const CJNIByteBuffer getOutputBuffer(int index); // API 21+
   void  setVideoScalingMode(int mode);
@@ -62,12 +64,14 @@ public:
 
   static int BUFFER_FLAG_CODEC_CONFIG;
   static int BUFFER_FLAG_END_OF_STREAM;
+  // Deprecated in API level 21
   static int BUFFER_FLAG_SYNC_FRAME;
   static int CONFIGURE_FLAG_ENCODE;
   static int CONFIGURE_FLAG_DECODE;
   static int CRYPTO_MODE_AES_CBC;
   static int CRYPTO_MODE_AES_CTR;
   static int CRYPTO_MODE_UNENCRYPTED;
+  // Deprecated in API level 21
   static int INFO_OUTPUT_BUFFERS_CHANGED;
   static int INFO_OUTPUT_FORMAT_CHANGED;
   static int INFO_TRY_AGAIN_LATER;

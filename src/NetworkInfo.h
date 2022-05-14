@@ -42,6 +42,7 @@ private:
   CJNINetworkInfoDetailedState();
 };
 
+// Deprecated in API level 29
 class CJNINetworkInfo : public CJNIBase
 {
 public:

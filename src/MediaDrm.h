@@ -45,6 +45,7 @@ public:
   CJNIMediaDrm(const CJNIUUID& uuid);
   ~CJNIMediaDrm() {};
 
+  // Deprecated in API level 28
   void release() const;
 
   std::vector<char> openSession() const;

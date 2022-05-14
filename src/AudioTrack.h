@@ -35,6 +35,7 @@ namespace jni
 class CJNIAudioTrack : public CJNIBase
 {
   public:
+    // Deprecated in API level 26
     CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) noexcept(false);
     CJNIAudioTrack (const CJNIAudioAttributes &attributes, const CJNIAudioFormat &format, int bufferSizeInBytes, int mode, int sessionId) noexcept(false);
 

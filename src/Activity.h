@@ -36,6 +36,7 @@ public:
   static CJNIWindowManager getWindowManager();
   static bool moveTaskToBack(bool nonRoot);
   static void startActivityForResult(const CJNIIntent &intent, int requestCode);
+  // Deprecated in API level 26
   static bool requestVisibleBehind(bool visible);
 
   virtual void onVisibleBehindCanceled() = 0;

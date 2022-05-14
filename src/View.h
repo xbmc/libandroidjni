@@ -65,6 +65,7 @@ public:
   int          getProductId() const;
   int          getSources() const;
   int          getVendorId() const;
+  // Deprecated in API level 31
   const CJNIOsVibrator getVibrator() const;
   std::vector<bool> hasKeys(const std::vector<int> &keys) const;
   bool         hasMicrophone() const;

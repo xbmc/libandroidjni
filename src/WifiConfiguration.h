@@ -25,6 +25,7 @@
 #include "JNIBase.h"
 #include "BitSet.h"
 
+// Deprecated in API level 29
 class CJNIWifiConfiguration : public CJNIBase
 {
 public:

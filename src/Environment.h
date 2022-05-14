@@ -31,7 +31,9 @@ public:
   static std::string  MEDIA_MOUNTED;
 
   static std::string  getExternalStorageState();
+  // Deprecated in API level 29
   static CJNIFile     getExternalStorageDirectory();
+  // Deprecated in API level 29
   static CJNIFile     getExternalStoragePublicDirectory(const std::string &type);
 
 protected:

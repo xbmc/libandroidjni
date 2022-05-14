@@ -28,6 +28,7 @@ class CJNIBitmapDrawable : public CJNIDrawable
 public:
   CJNIBitmapDrawable();
   CJNIBitmapDrawable(const jni::jhobject &object)  : CJNIDrawable(object) {};
+  // This constructor is deprecated
   CJNIBitmapDrawable(const CJNIDrawable &drawable) : CJNIDrawable(drawable.get_raw()) {};
   ~CJNIBitmapDrawable() {};
 

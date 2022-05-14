@@ -32,6 +32,7 @@ public:
   void cancel() const;
   bool hasVibrator() const;
   void vibrate(std::vector<int64_t> pattern, int repeat) const;
+  // Deprecated in API level 26
   void vibrate(int64_t milliseconds) const;
 
 private:
