@@ -27,6 +27,25 @@ using namespace jni;
 
 const char* CJNIMediaCodecList::m_classname = "android/media/MediaCodecList";
 
+int CJNIMediaCodecList::ALL_CODECS;
+int CJNIMediaCodecList::REGULAR_CODECS;
+
+void CJNIMediaCodecList::PopulateStaticFields()
+{
+  jhclass clazz = find_class(m_classname);
+
+  ALL_CODECS = get_static_field<int>(clazz, "ALL_CODECS");
+  REGULAR_CODECS = get_static_field<int>(clazz, "REGULAR_CODECS");
+}
+
+CJNIMediaCodecList::CJNIMediaCodecList(int kind) : CJNIBase(m_classname)
+{
+  m_object = new_object(m_classname,
+    "<init>", "(I)V", kind);
+
+  m_object.setGlobal();
+}
+
 int CJNIMediaCodecList::getCodecCount()
 {
   return call_static_method<int>(m_classname,
@@ -39,3 +58,17 @@ const CJNIMediaCodecInfo CJNIMediaCodecList::getCodecInfoAt(int index)
     "getCodecInfoAt", "(I)Landroid/media/MediaCodecInfo;",
     index);
 }
+
+std::vector<CJNIMediaCodecInfo> CJNIMediaCodecList::getCodecInfos()
+{
+  jhclass clazz = get_class(m_object);
+  jmethodID id = get_method_id(clazz, "getCodecInfos", "()[Landroid/media/MediaCodecInfo;");
+  if (id != NULL)
+    return jcast<CJNIMediaCodecInfos>(call_method<jhobjectArray>(m_object, id));
+  else
+  {
+    xbmc_jnienv()->ExceptionClear();
+    return CJNIMediaCodecInfos();
+  }
+}
+
