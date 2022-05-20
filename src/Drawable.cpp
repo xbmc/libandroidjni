@@ -1,7 +1,6 @@
-#pragma once
 /*
- *      Copyright (C) 2013 Team XBMC
- *      http://xbmc.org
+ *      Copyright (C) 2022 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,25 +18,29 @@
  *
  */
 
-#include "JNIBase.h"
+#include "Drawable.h"
 
-class CJNIBitmap : public CJNIBase
+#include "Canvas.h"
+#include "jutils-details.hpp"
+
+using namespace jni;
+
+int CJNIDrawable::getIntrinsicWidth()
 {
-public:
-  CJNIBitmap() : CJNIBase() {}
-  CJNIBitmap(const jni::jhobject &object) : CJNIBase(object) {}
-  ~CJNIBitmap() {}
+  return call_method<int>(m_object, "getIntrinsicWidth", "()I");
+}
 
-  enum Config
-  {
-    ALPHA_8,
-    ARGB_4444,
-    ARGB_8888,
-    HARDWARE,
-    RGBA_1010102,
-    RGBA_F16,
-    RGB_565,
-  };
+int CJNIDrawable::getIntrinsicHeight()
+{
+  return call_method<int>(m_object, "getIntrinsicHeight", "()I");
+}
 
-  static CJNIBitmap createBitmap(int width, int height, CJNIBitmap::Config config);
-};
+void CJNIDrawable::setBounds(int left, int top, int right, int bottom)
+{
+  call_method<void>(m_object, "setBounds", "(IIII)V", left, top, right, bottom);
+}
+
+void CJNIDrawable::draw(const CJNICanvas& canvas)
+{
+  call_method<void>(m_object, "draw", "(Landroid/graphics/Canvas;)V", canvas.get_raw());
+}

@@ -1,7 +1,7 @@
 #pragma once
 /*
- *      Copyright (C) 2013 Team XBMC
- *      http://xbmc.org
+ *      Copyright (C) 2022 Team Kodi
+ *      http://kodi.tv
  *
  *  This Program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,23 +21,18 @@
 
 #include "JNIBase.h"
 
-class CJNIBitmap : public CJNIBase
+class CJNIBitmap;
+
+class CJNICanvas : public CJNIBase
 {
 public:
-  CJNIBitmap() : CJNIBase() {}
-  CJNIBitmap(const jni::jhobject &object) : CJNIBase(object) {}
-  ~CJNIBitmap() {}
+  explicit CJNICanvas(const jni::jhobject& object) : CJNIBase(object) {}
+  explicit CJNICanvas(const CJNIBitmap& bitmap);
+  ~CJNICanvas() {}
 
-  enum Config
-  {
-    ALPHA_8,
-    ARGB_4444,
-    ARGB_8888,
-    HARDWARE,
-    RGBA_1010102,
-    RGBA_F16,
-    RGB_565,
-  };
+  int getWidth();
+  int getHeight();
 
-  static CJNIBitmap createBitmap(int width, int height, CJNIBitmap::Config config);
+private:
+  CJNICanvas() = delete;
 };

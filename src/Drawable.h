@@ -21,6 +21,8 @@
 
 #include "JNIBase.h"
 
+class CJNICanvas;
+
 class CJNIDrawable : public CJNIBase
 {
 public:
@@ -28,4 +30,9 @@ public:
   CJNIDrawable(const jni::jhobject &object) : CJNIBase(object){};
   CJNIDrawable(std::string classname) : CJNIBase(classname){};
   ~CJNIDrawable(){};
+
+  int getIntrinsicWidth();
+  int getIntrinsicHeight();
+  void setBounds(int left, int top, int right, int bottom);
+  void draw(const CJNICanvas& canvas);
 };
