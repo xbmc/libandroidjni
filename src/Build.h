@@ -30,14 +30,18 @@ public:
   static std::string PRODUCT;
   static std::string DEVICE;
   static std::string BOARD;
+  // Deprecated in API level 21
   static std::string CPU_ABI;
+  // Deprecated in API level 21
   static std::string CPU_ABI2;
   static std::string MANUFACTURER;
   static std::string BRAND;
   static std::string MODEL;
   static std::string BOOTLOADER;
+  // Deprecated in API level 15
   static std::string RADIO;
   static std::string HARDWARE;
+  // Deprecated in API level 26
   static std::string SERIAL;
   static std::string TYPE;
   static std::string TAGS;

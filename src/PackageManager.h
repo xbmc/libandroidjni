@@ -38,6 +38,7 @@ public:
   CJNIIntent        getLaunchIntentForPackage(const std::string &package);
   CJNIIntent        getLeanbackLaunchIntentForPackage(const std::string &package);
   CJNIDrawable      getApplicationIcon(const std::string &package);
+  // Deprecated in API level 33
   CJNIList<CJNIApplicationInfo> getInstalledApplications(int flags);
   CJNICharSequence  getApplicationLabel(const CJNIApplicationInfo &info);
   CJNIResources     getResourcesForApplication(const std::string &package);

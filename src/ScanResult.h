@@ -30,6 +30,7 @@ public:
   CJNIScanResult(const jni::jhobject &object);
   ~CJNIScanResult(){};
 
+  // Deprecated in API level 33
   std::string SSID;
   std::string BSSID;
   std::string capabilities;

@@ -43,10 +43,14 @@ public:
   void setStreamVolume(int index = 0, int flags = 0);
 
   int requestAudioFocus(const jni::CJNIAudioFocusRequestClass& request);
+  // Deprecated in API level 26
   int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint);
   int abandonAudioFocusRequest(const jni::CJNIAudioFocusRequestClass& request);
+  // Deprecated in API level 26
   int abandonAudioFocus (const CJNIAudioManagerAudioFocusChangeListener& listener);
+  // Deprecated in API level 26
   bool isBluetoothA2dpOn();
+  // Deprecated in API level 15
   bool isWiredHeadsetOn();
 
   CJNIAudioDeviceInfos getDevices(int flags);

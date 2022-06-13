@@ -33,7 +33,9 @@ public:
   static int ALL_CODECS;
   static int REGULAR_CODECS;
 
+  // Deprecated in API level 21
   static int   getCodecCount();
+  // Deprecated in API level 21
   static const CJNIMediaCodecInfo getCodecInfoAt(int index);
   std::vector<CJNIMediaCodecInfo> getCodecInfos();
 

@@ -34,21 +34,36 @@ friend class CJNIContext;
 public:
   CJNIWifiManager(const jni::jhobject &object) : CJNIBase(object){};
 
+  // Deprecated in API level 29
   CJNIList<CJNIWifiConfiguration> getConfiguredNetworks();
+  // Deprecated in API level 29
   int addNetwork(const CJNIWifiConfiguration &config);
+  // Deprecated in API level 29
   int updateNetwork(const CJNIWifiConfiguration &config);
+  // Deprecated in API level 29
   bool removeNetwork(int);
+  // Deprecated in API level 29
   bool enableNetwork(int, bool);
+  // Deprecated in API level 29
   bool disableNetwork(int);
+  // Deprecated in API level 29
   bool disconnect();
+  // Deprecated in API level 29
   bool reconnect();
+  // Deprecated in API level 29
   bool reassociate();
+  // Deprecated in API level 26
   bool pingSupplicant();
+  // Deprecated in API level 28
   bool startScan();
+  // Deprecated in API level 31
   CJNIWifiInfo getConnectionInfo();
   CJNIList<CJNIScanResult> getScanResults();
+  // Deprecated in API level 26
   bool saveConfiguration();
+  // Deprecated in API level 31
   CJNIDhcpInfo getDhcpInfo();
+  // Deprecated in API level 29
   bool setWifiEnabled(bool);
   int  getWifiState();
   bool isWifiEnabled();

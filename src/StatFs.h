@@ -29,8 +29,11 @@ public:
   ~CJNIStatFs() {};
 
   void  restat(const std::string &path);
+  // Deprecated in API level 18
   int   getBlockSize();
+  // Deprecated in API level 18
   int   getBlockCount();
+  // Deprecated in API level 18
   int   getFreeBlocks();
   int   getAvailableBlocks();
 };

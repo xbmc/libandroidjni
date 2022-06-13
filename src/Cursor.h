@@ -57,7 +57,9 @@ public:
   double getDouble(int columnIndex);
   int  getType(int columnIndex);
   bool isNull(int columnIndex);
+  // Deprecated in API level 16
   void deactivate();
+  // Deprecated in API level 15
   bool requery();
   void close();
   bool isClosed();

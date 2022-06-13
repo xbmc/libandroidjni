@@ -52,9 +52,11 @@ public:
   static std::string  EXTRA_BIG_TEXT;
   static std::string  EXTRA_COMPACT_ACTIONS;
   static std::string  EXTRA_INFO_TEXT;
+  // Deprecated in API level 26
   static std::string  EXTRA_LARGE_ICON;
   static std::string  EXTRA_LARGE_ICON_BIG;
   static std::string  EXTRA_MEDIA_SESSION;
+  // Deprecated in API level 28
   static std::string  EXTRA_PEOPLE;
   static std::string  EXTRA_PICTURE;
   static std::string  EXTRA_PROGRESS;
@@ -62,6 +64,7 @@ public:
   static std::string  EXTRA_PROGRESS_MAX;
   static std::string  EXTRA_SHOW_CHRONOMETER;
   static std::string  EXTRA_SHOW_WHEN;
+  // Deprecated in API level 26
   static std::string  EXTRA_SMALL_ICON;
   static std::string  EXTRA_SUB_TEXT;
   static std::string  EXTRA_SUMMARY_TEXT;
@@ -73,19 +76,27 @@ public:
   static int          FLAG_AUTO_CANCEL;
   static int          FLAG_FOREGROUND_SERVICE;
   static int          FLAG_GROUP_SUMMARY;
+  // Deprecated in API level 16
   static int          FLAG_HIGH_PRIORITY;
   static int          FLAG_INSISTENT;
   static int          FLAG_LOCAL_ONLY;
   static int          FLAG_NO_CLEAR;
   static int          FLAG_ONGOING_EVENT;
   static int          FLAG_ONLY_ALERT_ONCE;
+  // Deprecated in API level 26
   static int          FLAG_SHOW_LIGHTS;
   static std::string  INTENT_CATEGORY_NOTIFICATION_PREFERENCES;
+  // Deprecated in API level 26
   static int          PRIORITY_DEFAULT;
+  // Deprecated in API level 26
   static int          PRIORITY_HIGH;
+  // Deprecated in API level 26
   static int          PRIORITY_LOW;
+  // Deprecated in API level 26
   static int          PRIORITY_MAX;
+  // Deprecated in API level 26
   static int          PRIORITY_MIN;
+  // Deprecated in API level 21
   static int          STREAM_DEFAULT;
   static int          VISIBILITY_PRIVATE;
   static int          VISIBILITY_PUBLIC;

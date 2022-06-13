@@ -61,9 +61,12 @@ public:
 
   long getAppVsyncOffsetNanos();
   float getRefreshRate();
+  // Deprecated in API level 23
   std::vector<float> getSupportedRefreshRates();
   CJNIDisplayMode getMode();
+  // Deprecated in API level 15
   int getWidth();
+  // Deprecated in API level 15
   int getHeight();
   std::vector<CJNIDisplayMode> getSupportedModes();
   CJNIDisplayHdrCapabilities getHdrCapabilities();

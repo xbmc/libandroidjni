@@ -30,6 +30,7 @@ public:
   CJNIResources(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIResources() {};
 
+  // Deprecated in API level 22
   CJNIDrawable      getDrawableForDensity(int id, int density);
 
 private:
