@@ -179,7 +179,7 @@ CJNIIntent CJNIIntent::setDataAndType(const CJNIURI &uri, const std::string &typ
 CJNIIntent CJNIIntent::setFlags(int flags)
 {
   return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
-    "setFlags", "(I;)Landroid/content/Intent;",
+    "setFlags", "(I)Landroid/content/Intent;",
     flags));
 }
 
