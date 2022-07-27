@@ -129,78 +129,78 @@ bool CJNIIntent::hasCategory(const std::string &category) const
 
 CJNIIntent CJNIIntent::putExtra(const std::string &name, const std::string &value)
 {
-  return (CJNIIntent)call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "putExtra", "(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(name), jcast<jhstring>(value));
+    jcast<jhstring>(name), jcast<jhstring>(value)));
 }
 
-void CJNIIntent::addFlags(int flags)
+CJNIIntent CJNIIntent::addFlags(int flags)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "addFlags", "(I)Landroid/content/Intent;",
-    flags);
+    flags));
 }
 
-void CJNIIntent::addCategory(const std::string &category)
+CJNIIntent CJNIIntent::addCategory(const std::string &category)
 {
-  call_method<jhstring>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "addCategory", "(Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(category));
+    jcast<jhstring>(category)));
 }
 
-void CJNIIntent::setAction(const std::string &action)
+CJNIIntent CJNIIntent::setAction(const std::string &action)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setAction", "(Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(action));
+    jcast<jhstring>(action)));
 }
 
-void CJNIIntent::setClassName(const std::string &packageName, const std::string &className)
+CJNIIntent CJNIIntent::setClassName(const std::string &packageName, const std::string &className)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setClassName", "(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(packageName), jcast<jhstring>(className));
+    jcast<jhstring>(packageName), jcast<jhstring>(className)));
 }
 
-void CJNIIntent::setData(const std::string &uri)
+CJNIIntent CJNIIntent::setData(const std::string &uri)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setData", "(Landroid/net/Uri;)Landroid/content/Intent;",
-    jcast<jhstring>(uri));
+    jcast<jhstring>(uri)));
 }
 
-void CJNIIntent::setDataAndType(const CJNIURI &uri, const std::string &type)
+CJNIIntent CJNIIntent::setDataAndType(const CJNIURI &uri, const std::string &type)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setDataAndType", "(Landroid/net/Uri;Ljava/lang/String;)Landroid/content/Intent;",
-    uri.get_raw(), jcast<jhstring>(type));
+    uri.get_raw(), jcast<jhstring>(type)));
 }
 
-void CJNIIntent::setFlags(int flags)
+CJNIIntent CJNIIntent::setFlags(int flags)
 {
-  call_method<jhobject>(m_object,
-    "setFlags", "(I;)Landroid/content/Intent;",
-    flags);
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
+    "setFlags", "(I)Landroid/content/Intent;",
+    flags));
 }
 
-void CJNIIntent::setPackage(const std::string &packageName)
+CJNIIntent CJNIIntent::setPackage(const std::string &packageName)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setPackage", "(Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(packageName));
+    jcast<jhstring>(packageName)));
 }
 
-void CJNIIntent::setType(const std::string &type)
+CJNIIntent CJNIIntent::setType(const std::string &type)
 {
-  call_method<jhobject>(m_object,
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "setType", "(Ljava/lang/String;)Landroid/content/Intent;",
-    jcast<jhstring>(type));
+    jcast<jhstring>(type)));
 }
 
 CJNIURI CJNIIntent::getData() const
 {
-  return (CJNIURI)call_method<jhobject>(m_object,
-    "getData","()Landroid/net/Uri;");
+  return static_cast<CJNIURI>(call_method<jhobject>(m_object,
+    "getData","()Landroid/net/Uri;"));
 }
 
 CJNIArrayList<std::string> CJNIIntent::getStringArrayListExtra(const std::string &key) const

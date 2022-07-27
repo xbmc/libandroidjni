@@ -49,18 +49,18 @@ public:
 
   CJNIIntent putExtra(const std::string &name, const std::string &value);
 
-  void addFlags(int flags);
-  void addCategory(const std::string &category);
-  void setFlags(int flags);
-  void setAction(const std::string &action);
-  void setClassName(const std::string &packageName, const std::string &className);
+  CJNIIntent addFlags(int flags);
+  CJNIIntent addCategory(const std::string &category);
+  CJNIIntent setFlags(int flags);
+  CJNIIntent setAction(const std::string &action);
+  CJNIIntent setClassName(const std::string &packageName, const std::string &className);
 
   // Note that these are strings. We auto-convert to uri objects.
-  void setDataAndType(const CJNIURI &uri, const std::string &type);
-  void setData(const std::string &uri);
+  CJNIIntent setDataAndType(const CJNIURI &uri, const std::string &type);
+  CJNIIntent setData(const std::string &uri);
 
-  void setPackage(const std::string &packageName);
-  void setType(const std::string &type);
+  CJNIIntent setPackage(const std::string &packageName);
+  CJNIIntent setType(const std::string &type);
   CJNIURI getData() const;
   CJNIArrayList<std::string> getStringArrayListExtra(const std::string &key) const;
 
