@@ -39,13 +39,15 @@ public:
 
   int         describeContents();
   static void PopulateStaticFields();
-  void setFrameRate (float frameRate, int compatibility);
+  void setFrameRate (float frameRate, int compatibility, int changeFrameRateStrategy);
   static int  ROTATION_0;
   static int  ROTATION_90;
   static int  ROTATION_180;
   static int  ROTATION_270;
   static int  FRAME_RATE_COMPATIBILITY_FIXED_SOURCE;
   static int  FRAME_RATE_COMPATIBILITY_DEFAULT;
+  static int  CHANGE_FRAME_RATE_ONLY_IF_SEAMLESS;
+  static int  CHANGE_FRAME_RATE_ALWAYS;
 
 private:
   static const char *m_classname;
