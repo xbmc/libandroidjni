@@ -34,12 +34,15 @@ public:
   float       getFloat(   const std::string &name);
   std::string getString(  const std::string &name);
   const       CJNIByteBuffer getByteBuffer(const std::string &name);
+  bool        getFeatureEnabled (const std::string& feature);
   void        setInteger( const std::string &name, int     value);
   void        setLong(    const std::string &name, int64_t value);
   void        setFloat(   const std::string &name, float   value);
   void        setString(  const std::string &name, const std::string &value);
   void        setByteBuffer(const std::string &name, CJNIByteBuffer &bytes);
+  void        setFeatureEnabled (const std::string& feature, bool enabled);
   std::string toString()  const;
+
 
   static void  PopulateStaticFields();
   static const CJNIMediaFormat createAudioFormat(const std::string &mime, int sampleRate, int channelCount);
@@ -61,6 +64,35 @@ public:
   static std::string KEY_AAC_PROFILE;
   static std::string KEY_FLAC_COMPRESSION_LEVEL;
   static std::string KEY_ROTATION;
+  static std::string KEY_COLOR_RANGE;
+  static std::string KEY_COLOR_STANDARD;
+  static std::string KEY_COLOR_TRANSFER;
+  static std::string KEY_CROP_BOTTOM;
+  static std::string KEY_CROP_LEFT;
+  static std::string KEY_CROP_RIGHT;
+  static std::string KEY_CROP_TOP;
+  static std::string KEY_HDR_STATIC_INFO;
+  static std::string KEY_SLICE_HEIGHT;
+  static std::string KEY_STRIDE;
+
+  static int COLOR_STANDARD_BT2020;
+  static int COLOR_STANDARD_BT709;
+  static int COLOR_TRANSFER_HLG;
+  static int COLOR_TRANSFER_LINEAR;
+  static int COLOR_TRANSFER_SDR_VIDEO;
+  static int COLOR_TRANSFER_ST2084;
+
+  static std::string MIMETYPE_VIDEO_AV1;
+  static std::string MIMETYPE_VIDEO_AVC;
+  static std::string MIMETYPE_VIDEO_DOLBY_VISION;
+  static std::string MIMETYPE_VIDEO_H263;
+  static std::string MIMETYPE_VIDEO_HEVC;
+  static std::string MIMETYPE_VIDEO_MPEG2;
+  static std::string MIMETYPE_VIDEO_MPEG4;
+  static std::string MIMETYPE_VIDEO_RAW;
+  static std::string MIMETYPE_VIDEO_SCRAMBLED;
+  static std::string MIMETYPE_VIDEO_VP8;
+  static std::string MIMETYPE_VIDEO_VP9;
 
 private:
   CJNIMediaFormat();
