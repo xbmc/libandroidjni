@@ -32,6 +32,9 @@ int CJNISurface::ROTATION_180;
 int CJNISurface::ROTATION_270;
 int CJNISurface::FRAME_RATE_COMPATIBILITY_DEFAULT;
 int CJNISurface::FRAME_RATE_COMPATIBILITY_FIXED_SOURCE;
+int CJNISurface::CHANGE_FRAME_RATE_ONLY_IF_SEAMLESS;
+int CJNISurface::CHANGE_FRAME_RATE_ALWAYS;
+
 const char* CJNISurface::m_classname = "android/view/Surface";
 
 void CJNISurface::PopulateStaticFields()
@@ -45,6 +48,11 @@ void CJNISurface::PopulateStaticFields()
   {
     FRAME_RATE_COMPATIBILITY_DEFAULT = get_static_field<int>(clazz, "FRAME_RATE_COMPATIBILITY_DEFAULT");
     FRAME_RATE_COMPATIBILITY_FIXED_SOURCE = get_static_field<int>(clazz, "FRAME_RATE_COMPATIBILITY_FIXED_SOURCE");
+  }
+  if (GetSDKVersion() >= 31)
+  {
+    CHANGE_FRAME_RATE_ONLY_IF_SEAMLESS = get_static_field<int>(clazz, "CHANGE_FRAME_RATE_ONLY_IF_SEAMLESS");
+    CHANGE_FRAME_RATE_ALWAYS = get_static_field<int>(clazz, "CHANGE_FRAME_RATE_ALWAYS");
   }
 }
 
@@ -85,10 +93,12 @@ void CJNISurface::unlockCanvas(const CJNICanvas &canvas)
 }
 */
 
-void CJNISurface::setFrameRate(float frameRate, int compatibility)
+void CJNISurface::setFrameRate(float frameRate, int compatibility, int changeFrameRateStrategy)
 {
-  if (GetSDKVersion() >= 30)
-    call_method<void>(m_object,"setFrameRate", "(FI)V");
+  if (GetSDKVersion() >= 31)
+    call_method<void>(m_object,"setFrameRate", "(FII)V", frameRate, compatibility, changeFrameRateStrategy);
+  else if (GetSDKVersion() >= 30)
+    call_method<void>(m_object,"setFrameRate", "(FI)V", frameRate, compatibility);
 }
 
 std::string CJNISurface::toString()
