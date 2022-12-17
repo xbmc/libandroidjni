@@ -60,3 +60,13 @@ void CJNIWindow::setCallback(const jni::jhobject &object)
   call_method<void>(m_object,
     "setCallback", "(Landroid/view/Window$Callback;)V", object);
 }
+
+void CJNIWindow::addFlags(int flags)
+{
+  call_method<void>(m_object, "addFlags", "(I)V", flags);
+}
+
+void CJNIWindow::clearFlags(int flags)
+{
+  call_method<void>(m_object, "clearFlags", "(I)V", flags);
+}

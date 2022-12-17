@@ -36,4 +36,7 @@ public:
   void setCallback(const jni::jhobject &object);
 
   CJNIView getDecorView();
+
+  void addFlags (int flags);
+  void clearFlags (int flags);
 };

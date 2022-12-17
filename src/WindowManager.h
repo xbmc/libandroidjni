@@ -42,4 +42,7 @@ public:
   void setpreferredRefreshRate(float rate);
   int getpreferredDisplayModeId() const;
   void setpreferredDisplayModeId(int modeid);
+
+  static void PopulateStaticFields();
+  static int FLAG_KEEP_SCREEN_ON;
 };

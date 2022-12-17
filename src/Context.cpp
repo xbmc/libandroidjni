@@ -61,6 +61,7 @@
 #include "URI.h"
 #include "SpeechRecognizer.h"
 #include "MediaCodecList.h"
+#include "WindowManager.h"
 
 #include <android/native_activity.h>
 
@@ -126,6 +127,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIURI::PopulateStaticFields();
   CJNISpeechRecognizer::PopulateStaticFields();
   CJNIMediaCodecList::PopulateStaticFields();
+  CJNIWindowManagerLayoutParams::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
