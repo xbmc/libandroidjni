@@ -31,6 +31,14 @@ CJNIDisplay CJNIWindowManager::getDefaultDisplay()
     "getDefaultDisplay", "()Landroid/view/Display;");
 }
 
+int CJNIWindowManagerLayoutParams::FLAG_KEEP_SCREEN_ON;
+
+void CJNIWindowManagerLayoutParams::PopulateStaticFields()
+{
+  jhclass clazz = find_class("android/view/WindowManager$LayoutParams");
+  FLAG_KEEP_SCREEN_ON = (get_static_field<int>(clazz, "FLAG_KEEP_SCREEN_ON"));
+}
+
 float CJNIWindowManagerLayoutParams::getpreferredRefreshRate() const
 {
   if (GetSDKVersion() >= 21)
