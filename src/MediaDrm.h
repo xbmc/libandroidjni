@@ -47,6 +47,7 @@ public:
 
   // Deprecated in API level 28
   void release() const;
+  void close() const;
 
   std::vector<char> openSession() const;
   void closeSession(const std::vector<char> & sessionId) const;

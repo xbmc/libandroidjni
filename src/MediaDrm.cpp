@@ -41,6 +41,11 @@ void CJNIMediaDrm::release() const
     "release", "()V");
 }
 
+void CJNIMediaDrm::close() const
+{
+  call_method<void>(m_object, "close", "()V");
+}
+
 std::vector<char> CJNIMediaDrm::openSession() const
 {
   JNIEnv *env = xbmc_jnienv();
@@ -160,11 +165,14 @@ std::vector<char> CJNIMediaDrm::provideKeyResponse(const std::vector<char> &scop
   jhbyteArray array = call_method<jhbyteArray>(m_object,
     "provideKeyResponse", "([B[B)[B", scope_, response_);
 
-  size = env->GetArrayLength(array.get());
-
   std::vector<char> result;
-  result.resize(size);
-  env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
+
+  if (!env->ExceptionCheck())
+  {
+    jsize size = env->GetArrayLength(array.get());
+    result.resize(size);
+    env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
+  }
 
   env->DeleteLocalRef(scope_);
   env->DeleteLocalRef(response_);
