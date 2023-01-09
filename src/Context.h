@@ -32,6 +32,7 @@ class CJNIApplicationInfo;
 class CJNIFile;
 class CJNIContentResolver;
 class CJNIWindow;
+class CJNIResourcesTheme;
 
 class CJNIContext
 {
@@ -60,6 +61,7 @@ public:
   static CJNIFile getExternalFilesDir(const std::string &path);
   static CJNIContentResolver getContentResolver();
   static CJNIWindow getWindow();
+  static CJNIResourcesTheme getTheme();
 
 protected:
   CJNIContext(const ANativeActivity *nativeActivity);

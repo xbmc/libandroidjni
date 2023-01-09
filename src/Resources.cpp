@@ -31,3 +31,10 @@ CJNIDrawable CJNIResources::getDrawableForDensity(int id, int density)
     id, density);
 }
 
+CJNIDrawable CJNIResources::getDrawableForDensity(int id, int density, const CJNIResourcesTheme& theme)
+{
+  return call_method<jhobject>(m_object,
+    "getDrawableForDensity",
+    "(IILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;",
+    id, density, theme.get_raw());
+}
