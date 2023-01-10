@@ -20,9 +20,9 @@
  */
 
 #include "JNIBase.h"
-#include "List.h"
 
 class CJNIDrawable;
+class CJNIResourcesTheme;
 
 class CJNIResources : public CJNIBase
 {
@@ -31,8 +31,16 @@ public:
   ~CJNIResources() {};
 
   // Deprecated in API level 22
-  CJNIDrawable      getDrawableForDensity(int id, int density);
+  CJNIDrawable getDrawableForDensity(int id, int density);
+  CJNIDrawable getDrawableForDensity(int id, int density, const CJNIResourcesTheme& theme);
 
 private:
   CJNIResources();
+};
+
+class CJNIResourcesTheme : public CJNIBase
+{
+public:
+  CJNIResourcesTheme(const jni::jhobject& object) : CJNIBase(object) {};
+  ~CJNIResourcesTheme() {};
 };

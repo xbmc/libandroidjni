@@ -62,6 +62,7 @@
 #include "SpeechRecognizer.h"
 #include "MediaCodecList.h"
 #include "WindowManager.h"
+#include "Resources.h"
 
 #include <android/native_activity.h>
 
@@ -245,4 +246,9 @@ CJNIWindow CJNIContext::getWindow()
 {
   return call_method<jhobject>(m_context,
     "getWindow", "()Landroid/view/Window;");
+}
+
+CJNIResourcesTheme CJNIContext::getTheme()
+{
+  return call_method<jhobject>(m_context, "getTheme", "()Landroid/content/res/Resources$Theme;");
 }
