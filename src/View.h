@@ -116,6 +116,8 @@ public:
   int	 getSystemUiVisibility();
   CJNIDisplay getDisplay();
 
+  void setBackgroundColor(const int color);
+
   static void PopulateStaticFields();
   static int SYSTEM_UI_FLAG_FULLSCREEN;
   static int SYSTEM_UI_FLAG_HIDE_NAVIGATION;
