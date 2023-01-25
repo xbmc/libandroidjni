@@ -252,3 +252,9 @@ CJNIResourcesTheme CJNIContext::getTheme()
 {
   return call_method<jhobject>(m_context, "getTheme", "()Landroid/content/res/Resources$Theme;");
 }
+
+CJNIResources CJNIContext::getResources()
+{
+  return call_method<jhobject>(m_context,
+    "getResources", "()Landroid/content/res/Resources;");
+}

@@ -25,6 +25,8 @@
 
 class CJNIWindowManager;
 class CVariant;
+class CJNIView;
+
 struct ANativeActivity;
 
 class CJNIActivity : public CJNIContext
@@ -38,6 +40,7 @@ public:
   static void startActivityForResult(const CJNIIntent &intent, int requestCode);
   // Deprecated in API level 26
   static bool requestVisibleBehind(bool visible);
+  static CJNIView findViewById(const int id);
 
   virtual void onVisibleBehindCanceled() = 0;
 

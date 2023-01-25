@@ -33,6 +33,7 @@ class CJNIFile;
 class CJNIContentResolver;
 class CJNIWindow;
 class CJNIResourcesTheme;
+class CJNIResources;
 
 class CJNIContext
 {
@@ -62,6 +63,7 @@ public:
   static CJNIContentResolver getContentResolver();
   static CJNIWindow getWindow();
   static CJNIResourcesTheme getTheme();
+  static CJNIResources getResources();
 
 protected:
   CJNIContext(const ANativeActivity *nativeActivity);
