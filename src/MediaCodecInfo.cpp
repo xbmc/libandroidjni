@@ -64,6 +64,11 @@ int CJNIMediaCodecInfoCodecProfileLevel::H263Level45(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level50(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level60(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level70(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10HDR10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10HDR10Plus(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMainStill(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileSimple(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileSimpleScalable(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileCore(0);
@@ -102,8 +107,10 @@ int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile0(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile1(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR10Plus(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR10Plus(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10Plus(0);
@@ -193,8 +200,15 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     AACObjectELD                = (get_static_field<int>(clazz, "AACObjectELD"));
   }
 
+  if(GetSDKVersion() >= 21)
+  {
+    HEVCProfileMain             = (get_static_field<int>(clazz, "HEVCProfileMain"));
+    HEVCProfileMain10           = (get_static_field<int>(clazz, "HEVCProfileMain10"));
+  }
+
   if(GetSDKVersion() >= 24)
   {
+    HEVCProfileMain10HDR10     = (get_static_field<int>(clazz, "HEVCProfileMain10HDR10"));
     VP9Profile0                = (get_static_field<int>(clazz, "VP9Profile0"));
     VP9Profile1                = (get_static_field<int>(clazz, "VP9Profile1"));
     VP9Profile2                = (get_static_field<int>(clazz, "VP9Profile2"));
@@ -203,12 +217,20 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
   }
 
+  if(GetSDKVersion() >= 28)
+  {
+    HEVCProfileMainStill       = (get_static_field<int>(clazz, "HEVCProfileMainStill"));
+  }
+
   if(GetSDKVersion() >= 29)
   {
     AV1ProfileMain10           = (get_static_field<int>(clazz, "AV1ProfileMain10"));
     AV1ProfileMain10HDR10      = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10"));
     AV1ProfileMain10HDR10Plus  = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10Plus"));
     AV1ProfileMain8            = (get_static_field<int>(clazz, "AV1ProfileMain8"));
+    HEVCProfileMain10HDR10Plus = (get_static_field<int>(clazz, "HEVCProfileMain10HDR10Plus"));
+    VP9Profile2HDR10Plus       = (get_static_field<int>(clazz, "VP9Profile2HDR10Plus"));
+    VP9Profile3HDR10Plus       = (get_static_field<int>(clazz, "VP9Profile3HDR10Plus"));
   }
 }
 

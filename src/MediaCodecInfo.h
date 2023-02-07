@@ -74,6 +74,11 @@ public:
   static int H263Level50;
   static int H263Level60;
   static int H263Level70;
+  static int HEVCProfileMain;
+  static int HEVCProfileMain10;
+  static int HEVCProfileMain10HDR10;
+  static int HEVCProfileMain10HDR10Plus;
+  static int HEVCProfileMainStill;
   static int MPEG4ProfileSimple;
   static int MPEG4ProfileSimpleScalable;
   static int MPEG4ProfileCore;
@@ -112,8 +117,10 @@ public:
   static int VP9Profile1;
   static int VP9Profile2;
   static int VP9Profile2HDR;
+  static int VP9Profile2HDR10Plus;
   static int VP9Profile3;
   static int VP9Profile3HDR;
+  static int VP9Profile3HDR10Plus;
   static int AV1ProfileMain10;
   static int AV1ProfileMain10HDR10;
   static int AV1ProfileMain10HDR10Plus;
