@@ -57,6 +57,17 @@ public:
   static int AVCLevel42;
   static int AVCLevel5;
   static int AVCLevel51;
+  static int DolbyVisionProfileDvav110;
+  static int DolbyVisionProfileDvavPen;
+  static int DolbyVisionProfileDvavPer;
+  static int DolbyVisionProfileDvavSe;
+  static int DolbyVisionProfileDvheDen;
+  static int DolbyVisionProfileDvheDer;
+  static int DolbyVisionProfileDvheDtb;
+  static int DolbyVisionProfileDvheDth;
+  static int DolbyVisionProfileDvheDtr;
+  static int DolbyVisionProfileDvheSt;
+  static int DolbyVisionProfileDvheStn;
   static int H263ProfileBaseline;
   static int H263ProfileH320Coding;
   static int H263ProfileBackwardCompatible;
@@ -203,6 +214,16 @@ public:
   static int COLOR_TI_FormatYUV420PackedSemiPlanar;
   static int COLOR_QCOM_FormatYUV420SemiPlanar;
   static int OMX_QCOM_COLOR_FormatYVU420SemiPlanarInterlace;
+  static int COLOR_Format32bitABGR2101010;
+  static int COLOR_Format32bitABGR8888;
+  static int COLOR_Format64bitABGRFloat;
+  static int COLOR_FormatRGBAFlexible;
+  static int COLOR_FormatRGBFlexible;
+  static int COLOR_FormatSurface;
+  static int COLOR_FormatYUV420Flexible;
+  static int COLOR_FormatYUV422Flexible;
+  static int COLOR_FormatYUV444Flexible;
+  static int COLOR_FormatYUVP010;
 
   static std::string FEATURE_AdaptivePlayback;
   static std::string FEATURE_DynamicTimestamp;
