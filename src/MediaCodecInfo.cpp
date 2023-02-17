@@ -47,6 +47,17 @@ int CJNIMediaCodecInfoCodecProfileLevel::AVCLevel41(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AVCLevel42(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AVCLevel5(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AVCLevel51(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvav110(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavPen(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavPer(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvavSe(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDen(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDer(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDtb(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDth(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheDtr(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheSt(0);
+int CJNIMediaCodecInfoCodecProfileLevel::DolbyVisionProfileDvheStn(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263ProfileBaseline(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263ProfileH320Coding(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263ProfileBackwardCompatible(0);
@@ -64,6 +75,11 @@ int CJNIMediaCodecInfoCodecProfileLevel::H263Level45(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level50(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level60(0);
 int CJNIMediaCodecInfoCodecProfileLevel::H263Level70(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10HDR10(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMain10HDR10Plus(0);
+int CJNIMediaCodecInfoCodecProfileLevel::HEVCProfileMainStill(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileSimple(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileSimpleScalable(0);
 int CJNIMediaCodecInfoCodecProfileLevel::MPEG4ProfileCore(0);
@@ -102,8 +118,10 @@ int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile0(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile1(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile2HDR10Plus(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3(0);
 int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR(0);
+int CJNIMediaCodecInfoCodecProfileLevel::VP9Profile3HDR10Plus(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10(0);
 int CJNIMediaCodecInfoCodecProfileLevel::AV1ProfileMain10HDR10Plus(0);
@@ -193,8 +211,23 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     AACObjectELD                = (get_static_field<int>(clazz, "AACObjectELD"));
   }
 
+  if(GetSDKVersion() >= 21)
+  {
+    HEVCProfileMain             = (get_static_field<int>(clazz, "HEVCProfileMain"));
+    HEVCProfileMain10           = (get_static_field<int>(clazz, "HEVCProfileMain10"));
+  }
+
   if(GetSDKVersion() >= 24)
   {
+    DolbyVisionProfileDvavPen  = (get_static_field<int>(clazz, "DolbyVisionProfileDvavPen"));
+    DolbyVisionProfileDvavPer  = (get_static_field<int>(clazz, "DolbyVisionProfileDvavPer"));
+    DolbyVisionProfileDvheDen  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDen"));
+    DolbyVisionProfileDvheDer  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDer"));
+    DolbyVisionProfileDvheDtb  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDtb"));
+    DolbyVisionProfileDvheDth  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDth"));
+    DolbyVisionProfileDvheDtr  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheDtr"));
+    DolbyVisionProfileDvheStn  = (get_static_field<int>(clazz, "DolbyVisionProfileDvheStn"));
+    HEVCProfileMain10HDR10     = (get_static_field<int>(clazz, "HEVCProfileMain10HDR10"));
     VP9Profile0                = (get_static_field<int>(clazz, "VP9Profile0"));
     VP9Profile1                = (get_static_field<int>(clazz, "VP9Profile1"));
     VP9Profile2                = (get_static_field<int>(clazz, "VP9Profile2"));
@@ -203,12 +236,31 @@ void CJNIMediaCodecInfoCodecProfileLevel::PopulateStaticFields()
     VP9Profile3HDR             = (get_static_field<int>(clazz, "VP9Profile3HDR"));
   }
 
+  if(GetSDKVersion() >= 27)
+  {
+    DolbyVisionProfileDvavSe   = (get_static_field<int>(clazz, "DolbyVisionProfileDvavSe"));
+    DolbyVisionProfileDvheSt   = (get_static_field<int>(clazz, "DolbyVisionProfileDvheSt"));
+  }
+
+  if(GetSDKVersion() >= 28)
+  {
+    HEVCProfileMainStill       = (get_static_field<int>(clazz, "HEVCProfileMainStill"));
+  }
+
   if(GetSDKVersion() >= 29)
   {
     AV1ProfileMain10           = (get_static_field<int>(clazz, "AV1ProfileMain10"));
     AV1ProfileMain10HDR10      = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10"));
     AV1ProfileMain10HDR10Plus  = (get_static_field<int>(clazz, "AV1ProfileMain10HDR10Plus"));
     AV1ProfileMain8            = (get_static_field<int>(clazz, "AV1ProfileMain8"));
+    HEVCProfileMain10HDR10Plus = (get_static_field<int>(clazz, "HEVCProfileMain10HDR10Plus"));
+    VP9Profile2HDR10Plus       = (get_static_field<int>(clazz, "VP9Profile2HDR10Plus"));
+    VP9Profile3HDR10Plus       = (get_static_field<int>(clazz, "VP9Profile3HDR10Plus"));
+  }
+
+  if(GetSDKVersion() >= 30)
+  {
+    DolbyVisionProfileDvav110  = (get_static_field<int>(clazz, "DolbyVisionProfileDvav110"));
   }
 }
 
@@ -269,6 +321,16 @@ int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format24BitARGB6666(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format24BitABGR6666(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_TI_FormatYUV420PackedSemiPlanar(0);
 int CJNIMediaCodecInfoCodecCapabilities::COLOR_QCOM_FormatYUV420SemiPlanar(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format32bitABGR2101010(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format32bitABGR8888(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_Format64bitABGRFloat(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatRGBAFlexible(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatRGBFlexible(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatSurface(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatYUV420Flexible(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatYUV422Flexible(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatYUV444Flexible(0);
+int CJNIMediaCodecInfoCodecCapabilities::COLOR_FormatYUVP010(0);
 
 std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_AdaptivePlayback;
 std::string CJNIMediaCodecInfoCodecCapabilities::FEATURE_DynamicTimestamp;
@@ -342,6 +404,11 @@ void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
     COLOR_QCOM_FormatYUV420SemiPlanar = (get_static_field<int>(clazz, "COLOR_QCOM_FormatYUV420SemiPlanar"));
   }
 
+  if(GetSDKVersion() >= 18)
+  {
+    COLOR_FormatSurface               = (get_static_field<int>(clazz, "COLOR_FormatSurface"));
+  }
+
   if(GetSDKVersion() >= 19)
   {
     FEATURE_AdaptivePlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_AdaptivePlayback")));
@@ -349,8 +416,18 @@ void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
 
   if(GetSDKVersion() >= 21)
   {
+    COLOR_FormatYUV420Flexible        = (get_static_field<int>(clazz, "COLOR_FormatYUV420Flexible"));
     FEATURE_SecurePlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_SecurePlayback")));
     FEATURE_TunneledPlayback = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_TunneledPlayback")));
+  }
+
+  if(GetSDKVersion() >= 23)
+  {
+    COLOR_Format32bitABGR8888         = (get_static_field<int>(clazz, "COLOR_Format32bitABGR8888"));
+    COLOR_FormatRGBAFlexible          = (get_static_field<int>(clazz, "COLOR_FormatRGBAFlexible"));
+    COLOR_FormatRGBFlexible           = (get_static_field<int>(clazz, "COLOR_FormatRGBFlexible"));
+    COLOR_FormatYUV422Flexible        = (get_static_field<int>(clazz, "COLOR_FormatYUV422Flexible"));
+    COLOR_FormatYUV444Flexible        = (get_static_field<int>(clazz, "COLOR_FormatYUV444Flexible"));
   }
 
   if(GetSDKVersion() >= 24)
@@ -368,6 +445,12 @@ void CJNIMediaCodecInfoCodecCapabilities::PopulateStaticFields()
     FEATURE_DynamicTimestamp = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_DynamicTimestamp")));
     FEATURE_FrameParsing = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_FrameParsing")));
     FEATURE_MultipleFrames = (jcast<std::string>(get_static_field<jhstring>(clazz, "FEATURE_MultipleFrames")));
+  }
+  if(GetSDKVersion() >= 33)
+  {
+    COLOR_Format32bitABGR2101010      = (get_static_field<int>(clazz, "COLOR_Format32bitABGR2101010"));
+    COLOR_Format64bitABGRFloat        = (get_static_field<int>(clazz, "COLOR_Format64bitABGRFloat"));
+    COLOR_FormatYUVP010               = (get_static_field<int>(clazz, "COLOR_FormatYUVP010"));
   }
 }
 
