@@ -19,6 +19,7 @@
  */
 
 #include "Activity.h"
+#include "View.h"
 #include "Intent.h"
 #include "WindowManager.h"
 
@@ -61,5 +62,11 @@ bool CJNIActivity::requestVisibleBehind(bool visible)
   return call_method<jboolean>(m_context,
     "requestVisibleBehind", "(Z)Z",
                                visible);
+}
+
+CJNIView CJNIActivity::findViewById(const int id)
+{
+  return call_method<jhobject>(m_context,
+    "findViewById", "(I)Landroid/view/View;", id);
 }
 

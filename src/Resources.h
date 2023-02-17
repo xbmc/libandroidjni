@@ -33,6 +33,8 @@ public:
   // Deprecated in API level 22
   CJNIDrawable getDrawableForDensity(int id, int density);
   CJNIDrawable getDrawableForDensity(int id, int density, const CJNIResourcesTheme& theme);
+  
+  int getIdentifier(const std::string &name, const std::string &type, const std::string &package);
 
 private:
   CJNIResources();

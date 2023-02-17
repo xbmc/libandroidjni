@@ -309,3 +309,9 @@ CJNIDisplay CJNIView::getDisplay()
   else
     return jhobject();
 }
+
+void CJNIView::setBackgroundColor(const int color)
+{
+  call_method<void>(m_object,
+    "setBackgroundColor", "(I)V", color);
+}

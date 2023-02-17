@@ -38,3 +38,13 @@ CJNIDrawable CJNIResources::getDrawableForDensity(int id, int density, const CJN
     "(IILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;",
     id, density, theme.get_raw());
 }
+
+int CJNIResources::getIdentifier(const std::string &name,
+                                 const std::string &type,
+                                 const std::string &package)
+{
+  return call_method<int>(m_object,
+    "getIdentifier",
+    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I",
+    jcast<jhstring>(name), jcast<jhstring>(type), jcast<jhstring>(package));
+}
