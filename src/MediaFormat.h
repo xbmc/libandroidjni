@@ -75,6 +75,9 @@ public:
   static std::string KEY_SLICE_HEIGHT;
   static std::string KEY_STRIDE;
 
+  static int COLOR_RANGE_FULL;
+  static int COLOR_RANGE_LIMITED;
+
   static int COLOR_STANDARD_BT2020;
   static int COLOR_STANDARD_BT709;
   static int COLOR_TRANSFER_HLG;
