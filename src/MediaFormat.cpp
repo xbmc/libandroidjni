@@ -52,6 +52,9 @@ std::string CJNIMediaFormat::KEY_HDR_STATIC_INFO;
 std::string CJNIMediaFormat::KEY_SLICE_HEIGHT;
 std::string CJNIMediaFormat::KEY_STRIDE;
 
+int CJNIMediaFormat::COLOR_RANGE_FULL;
+int CJNIMediaFormat::COLOR_RANGE_LIMITED;
+
 int CJNIMediaFormat::COLOR_STANDARD_BT2020;
 int CJNIMediaFormat::COLOR_STANDARD_BT709;
 int CJNIMediaFormat::COLOR_TRANSFER_HLG;
@@ -115,6 +118,8 @@ void CJNIMediaFormat::PopulateStaticFields()
 
     if (GetSDKVersion() >= 24)
     {
+      COLOR_RANGE_FULL = (get_static_field<int>(clazz, "COLOR_RANGE_FULL"));
+      COLOR_RANGE_LIMITED = (get_static_field<int>(clazz, "COLOR_RANGE_LIMITED"));
       COLOR_STANDARD_BT2020 = (get_static_field<int>(clazz, "COLOR_STANDARD_BT2020"));
       COLOR_STANDARD_BT709 = (get_static_field<int>(clazz, "COLOR_STANDARD_BT709"));
       COLOR_TRANSFER_HLG = (get_static_field<int>(clazz, "COLOR_TRANSFER_HLG"));
