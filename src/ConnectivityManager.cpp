@@ -157,4 +157,17 @@ bool CJNIConnectivityManager::getBackgroundDataSetting()
     "getBackgroundDataSetting", "()Z");
 }
 
+void CJNIConnectivityManager::registerDefaultNetworkCallback(const jhobject& networkCallback)
+{
+  call_method<void>(m_object,
+    "registerDefaultNetworkCallback", "(Landroid/net/ConnectivityManager$NetworkCallback;)V",
+    networkCallback);
+}
+
+void CJNIConnectivityManager::unregisterNetworkCallback(const jhobject& networkCallback)
+{
+  call_method<void>(m_object,
+    "unregisterNetworkCallback", "(Landroid/net/ConnectivityManager$NetworkCallback;)V",
+    networkCallback);
+}
 

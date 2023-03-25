@@ -59,6 +59,8 @@ public:
   bool requestRouteToHost(int, int);
   // Deprecated in API level 15
   bool getBackgroundDataSetting();
+  void registerDefaultNetworkCallback(const jni::jhobject& networkCallback);
+  void unregisterNetworkCallback(const jni::jhobject& networkCallback);
 
   static void PopulateStaticFields();
   // Deprecated in API level 28
