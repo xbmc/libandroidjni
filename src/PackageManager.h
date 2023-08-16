@@ -48,6 +48,7 @@ public:
   static int        GET_ACTIVITIES;
   static int        PERMISSION_DENIED;
   static int        PERMISSION_GRANTED;
+  static std::string FEATURE_LEANBACK;
 
 private:
   CJNIPackageManager();

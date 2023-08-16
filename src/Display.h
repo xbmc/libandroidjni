@@ -45,6 +45,7 @@ public:
   ~CJNIDisplayHdrCapabilities() {};
   CJNIDisplayHdrCapabilities(const jni::jhobject &object) : CJNIBase(object) {};
 
+  // Deprecated in API level 34
   std::vector<int> getSupportedHdrTypes();
 
 protected:

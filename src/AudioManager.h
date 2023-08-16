@@ -74,6 +74,9 @@ public:
 
   static int AUDIO_SESSION_ID_GENERATE;
 
+  static std::string ACTION_HDMI_AUDIO_PLUG;
+  static std::string EXTRA_AUDIO_PLUG_STATE;
+
 private:
   CJNIAudioManager();
 };

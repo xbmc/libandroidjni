@@ -40,9 +40,15 @@ class CJNIContext
 public:
   const jni::jhobject& get_raw() const { return m_context; }
 
-  static std::string CONNECTIVITY_SERVICE;
-  static std::string NSD_SERVICE;
   static std::string ACTIVITY_SERVICE;
+  static std::string AUDIO_SERVICE;
+  static std::string CONNECTIVITY_SERVICE;
+  static std::string DISPLAY_SERVICE;
+  static std::string INPUT_SERVICE;
+  static std::string JOB_SCHEDULER_SERVICE;
+  static std::string NOTIFICATION_SERVICE;
+  static std::string NSD_SERVICE;
+  static std::string STORAGE_SERVICE;
 
   static CJNIPackageManager GetPackageManager();
   static void startActivity(const CJNIIntent &intent);

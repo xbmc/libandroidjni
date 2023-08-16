@@ -65,6 +65,22 @@ public:
   CJNIArrayList<std::string> getStringArrayListExtra(const std::string &key) const;
 
   static void PopulateStaticFields();
-  static std::string EXTRA_KEY_EVENT;
+  static std::string ACTION_BATTERY_CHANGED;
+  static std::string ACTION_BOOT_COMPLETED;
+  static std::string ACTION_DREAMING_STOPPED;
+  static std::string ACTION_GET_CONTENT;
+  static std::string ACTION_HEADSET_PLUG;
+  static std::string ACTION_MAIN;
+  static std::string ACTION_MEDIA_BUTTON;
+  static std::string ACTION_MEDIA_MOUNTED;
+  static std::string ACTION_MEDIA_REMOVED;
+  static std::string ACTION_MEDIA_SHARED;
+  static std::string ACTION_MEDIA_UNMOUNTABLE;
+  static std::string ACTION_MEDIA_UNMOUNTED;
   static std::string ACTION_OPEN_DOCUMENT_TREE;
+  static std::string ACTION_SCREEN_ON;
+  static std::string ACTION_SCREEN_OFF;
+  static std::string ACTION_SEARCH;
+  static std::string ACTION_VIEW;
+  static std::string EXTRA_KEY_EVENT;
 };

@@ -32,6 +32,7 @@ using namespace jni;
 int CJNIPackageManager::GET_ACTIVITIES(0);
 int CJNIPackageManager::PERMISSION_DENIED;
 int CJNIPackageManager::PERMISSION_GRANTED;
+std::string CJNIPackageManager::FEATURE_LEANBACK;
 
 void CJNIPackageManager::PopulateStaticFields()
 {
@@ -40,6 +41,7 @@ void CJNIPackageManager::PopulateStaticFields()
   GET_ACTIVITIES = get_static_field<int>(clazz, "GET_ACTIVITIES");
   PERMISSION_DENIED = get_static_field<int>(clazz, "PERMISSION_DENIED");
   PERMISSION_GRANTED = get_static_field<int>(clazz, "PERMISSION_GRANTED");
+  FEATURE_LEANBACK = jcast<std::string>(get_static_field<jhstring>(clazz,"FEATURE_LEANBACK"));
 }
 
 bool CJNIPackageManager::hasSystemFeature(const std::string &feature)
