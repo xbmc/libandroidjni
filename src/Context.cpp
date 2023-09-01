@@ -70,9 +70,15 @@ using namespace jni;
 
 jhobject CJNIContext::m_context(0);
 
-std::string CJNIContext::CONNECTIVITY_SERVICE;
-std::string CJNIContext::NSD_SERVICE;
 std::string CJNIContext::ACTIVITY_SERVICE;
+std::string CJNIContext::AUDIO_SERVICE;
+std::string CJNIContext::CONNECTIVITY_SERVICE;
+std::string CJNIContext::DISPLAY_SERVICE;
+std::string CJNIContext::INPUT_SERVICE;
+std::string CJNIContext::JOB_SCHEDULER_SERVICE;
+std::string CJNIContext::NOTIFICATION_SERVICE;
+std::string CJNIContext::NSD_SERVICE;
+std::string CJNIContext::STORAGE_SERVICE;
 
 CJNIContext::CJNIContext(const ANativeActivity *nativeActivity)
 {
@@ -89,9 +95,15 @@ CJNIContext::~CJNIContext()
 void CJNIContext::PopulateStaticFields()
 {
   jhclass clazz = find_class("android/content/Context");
-  CONNECTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_SERVICE"));
-  NSD_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"NSD_SERVICE"));
   ACTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTIVITY_SERVICE"));
+  AUDIO_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"AUDIO_SERVICE"));
+  CONNECTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_SERVICE"));
+  DISPLAY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"DISPLAY_SERVICE"));
+  INPUT_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"INPUT_SERVICE"));
+  JOB_SCHEDULER_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"JOB_SCHEDULER_SERVICE"));
+  NOTIFICATION_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"NOTIFICATION_SERVICE"));
+  NSD_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"NSD_SERVICE"));
+  STORAGE_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"STORAGE_SERVICE"));
 
   CJNIBaseColumns::PopulateStaticFields();
   CJNIMediaStoreMediaColumns::PopulateStaticFields();

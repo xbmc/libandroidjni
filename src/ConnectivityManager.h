@@ -84,7 +84,8 @@ public:
   // Deprecated in API level 28
   static int TYPE_ETHERNET;
   static int DEFAULT_NETWORK_PREFERENCE;
-
+  // Deprecated in API level 28
+  static std::string CONNECTIVITY_ACTION;
 
 private:
   CJNIConnectivityManager();

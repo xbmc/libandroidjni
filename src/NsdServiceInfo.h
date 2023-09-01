@@ -37,12 +37,14 @@ public:
 
   int describeContents() const;
   CJNIMap<jhstring, jhbyteArray> getAttributes() const;
+  // Deprecated in API level 34
   CJNIInetAddress getHost() const;
   int getPort() const;
   std::string getServiceName() const;
   std::string getServiceType() const;
   void removeAttribute(const std::string& key);
   void setAttribute(const std::string& key, const std::string& value);
+  // Deprecated in API level 34
   void setHost(const CJNIInetAddress& s);
   void setPort(int p);
   void setServiceName(const std::string& s);

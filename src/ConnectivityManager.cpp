@@ -38,6 +38,7 @@ int CJNIConnectivityManager::TYPE_BLUETOOTH(0);
 int CJNIConnectivityManager::TYPE_DUMMY(0);
 int CJNIConnectivityManager::TYPE_ETHERNET(0);
 int CJNIConnectivityManager::DEFAULT_NETWORK_PREFERENCE(0);
+std::string CJNIConnectivityManager::CONNECTIVITY_ACTION;
 
 void CJNIConnectivityManager::PopulateStaticFields()
 {
@@ -53,6 +54,7 @@ void CJNIConnectivityManager::PopulateStaticFields()
   TYPE_DUMMY        = (get_static_field<int>(clazz, "TYPE_DUMMY"));
   TYPE_ETHERNET     = (get_static_field<int>(clazz, "TYPE_ETHERNET"));
   DEFAULT_NETWORK_PREFERENCE = (get_static_field<int>(clazz, "DEFAULT_NETWORK_PREFERENCE"));
+  CONNECTIVITY_ACTION = jcast<std::string>(get_static_field<jhstring>(clazz,"CONNECTIVITY_ACTION"));
 }
 
 bool CJNIConnectivityManager::isNetworkTypeValid(int networkType)

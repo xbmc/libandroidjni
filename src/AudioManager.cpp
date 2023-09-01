@@ -46,6 +46,9 @@ int CJNIAudioManager::GET_DEVICES_OUTPUTS(0x00000002);
 
 int CJNIAudioManager::AUDIO_SESSION_ID_GENERATE(0);
 
+std::string CJNIAudioManager::ACTION_HDMI_AUDIO_PLUG;
+std::string CJNIAudioManager::EXTRA_AUDIO_PLUG_STATE;
+
 void CJNIAudioManager::PopulateStaticFields()
 {
   jhclass clazz = find_class("android/media/AudioManager");
@@ -61,9 +64,11 @@ void CJNIAudioManager::PopulateStaticFields()
   AUDIOFOCUS_REQUEST_FAILED = (get_static_field<int>(clazz, "AUDIOFOCUS_REQUEST_FAILED"));
 
   int sdk = CJNIBase::GetSDKVersion();
-  if (sdk >=21)
+  if (sdk >= 21)
   {
     AUDIO_SESSION_ID_GENERATE = (get_static_field<int>(clazz, "AUDIO_SESSION_ID_GENERATE"));
+    ACTION_HDMI_AUDIO_PLUG = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_HDMI_AUDIO_PLUG"));
+    EXTRA_AUDIO_PLUG_STATE = jcast<std::string>(get_static_field<jhstring>(clazz,"EXTRA_AUDIO_PLUG_STATE"));
   }
 
   if (sdk >= 23)

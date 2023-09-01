@@ -25,17 +25,48 @@
 
 using namespace jni;
 
-std::string CJNIIntent::EXTRA_KEY_EVENT;
+std::string CJNIIntent::ACTION_BATTERY_CHANGED;
+std::string CJNIIntent::ACTION_BOOT_COMPLETED;
+std::string CJNIIntent::ACTION_DREAMING_STOPPED;
+std::string CJNIIntent::ACTION_GET_CONTENT;
+std::string CJNIIntent::ACTION_HEADSET_PLUG;
+std::string CJNIIntent::ACTION_MAIN;
+std::string CJNIIntent::ACTION_MEDIA_BUTTON;
+std::string CJNIIntent::ACTION_MEDIA_MOUNTED;
+std::string CJNIIntent::ACTION_MEDIA_REMOVED;
+std::string CJNIIntent::ACTION_MEDIA_SHARED;
+std::string CJNIIntent::ACTION_MEDIA_UNMOUNTABLE;
+std::string CJNIIntent::ACTION_MEDIA_UNMOUNTED;
 std::string CJNIIntent::ACTION_OPEN_DOCUMENT_TREE;
+std::string CJNIIntent::ACTION_SCREEN_ON;
+std::string CJNIIntent::ACTION_SCREEN_OFF;
+std::string CJNIIntent::ACTION_SEARCH;
+std::string CJNIIntent::ACTION_VIEW;
+std::string CJNIIntent::EXTRA_KEY_EVENT;
 
 static std::string s_className = "android/content/Intent";
 
 void CJNIIntent::PopulateStaticFields()
 {
   jhclass clazz = find_class(s_className.c_str());
+  ACTION_BATTERY_CHANGED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_BATTERY_CHANGED"));
+  ACTION_BOOT_COMPLETED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_BOOT_COMPLETED"));
+  ACTION_DREAMING_STOPPED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_DREAMING_STOPPED"));
+  ACTION_GET_CONTENT = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_GET_CONTENT"));
+  ACTION_HEADSET_PLUG = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_HEADSET_PLUG"));
+  ACTION_MAIN = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MAIN"));
+  ACTION_MEDIA_BUTTON = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_BUTTON"));
+  ACTION_MEDIA_MOUNTED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_MOUNTED"));
+  ACTION_MEDIA_REMOVED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_REMOVED"));
+  ACTION_MEDIA_SHARED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_SHARED"));
+  ACTION_MEDIA_UNMOUNTABLE = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_UNMOUNTABLE"));
+  ACTION_MEDIA_UNMOUNTED = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_MEDIA_UNMOUNTED"));
+  ACTION_OPEN_DOCUMENT_TREE  = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_OPEN_DOCUMENT_TREE"));
+  ACTION_SCREEN_ON = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_SCREEN_ON"));
+  ACTION_SCREEN_OFF = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_SCREEN_OFF"));
+  ACTION_SEARCH = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_SEARCH"));
+  ACTION_VIEW = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_VIEW"));
   EXTRA_KEY_EVENT  = jcast<std::string>(get_static_field<jhstring>(clazz,"EXTRA_KEY_EVENT"));
-  if (CJNIIntent::GetSDKVersion() >= 21)
-    ACTION_OPEN_DOCUMENT_TREE  = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_OPEN_DOCUMENT_TREE"));
 }
 
 CJNIIntent::CJNIIntent(const std::string &action)
