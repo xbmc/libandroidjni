@@ -50,6 +50,29 @@ float CJNIDisplayMode::getRefreshRate()
 
 /*************/
 
+int CJNIDisplayHdrCapabilities::HDR_TYPE_DOLBY_VISION{0};
+int CJNIDisplayHdrCapabilities::HDR_TYPE_HDR10{0};
+int CJNIDisplayHdrCapabilities::HDR_TYPE_HDR10_PLUS{0};
+int CJNIDisplayHdrCapabilities::HDR_TYPE_HLG{0};
+int CJNIDisplayHdrCapabilities::HDR_TYPE_INVALID{0};
+
+void CJNIDisplayHdrCapabilities::PopulateStaticFields()
+{
+  if (GetSDKVersion() >= 24)
+  {
+    jhclass clazz = find_class("android/view/Display$HdrCapabilities");
+    HDR_TYPE_DOLBY_VISION = (get_static_field<int>(clazz, "HDR_TYPE_DOLBY_VISION"));
+    HDR_TYPE_HDR10 = (get_static_field<int>(clazz, "HDR_TYPE_HDR10"));
+    HDR_TYPE_HLG = (get_static_field<int>(clazz, "HDR_TYPE_HLG"));
+
+    if (GetSDKVersion() >= 29)
+      HDR_TYPE_HDR10_PLUS = (get_static_field<int>(clazz, "HDR_TYPE_HDR10_PLUS"));
+
+    if (GetSDKVersion() >= 34)
+      HDR_TYPE_INVALID = (get_static_field<int>(clazz, "HDR_TYPE_INVALID"));
+  }
+}
+
 std::vector<int> CJNIDisplayHdrCapabilities::getSupportedHdrTypes()
 {
   return jcast<std::vector<int> >(

@@ -48,6 +48,14 @@ public:
   // Deprecated in API level 34
   std::vector<int> getSupportedHdrTypes();
 
+  static void PopulateStaticFields();
+
+  static int HDR_TYPE_DOLBY_VISION;
+  static int HDR_TYPE_HDR10;
+  static int HDR_TYPE_HDR10_PLUS;
+  static int HDR_TYPE_HLG;
+  static int HDR_TYPE_INVALID;
+
 protected:
   CJNIDisplayHdrCapabilities();
 };
