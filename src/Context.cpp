@@ -63,6 +63,7 @@
 #include "MediaCodecList.h"
 #include "WindowManager.h"
 #include "Resources.h"
+#include "Display.h"
 
 #include <android/native_activity.h>
 
@@ -141,6 +142,7 @@ void CJNIContext::PopulateStaticFields()
   CJNISpeechRecognizer::PopulateStaticFields();
   CJNIMediaCodecList::PopulateStaticFields();
   CJNIWindowManagerLayoutParams::PopulateStaticFields();
+  CJNIDisplayHdrCapabilities::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()
