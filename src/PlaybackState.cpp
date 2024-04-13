@@ -23,7 +23,7 @@
 
 using namespace jni;
 
-/*
+
 int64_t CJNIPlaybackState::ACTION_FAST_FORWARD;
 int64_t CJNIPlaybackState::ACTION_PAUSE;
 int64_t CJNIPlaybackState::ACTION_PLAY;
@@ -37,7 +37,7 @@ int64_t CJNIPlaybackState::ACTION_SKIP_TO_NEXT;
 int64_t CJNIPlaybackState::ACTION_SKIP_TO_PREVIOUS;
 int64_t CJNIPlaybackState::ACTION_SKIP_TO_QUEUE_ITEM;
 int64_t CJNIPlaybackState::ACTION_STOP;
-*/
+
 int64_t CJNIPlaybackState::PLAYBACK_POSITION_UNKNOWN;
 int CJNIPlaybackState::STATE_BUFFERING;
 int CJNIPlaybackState::STATE_CONNECTING;
@@ -58,7 +58,6 @@ static std::string s_className = "android/media/session/PlaybackState";
 void CJNIPlaybackState::PopulateStaticFields()
 {
   jhclass clazz = find_class(s_className.c_str());
-  /*
   ACTION_FAST_FORWARD = get_static_field<jlong>(clazz, "ACTION_FAST_FORWARD");
   ACTION_PAUSE = get_static_field<jlong>(clazz, "ACTION_PAUSE");
   ACTION_PLAY = get_static_field<jlong>(clazz, "ACTION_PLAY");
@@ -72,7 +71,6 @@ void CJNIPlaybackState::PopulateStaticFields()
   ACTION_SKIP_TO_PREVIOUS = get_static_field<jlong>(clazz, "ACTION_SKIP_TO_PREVIOUS");
   ACTION_SKIP_TO_QUEUE_ITEM = get_static_field<jlong>(clazz, "ACTION_SKIP_TO_QUEUE_ITEM");
   ACTION_STOP = get_static_field<jlong>(clazz, "ACTION_STOP");
-  */
   PLAYBACK_POSITION_UNKNOWN = get_static_field<jlong>(clazz, "PLAYBACK_POSITION_UNKNOWN");
   STATE_BUFFERING = get_static_field<jint>(clazz, "STATE_BUFFERING");
   STATE_CONNECTING = get_static_field<jint>(clazz, "STATE_CONNECTING");
