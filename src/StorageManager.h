@@ -22,8 +22,7 @@
 #include "JNIBase.h"
 
 #include "List.h"
-
-class CJNIStorageVolume;
+#include "StorageVolume.h"
 
 class CJNIStorageManager : public CJNIBase
 {
@@ -31,6 +30,7 @@ public:
   CJNIStorageManager(const jni::jhobject &object) : CJNIBase(object) {};
   ~CJNIStorageManager() {};
 
+  CJNIStorageVolume getPrimaryStorageVolume();
   CJNIList<CJNIStorageVolume> getStorageVolumes();
 
 private:

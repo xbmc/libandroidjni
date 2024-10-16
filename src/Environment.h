@@ -28,7 +28,14 @@ class CJNIEnvironment : public CJNIBase
 public:
   static void PopulateStaticFields();
 
-  static std::string  MEDIA_MOUNTED;
+  static std::string DIRECTORY_DCIM;
+  static std::string DIRECTORY_DOWNLOADS;
+  static std::string DIRECTORY_MOVIES;
+  static std::string DIRECTORY_MUSIC;
+  static std::string DIRECTORY_PICTURES;
+
+  static std::string MEDIA_MOUNTED;
+  static std::string MEDIA_MOUNTED_READ_ONLY;
 
   static std::string  getExternalStorageState();
   // Deprecated in API level 29

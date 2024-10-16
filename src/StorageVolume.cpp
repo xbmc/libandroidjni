@@ -56,6 +56,11 @@ int CJNIStorageVolume::getDescriptionId()
   }
 }
 
+CJNIFile CJNIStorageVolume::getDirectory()
+{
+  return call_method<jhobject>(m_object, "getDirectory", "()Ljava/io/File;");
+}
+
 bool CJNIStorageVolume::isPrimary()
 {
   jmethodID mid = get_method_id(m_object, "isPrimary", "()Z");

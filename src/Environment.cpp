@@ -24,12 +24,26 @@
 
 using namespace jni;
 
-std::string CJNIEnvironment::MEDIA_MOUNTED = "mounted";
+std::string CJNIEnvironment::DIRECTORY_DCIM;
+std::string CJNIEnvironment::DIRECTORY_DOWNLOADS;
+std::string CJNIEnvironment::DIRECTORY_MOVIES;
+std::string CJNIEnvironment::DIRECTORY_MUSIC;
+std::string CJNIEnvironment::DIRECTORY_PICTURES;
+
+std::string CJNIEnvironment::MEDIA_MOUNTED;
+std::string CJNIEnvironment::MEDIA_MOUNTED_READ_ONLY;
 
 void CJNIEnvironment::PopulateStaticFields()
 {
   jhclass c = find_class("android/os/Environment");
-  CJNIEnvironment::MEDIA_MOUNTED          = jcast<std::string>(get_static_field<jhstring>(c,"MEDIA_MOUNTED"));
+  DIRECTORY_DCIM = jcast<std::string>(get_static_field<jhstring>(c, "DIRECTORY_DCIM"));
+  DIRECTORY_DOWNLOADS = jcast<std::string>(get_static_field<jhstring>(c, "DIRECTORY_DOWNLOADS"));
+  DIRECTORY_MOVIES = jcast<std::string>(get_static_field<jhstring>(c, "DIRECTORY_MOVIES"));
+  DIRECTORY_MUSIC = jcast<std::string>(get_static_field<jhstring>(c, "DIRECTORY_MUSIC"));
+  DIRECTORY_PICTURES = jcast<std::string>(get_static_field<jhstring>(c, "DIRECTORY_PICTURES"));
+
+  MEDIA_MOUNTED = jcast<std::string>(get_static_field<jhstring>(c,"MEDIA_MOUNTED"));
+  MEDIA_MOUNTED_READ_ONLY = jcast<std::string>(get_static_field<jhstring>(c,"MEDIA_MOUNTED_READ_ONLY"));
 }
 
 std::string CJNIEnvironment::getExternalStorageState()
