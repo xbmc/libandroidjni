@@ -22,6 +22,7 @@
 #include "JNIBase.h"
 
 #include "Context.h"
+#include "File.h"
 #include "List.h"
 
 class CJNIStorageVolume : public CJNIBase
@@ -33,6 +34,7 @@ public:
   std::string getPath();
   std::string getDescription(const CJNIContext& context);
   int getDescriptionId();
+  CJNIFile getDirectory();
 
   bool isPrimary();
   bool isRemovable();

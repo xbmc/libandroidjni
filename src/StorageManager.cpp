@@ -24,6 +24,12 @@
 
 using namespace jni;
 
+CJNIStorageVolume CJNIStorageManager::getPrimaryStorageVolume()
+{
+  return call_method<jhobject>(m_object, "getPrimaryStorageVolume",
+    "()Landroid/os/storage/StorageVolume;");
+}
+
 CJNIList<CJNIStorageVolume> CJNIStorageManager::getStorageVolumes()
 {
   if (GetSDKVersion() >= 24)
