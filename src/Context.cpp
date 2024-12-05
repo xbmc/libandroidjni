@@ -272,3 +272,10 @@ CJNIResources CJNIContext::getResources()
   return call_method<jhobject>(m_context,
     "getResources", "()Landroid/content/res/Resources;");
 }
+
+void CJNIContext::grantUriPermission(const std::string& package, const CJNIURI& uri, int flags)
+{
+  call_method<void>(m_context,
+    "grantUriPermission", "(Ljava/lang/String;Landroid/net/Uri;I)V",
+    jcast<jhstring>(package), uri.get_raw(), flags);
+}

@@ -23,6 +23,17 @@
 
 using namespace jni;
 
+CJNIFile::CJNIFile(const std::string& pathname) : CJNIBase("java/io/File")
+{
+  m_object = new_object(GetClassName(), "<init>", "(Ljava/lang/String;)V", jcast<jhstring>(pathname));
+  m_object.setGlobal();
+}
+
+bool CJNIFile::exists()
+{
+  return call_method<jboolean>(m_object, "exists", "()Z");
+}
+
 std::string CJNIFile::getAbsolutePath()
 {
   return jcast<std::string>(call_method<jhstring>(m_object,

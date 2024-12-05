@@ -26,8 +26,10 @@ class CJNIFile : public CJNIBase
 public:
   CJNIFile();
   CJNIFile(const jni::jhobject &file) : CJNIBase(file){};
+  CJNIFile(const std::string& pathname);
   ~CJNIFile(){};
 
+  bool exists();
   std::string getAbsolutePath();
   int64_t getUsableSpace();
 };
