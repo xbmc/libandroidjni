@@ -43,6 +43,8 @@ std::string CJNIIntent::ACTION_SCREEN_OFF;
 std::string CJNIIntent::ACTION_SEARCH;
 std::string CJNIIntent::ACTION_VIEW;
 std::string CJNIIntent::EXTRA_KEY_EVENT;
+int CJNIIntent::FLAG_GRANT_READ_URI_PERMISSION;
+int CJNIIntent::FLAG_GRANT_WRITE_URI_PERMISSION;
 
 static std::string s_className = "android/content/Intent";
 
@@ -67,6 +69,8 @@ void CJNIIntent::PopulateStaticFields()
   ACTION_SEARCH = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_SEARCH"));
   ACTION_VIEW = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTION_VIEW"));
   EXTRA_KEY_EVENT  = jcast<std::string>(get_static_field<jhstring>(clazz,"EXTRA_KEY_EVENT"));
+  FLAG_GRANT_READ_URI_PERMISSION = (get_static_field<int>(clazz, "FLAG_GRANT_READ_URI_PERMISSION"));
+  FLAG_GRANT_WRITE_URI_PERMISSION = (get_static_field<int>(clazz, "FLAG_GRANT_WRITE_URI_PERMISSION"));
 }
 
 CJNIIntent::CJNIIntent(const std::string &action)

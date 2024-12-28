@@ -83,4 +83,6 @@ public:
   static std::string ACTION_SEARCH;
   static std::string ACTION_VIEW;
   static std::string EXTRA_KEY_EVENT;
+  static int FLAG_GRANT_READ_URI_PERMISSION;
+  static int FLAG_GRANT_WRITE_URI_PERMISSION;
 };

@@ -34,6 +34,7 @@ class CJNIContentResolver;
 class CJNIWindow;
 class CJNIResourcesTheme;
 class CJNIResources;
+class CJNIURI;
 
 class CJNIContext
 {
@@ -70,6 +71,7 @@ public:
   static CJNIWindow getWindow();
   static CJNIResourcesTheme getTheme();
   static CJNIResources getResources();
+  static void grantUriPermission(const std::string& package, const CJNIURI& uri, int flags);
 
 protected:
   CJNIContext(const ANativeActivity *nativeActivity);
