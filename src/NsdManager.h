@@ -62,6 +62,7 @@ public:
 
   void discoverServices(const std::string& serviceType, int protocolType, const CJNINsdManagerDiscoveryListener& listener);
   void registerService(const CJNINsdServiceInfo& serviceInfo, int protocolType, const CJNINsdManagerRegistrationListener& listener);
+  // Deprecated in API level 34
   void resolveService(const CJNINsdServiceInfo& serviceInfo, const CJNINsdManagerResolveListener& listener);
   void stopServiceDiscovery(const CJNINsdManagerDiscoveryListener& listener);
   void unregisterService(const CJNINsdManagerRegistrationListener& listener);
