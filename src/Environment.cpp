@@ -64,3 +64,12 @@ CJNIFile CJNIEnvironment::getExternalStoragePublicDirectory(const std::string &t
     "getExternalStoragePublicDirectory", "(Ljava/lang/String;)Ljava/io/File;",
     jcast<jhstring>(type));
 }
+
+bool CJNIEnvironment::isExternalStorageManager()
+{
+  if (GetSDKVersion() >= 30)
+    return call_static_method<jboolean>("android/os/Environment",
+      "isExternalStorageManager", "()Z");
+  else
+    return false;
+}
