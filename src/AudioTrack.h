@@ -34,6 +34,11 @@ namespace jni
 
 class CJNIAudioTrack : public CJNIBase
 {
+  private:
+   int m_hasLatency = 0;
+
+  protected:
+
   public:
     // Deprecated in API level 26
     CJNIAudioTrack(int streamType, int sampleRateInHz, int channelConfig, int audioFormat, int bufferSizeInBytes, int mode) noexcept(false);
@@ -56,6 +61,7 @@ class CJNIAudioTrack : public CJNIBase
     int   getPlaybackHeadPosition();
     bool  getTimestamp (CJNIAudioTimestamp &timestamp);
     int   getBufferSizeInFrames();
+    int   getLatency();
 
     static int  MODE_STREAM;
     static int  STATE_INITIALIZED;

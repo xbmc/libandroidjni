@@ -216,3 +216,24 @@ int CJNIAudioTrack::getNativeOutputSampleRate(int streamType)
                                   streamType);
 }
 
+int CJNIAudioTrack::getLatency()
+{
+  if (m_hasLatency == -1)
+    return -1;
+  if (m_hasLatency == 0)
+  {
+    // Check if the method is available
+    JNIEnv *env = xbmc_jnienv();
+    const jhclass c = find_class(GetClassName().c_str());
+    env->GetMethodID(c, "getLatency", "()I");
+    // Catch java.lang.NoSuchMethodError exception
+    if (env->ExceptionCheck())
+    {
+      env->ExceptionClear();
+      m_hasLatency = -1;
+      return -1;
+    }
+    m_hasLatency = 1;
+  }
+  return call_method<int>(m_object, "getLatency", "()I");
+}
