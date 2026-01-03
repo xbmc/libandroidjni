@@ -28,7 +28,6 @@ public:
   CJNIPlaybackState(const jni::jhobject &object) : CJNIBase(object) {}
   virtual ~CJNIPlaybackState(){}
 
-  /* Clash with internal macro
   static int64_t ACTION_FAST_FORWARD;
   static int64_t ACTION_PAUSE;
   static int64_t ACTION_PLAY;
@@ -42,7 +41,6 @@ public:
   static int64_t ACTION_SKIP_TO_PREVIOUS;
   static int64_t ACTION_SKIP_TO_QUEUE_ITEM;
   static int64_t ACTION_STOP;
-  */
   static int64_t PLAYBACK_POSITION_UNKNOWN;
   static int STATE_BUFFERING;
   static int STATE_CONNECTING;
