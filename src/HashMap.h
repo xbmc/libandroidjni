@@ -32,6 +32,8 @@ public:
   virtual ~CJNIHashMap() {}
 
   virtual jhstring put(const jhstring key, const jhstring value);
+  // Get hashmap values as Map$Entry from a Set
+  jhobject entrySet();
 };
 
 }
