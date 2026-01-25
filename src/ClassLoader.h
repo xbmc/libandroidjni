@@ -25,6 +25,7 @@ class CJNIClassLoader : public CJNIBase
 {
 public:
   CJNIClassLoader(const jni::jhobject &object) : CJNIBase(object) {};
+  CJNIClassLoader(const std::string& dexPath);
   ~CJNIClassLoader() {};
 
   jni::jhclass loadClass(std::string className);
