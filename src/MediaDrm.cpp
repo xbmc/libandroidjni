@@ -244,3 +244,26 @@ void CJNIMediaDrm::setOnEventListener(const CJNIMediaDrmOnEventListener &listene
     "(Landroid/media/MediaDrm$OnEventListener;)V",
     listener.get_raw());
 }
+
+std::map<std::string, std::string> CJNIMediaDrm::queryKeyStatus(const std::vector<char>& sessionId) const
+{
+  if (CJNIBase::GetSDKVersion() < 23)
+    return std::map<std::string, std::string>();
+
+	std::map<std::string, std::string> result;
+
+	CJNIHashMap hashMap = call_method<jhobject>(m_object,
+		"queryKeyStatus", "([B)Ljava/util/HashMap;", jcast<jhbyteArray, std::vector<char> >(sessionId));
+	// Get a set with Map.entry from hashmap
+	jhobject entrySet = hashMap.entrySet();
+	// Get the Iterator
+	jhobject iterator = call_method<jhobject>(entrySet, "iterator", "()Ljava/util/Iterator;");
+	while (call_method<jboolean>(iterator, "hasNext", "()Z"))
+	{
+		jhobject next = call_method<jhobject>(iterator, "next", "()Ljava/util/Map$Entry;");
+		std::string key = jcast<std::string>(call_method<jhstring>(next, "getKey", "()Ljava/lang/Object;"));
+		std::string value = jcast<std::string>(call_method<jhstring>(next, "getValue", "()Ljava/lang/Object;"));
+		result[key] = value;
+	}
+	return result;
+}

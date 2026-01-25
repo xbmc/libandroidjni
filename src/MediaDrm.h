@@ -73,6 +73,8 @@ public:
   void removeKeys(const std::vector<char> &sessionId) const;
 
   void setOnEventListener(const CJNIMediaDrmOnEventListener &listener) const;
+
+  std::map<std::string, std::string> queryKeyStatus(const std::vector<char>& sessionId) const;
 };
 
 
