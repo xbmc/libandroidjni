@@ -53,6 +53,8 @@ public:
   void closeSession(const std::vector<char> & sessionId) const;
 
   std::string getPropertyString(const std::string &propertyName) const;
+  std::vector<uint8_t> getPropertyByteArray(const std::string& propertyName) const;
+
   void setPropertyString(const std::string &propertyName, const std::string &value) const;
   void setPropertyByteArray(const std::string &propertyName, const std::vector<uint8_t> &value) const;
 
