@@ -276,3 +276,12 @@ int CJNIMediaDrm::getSecurityLevel(const std::vector<char>& sessionId) const
 	return call_method<int>(m_object,
 		"getSecurityLevel", "([B)I", jcast<jhbyteArray, std::vector<char> >(sessionId));
 }
+
+int CJNIMediaDrm::getMaxSecurityLevel() const
+{
+  if (CJNIBase::GetSDKVersion() < 28)
+    return -1;
+
+	return call_static_method<int>(GetClassName().c_str(),
+		"getMaxSecurityLevel", "()I");
+}

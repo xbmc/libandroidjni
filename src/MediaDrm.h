@@ -77,6 +77,7 @@ public:
   std::map<std::string, std::string> queryKeyStatus(const std::vector<char>& sessionId) const;
 
   int getSecurityLevel(const std::vector<char>& sessionId) const;
+  int getMaxSecurityLevel() const;
 };
 
 
