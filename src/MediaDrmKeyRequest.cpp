@@ -30,13 +30,13 @@ CJNIMediaDrmKeyRequest::CJNIMediaDrmKeyRequest()
   m_object.setGlobal();
 }
 
-std::vector<char> CJNIMediaDrmKeyRequest::getData() const
+std::vector<uint8_t> CJNIMediaDrmKeyRequest::getData() const
 {
   JNIEnv *env = xbmc_jnienv();
   jhbyteArray array = call_method<jhbyteArray>(m_object,
     "getData", "()[B");
 
-  std::vector<char> result;
+  std::vector<uint8_t> result;
 
   if (!env->ExceptionCheck())
   {

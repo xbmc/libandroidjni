@@ -95,7 +95,7 @@ void CJNIMediaDrm::setPropertyString(const std::string &propertyName, const std:
     jcast<jhstring>(propertyName), jcast<jhstring>(value));
 }
 
-void CJNIMediaDrm::setPropertyByteArray(const std::string &propertyName, const std::vector<char> &value) const
+void CJNIMediaDrm::setPropertyByteArray(const std::string &propertyName, const std::vector<uint8_t> &value) const
 {
   JNIEnv *env = xbmc_jnienv();
 
@@ -118,7 +118,7 @@ CJNIMediaDrmCryptoSession CJNIMediaDrm::getCryptoSession(const std::vector<char>
 }
 
 CJNIMediaDrmKeyRequest CJNIMediaDrm::getKeyRequest(const std::vector<char> &scope, 
-  const std::vector<char> &init, const std::string &mimeType, int keyType,
+  const std::vector<uint8_t> &init, const std::string &mimeType, int keyType,
   const std::map<std::string, std::string> &optionalParameters) const
 {
   JNIEnv *env = xbmc_jnienv();
@@ -186,7 +186,7 @@ CJNIMediaDrmProvisionRequest CJNIMediaDrm::getProvisionRequest() const
       "getProvisionRequest", "()Landroid/media/MediaDrm$ProvisionRequest;");
 }
 
-void CJNIMediaDrm::provideProvisionResponse(const std::vector<char> &response) const
+void CJNIMediaDrm::provideProvisionResponse(const std::vector<uint8_t> &response) const
 {
   JNIEnv *env = xbmc_jnienv();
 
