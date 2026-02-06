@@ -64,7 +64,8 @@ public:
   CJNIMediaDrmKeyRequest getKeyRequest(const std::vector<char> &scope,
     const std::vector<uint8_t> &init, const std::string &mimeType, int keyType,
     const std::map<std::string, std::string> &optionalParameters) const;
-  std::vector<char> provideKeyResponse(const std::vector<char> &scope, const std::vector<char> &response) const;
+  std::vector<uint8_t> provideKeyResponse(const std::vector<char>& scope,
+                                          const std::vector<uint8_t>& response) const;
 
   CJNIMediaDrmProvisionRequest getProvisionRequest() const;
   void provideProvisionResponse(const std::vector<uint8_t> &response) const;

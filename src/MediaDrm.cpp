@@ -135,18 +135,19 @@ CJNIMediaDrmKeyRequest CJNIMediaDrm::getKeyRequest(const std::vector<char> &scop
   return result;
 }
 
-std::vector<char> CJNIMediaDrm::provideKeyResponse(const std::vector<char> &scope, const std::vector<char> &response) const
+std::vector<uint8_t> CJNIMediaDrm::provideKeyResponse(const std::vector<char>& scope,
+                                                      const std::vector<uint8_t>& response) const
 {
   JNIEnv *env = xbmc_jnienv();
 
   jhbyteArray array = call_method<jhbyteArray>(m_object, "provideKeyResponse", "([B[B)[B",
                                                jcast<jhbyteArray, std::vector<char>>(scope),
-                                               jcast<jhbyteArray, std::vector<char>>(response));
+                                               jcast<jhbyteArray, std::vector<uint8_t>>(response));
 
   if (!array)
     return {};
 
-  std::vector<char> result;
+  std::vector<uint8_t> result;
 
   jsize size = env->GetArrayLength(array.get());
   result.resize(size);
