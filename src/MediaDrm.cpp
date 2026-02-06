@@ -54,7 +54,7 @@ std::vector<char> CJNIMediaDrm::openSession() const
 
   std::vector<char> result;
 
-  if (!env->ExceptionCheck())
+  if (!env->ExceptionCheck() && array)
   {
     jsize size = env->GetArrayLength(array.get());
     result.resize(size);
