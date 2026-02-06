@@ -33,17 +33,16 @@ CJNIMediaDrmProvisionRequest::CJNIMediaDrmProvisionRequest()
 std::vector<uint8_t> CJNIMediaDrmProvisionRequest::getData() const
 {
   JNIEnv *env = xbmc_jnienv();
-  jhbyteArray array = call_method<jhbyteArray>(m_object,
-    "getData", "()[B");
+  jhbyteArray array = call_method<jhbyteArray>(m_object, "getData", "()[B");
+
+  if (!array)
+    return {};
 
   std::vector<uint8_t> result;
 
-  if (!env->ExceptionCheck())
-  {
-    jsize size = env->GetArrayLength(array.get());
-    result.resize(size);
-    env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
-  }
+  jsize size = env->GetArrayLength(array.get());
+  result.resize(size);
+  env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
 
   return result;
 }

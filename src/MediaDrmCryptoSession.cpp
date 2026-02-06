@@ -26,56 +26,22 @@ using namespace jni;
 
 std::vector<char> CJNIMediaDrmCryptoSession::decrypt(const std::vector<char> &keyid, const std::vector<char> &input, const std::vector<char> &iv) const
 {
-  JNIEnv* env = xbmc_jnienv();
-  jhbyteArray array = call_method<jhbyteArray>(m_object,
-    "decrypt", "([B[B[B)[B", jcast<jhbyteArray>(keyid), jcast<jhbyteArray>(input), jcast<jhbyteArray>(iv));
-
-  std::vector<char> result;
-
-  if (!env->ExceptionCheck())
-  {
-    jsize size = env->GetArrayLength(array.get());
-    result.resize(size);
-    env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
-  }
-
-  return result;
+  return jcast<std::vector<char>>(
+      call_method<jhbyteArray>(m_object, "decrypt", "([B[B[B)[B", jcast<jhbyteArray>(keyid),
+                               jcast<jhbyteArray>(input), jcast<jhbyteArray>(iv)));
 }
 
 std::vector<char> CJNIMediaDrmCryptoSession::encrypt(const std::vector<char> &keyid, const std::vector<char> &input, const std::vector<char> &iv) const
 {
-  JNIEnv* env = xbmc_jnienv();
-  jhbyteArray array = call_method<jhbyteArray>(m_object,
-    "encrypt", "([B[B[B)[B", jcast<jhbyteArray>(keyid), jcast<jhbyteArray>(input), jcast<jhbyteArray>(iv));
-
-  std::vector<char> result;
-
-  if (!env->ExceptionCheck())
-  {
-    jsize size = env->GetArrayLength(array.get());
-    result.resize(size);
-    env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
-  }
-
-  return result;
+  return jcast<std::vector<char>>(
+      call_method<jhbyteArray>(m_object, "encrypt", "([B[B[B)[B", jcast<jhbyteArray>(keyid),
+                               jcast<jhbyteArray>(input), jcast<jhbyteArray>(iv)));
 }
 
 std::vector<char> CJNIMediaDrmCryptoSession::sign(const std::vector<char> &keyid, const std::vector<char> &message) const
 {
-  JNIEnv* env = xbmc_jnienv();
-  jhbyteArray array = call_method<jhbyteArray>(m_object,
-    "sign", "([B[B)[B", jcast<jhbyteArray>(keyid), jcast<jhbyteArray>(message));
-
-  std::vector<char> result;
-
-  if (!env->ExceptionCheck())
-  {
-    jsize size = env->GetArrayLength(array.get());
-    result.resize(size);
-    env->GetByteArrayRegion(array.get(), 0, size, (jbyte*)result.data());
-  }
-
-  return result;
+  return jcast<std::vector<char>>(call_method<jhbyteArray>(
+      m_object, "sign", "([B[B)[B", jcast<jhbyteArray>(keyid), jcast<jhbyteArray>(message)));
 }
 
 bool CJNIMediaDrmCryptoSession::verify(const std::vector<char> &keyid, const std::vector<char> &message, const std::vector<char> &signature) const
