@@ -34,6 +34,7 @@ public:
   operator safe_bool_type() const { return !m_object ?  0 : &CJNIBase::non_null_object; }
   const jni::jhobject& get_raw() const { return m_object; }
   static int GetSDKVersion();
+  static void SetSDKVersion(int);
   const static std::string ExceptionToString();
 
   static int RESULT_OK;
@@ -45,13 +46,12 @@ protected:
   CJNIBase(std::string classname);
   virtual ~CJNIBase();
 
-  const std::string & GetClassName() {return m_className;}
+  const std::string& GetClassName() const {return m_className;}
   static const std::string GetDotClassName(const std::string & classname);
 
   jni::jhobject m_object;
 
 private:
-  static void SetSDKVersion(int);
   std::string m_className;
   static int m_sdk_version;
 };

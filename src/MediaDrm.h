@@ -53,24 +53,32 @@ public:
   void closeSession(const std::vector<char> & sessionId) const;
 
   std::string getPropertyString(const std::string &propertyName) const;
+  std::vector<uint8_t> getPropertyByteArray(const std::string& propertyName) const;
+
   void setPropertyString(const std::string &propertyName, const std::string &value) const;
-  void setPropertyByteArray(const std::string &propertyName, const std::vector<char> &value) const;
+  void setPropertyByteArray(const std::string &propertyName, const std::vector<uint8_t> &value) const;
 
   CJNIMediaDrmCryptoSession getCryptoSession(const std::vector<char> &sessionId,
     const std::string &cipherAlgorithm, const std::string &macAlgorithm) const;
 
   CJNIMediaDrmKeyRequest getKeyRequest(const std::vector<char> &scope,
-    const std::vector<char> &init, const std::string &mimeType, int keyType,
+    const std::vector<uint8_t> &init, const std::string &mimeType, int keyType,
     const std::map<std::string, std::string> &optionalParameters) const;
-  std::vector<char> provideKeyResponse(const std::vector<char> &scope, const std::vector<char> &response) const;
+  std::vector<uint8_t> provideKeyResponse(const std::vector<char>& scope,
+                                          const std::vector<uint8_t>& response) const;
 
   CJNIMediaDrmProvisionRequest getProvisionRequest() const;
-  void provideProvisionResponse(const std::vector<char> &response) const;
+  void provideProvisionResponse(const std::vector<uint8_t> &response) const;
 
   void restoreKeys(const std::vector<char> &sessionId, const std::vector<char> &keySetId) const;
   void removeKeys(const std::vector<char> &sessionId) const;
 
   void setOnEventListener(const CJNIMediaDrmOnEventListener &listener) const;
+
+  std::map<std::string, std::string> queryKeyStatus(const std::vector<char>& sessionId) const;
+
+  int getSecurityLevel(const std::vector<char>& sessionId) const;
+  int getMaxSecurityLevel() const;
 };
 
 

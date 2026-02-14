@@ -50,6 +50,7 @@
 #define HAVE_INTTYPES_H 1
 
 #include <jni.h>
+#include <cstdint>
 #include <string>
 #include <vector>
 #include "jutils.hpp"
@@ -84,22 +85,51 @@ template <>
 struct jcast_helper<std::vector<char>, jbyteArray>
 {
     static std::vector<char> cast(jbyteArray const &v)
+		{
+      if (!v) // null object
+        return {};
+
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
+      std::vector<char> vec;
+      size = env->GetArrayLength(v);
+
+      vec.reserve(size);
+
+      jbyte* elements = env->GetByteArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(static_cast<char>(elements[i]));
+      }
+      env->ReleaseByteArrayElements(v, elements, JNI_ABORT);
+
+      return vec;
+    }
+};
+
+template<>
+struct jcast_helper<std::vector<uint8_t>, jbyteArray>
+{
+    static std::vector<uint8_t> cast(jbyteArray const& v)
     {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+      if (!v) // null object
+        return {};
 
-        std::vector<char> vec;
-        vec.reserve(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
+      std::vector<uint8_t> vec;
+      size = env->GetArrayLength(v);
 
-        jbyte *elements = env->GetByteArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec.emplace_back(static_cast<char>(elements[i]));
-        }
-        env->ReleaseByteArrayElements(v, elements, JNI_ABORT);
-        return vec;
+      vec.reserve(size);
+
+      jbyte* elements = env->GetByteArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(static_cast<uint8_t>(elements[i]));
+      }
+      env->ReleaseByteArrayElements(v, elements, JNI_ABORT);
+
+      return vec;
     }
 };
 
@@ -108,21 +138,24 @@ struct jcast_helper<std::vector<int>, jintArray>
 {
     static std::vector<int> cast(jintArray const &v)
     {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+      if (!v) // null object
+        return {};
 
-        std::vector<int> vec;
-        vec.reserve(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
 
-        int *elements = env->GetIntArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec.emplace_back(elements[i]);
-        }
-        env->ReleaseIntArrayElements(v, elements, JNI_ABORT);
-        return vec;
+      size = env->GetArrayLength(v);
+
+      std::vector<int> vec;
+      vec.reserve(size);
+
+      int* elements = env->GetIntArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(elements[i]);
+      }
+      env->ReleaseIntArrayElements(v, elements, JNI_ABORT);
+      return vec;
     }
 };
 
@@ -130,23 +163,26 @@ template <>
 struct jcast_helper<std::vector<int16_t>, jshortArray>
 {
     static std::vector<int16_t> cast(jshortArray const &v)
-    {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+		{
+      if (!v) // null object
+        return {};
 
-        std::vector<int16_t> vec;
-        vec.reserve(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
 
-        jshort *elements = env->GetShortArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec.emplace_back(elements[i]);
-        }
-        env->ReleaseShortArrayElements(v, elements, JNI_ABORT);
-        return vec;
-    }
+      size = env->GetArrayLength(v);
+
+      std::vector<int16_t> vec;
+      vec.reserve(size);
+
+      jshort* elements = env->GetShortArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(elements[i]);
+      }
+      env->ReleaseShortArrayElements(v, elements, JNI_ABORT);
+      return vec;
+		}
 };
 
 template <>
@@ -154,21 +190,24 @@ struct jcast_helper<std::vector<int64_t>, jlongArray>
 {
     static std::vector<int64_t> cast(jlongArray const &v)
     {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+      if (!v) // null object
+        return {};
 
-        std::vector<int64_t> vec;
-        vec.reserve(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
 
-        int64_t *elements = env->GetLongArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec.emplace_back(elements[i]);
-        }
-        env->ReleaseLongArrayElements(v, elements, JNI_ABORT);
-        return vec;
+      size = env->GetArrayLength(v);
+
+      std::vector<int64_t> vec;
+      vec.reserve(size);
+
+      int64_t* elements = env->GetLongArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(elements[i]);
+      }
+      env->ReleaseLongArrayElements(v, elements, JNI_ABORT);
+      return vec;
     }
 };
 
@@ -177,21 +216,24 @@ struct jcast_helper<std::vector<float>, jfloatArray>
 {
     static std::vector<float> cast(jfloatArray const &v)
     {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+      if (!v) // null object
+        return {};
 
-        std::vector<float> vec;
-        vec.reserve(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
 
-        float *elements = env->GetFloatArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec.emplace_back(elements[i]);
-        }
-        env->ReleaseFloatArrayElements(v, elements, JNI_ABORT);
-        return vec;
+      size = env->GetArrayLength(v);
+
+      std::vector<float> vec;
+      vec.reserve(size);
+
+      float* elements = env->GetFloatArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec.emplace_back(elements[i]);
+      }
+      env->ReleaseFloatArrayElements(v, elements, JNI_ABORT);
+      return vec;
     }
 };
 
@@ -200,21 +242,24 @@ struct jcast_helper<std::vector<bool>, jbooleanArray>
 {
     static std::vector<bool> cast(jbooleanArray const &v)
     {
-        JNIEnv *env = xbmc_jnienv();
-        jsize size = 0;
-        if(v)
-            size = env->GetArrayLength(v);
+      if (!v) // null object
+        return {};
 
-        std::vector<bool> vec;
-        vec.resize(size);
+      JNIEnv* env = xbmc_jnienv();
+      jsize size = 0;
 
-        jboolean *elements = env->GetBooleanArrayElements(v, NULL);
-        for (int i = 0; i < size; i++)
-        {
-            vec[i] = static_cast<bool>(elements[i]);
-        }
-        env->ReleaseBooleanArrayElements(v, elements, JNI_ABORT);
-        return vec;
+      size = env->GetArrayLength(v);
+
+      std::vector<bool> vec;
+      vec.resize(size);
+
+      jboolean* elements = env->GetBooleanArrayElements(v, NULL);
+      for (int i = 0; i < size; i++)
+      {
+        vec[i] = static_cast<bool>(elements[i]);
+      }
+      env->ReleaseBooleanArrayElements(v, elements, JNI_ABORT);
+      return vec;
     }
 };
 
@@ -222,6 +267,12 @@ template <>
 struct jcast_helper<jhstring, std::string>
 {
     static jhstring cast(const std::string &v);
+};
+
+template<>
+struct jcast_helper<jhbyteArray, std::vector<uint8_t>>
+{
+    static jhbyteArray cast(const std::vector<uint8_t>& v);
 };
 
 template <>
@@ -281,6 +332,15 @@ struct jcast_helper<std::vector<char>, jhbyteArray>
     static std::vector<char> cast(jhbyteArray const &v)
     {
         return jcast_helper<std::vector<char>, jbyteArray>::cast(v.get());
+    }
+};
+
+template<>
+struct jcast_helper<std::vector<uint8_t>, jhbyteArray>
+{
+    static std::vector<uint8_t> cast(jhbyteArray const& v)
+    {
+        return jcast_helper<std::vector<uint8_t>, jbyteArray>::cast(v.get());
     }
 };
 

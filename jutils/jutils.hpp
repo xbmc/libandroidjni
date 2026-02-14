@@ -119,9 +119,6 @@ class jholder
 
 */
 
-typedef void (jholder::*safe_bool_type)();
-void non_null_object() {}
-
 public:
 
 /*! \brief constructor for jholder().
@@ -210,14 +207,10 @@ public:
     setscope(JNIGlobalRefType);
   }
 
-/*! \brief not operator.
-     queries whether the jholder contains a valid object
-*/
-  bool operator!() const {return !m_object;}
-  operator safe_bool_type () const
-  {
-    return m_object ? &jholder::non_null_object : 0;
-  }
+  /*!
+   * \brief Determine whether the jholder contains a valid object
+   */
+  explicit operator bool() const { return m_object != 0; }
 
   /*! \brief equal operator.
        test whether two references points to the same instance
