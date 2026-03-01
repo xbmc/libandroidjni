@@ -21,6 +21,7 @@
 #include "MediaDrmOnEventListener.h"
 #include "MediaDrm.h"
 #include "ClassLoader.h"
+#include "jlog.hpp"
 #include "jutils-details.hpp"
 
 using namespace jni;
@@ -37,7 +38,12 @@ CJNIMediaDrmOnEventListener::CJNIMediaDrmOnEventListener(CJNIClassLoader &loader
     {"_onEvent", "(Landroid/media/MediaDrm;[BII[B)V", (void*)&CJNIMediaDrmOnEventListener::_onEvent}
   };
 
-  xbmc_jnienv()->RegisterNatives(clazz, methods, sizeof(methods)/sizeof(methods[0]));
+  const int rc = xbmc_jnienv()->RegisterNatives(clazz, methods, sizeof(methods)/sizeof(methods[0]));
+  if (rc != JNI_OK)
+  {
+    LOGERROR("Cannot register natives to XBMCMediaDrmOnEventListener");
+    return;
+  }
 
   m_object = new_object(clazz);
   m_object.setGlobal();

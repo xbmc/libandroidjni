@@ -52,7 +52,6 @@
 
 #include <jni.h>
 #include <string>
-#include <android/log.h>
 #include <vector>
 
 JNIEnv *xbmc_jnienv();

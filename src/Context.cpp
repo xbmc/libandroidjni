@@ -20,7 +20,6 @@
 
 #include "Context.h"
 #include "PackageManager.h"
-#include <android/log.h>
 #include "Intent.h"
 #include "IntentFilter.h"
 #include "ClassLoader.h"
@@ -42,6 +41,7 @@
 #include "Surface.h"
 #include "MediaCodec.h"
 #include "MediaCodecInfo.h"
+#include "MediaDrmKeyStatus.h"
 #include "MediaFormat.h"
 #include "Window.h"
 #include "View.h"
@@ -143,6 +143,7 @@ void CJNIContext::PopulateStaticFields()
   CJNIMediaCodecList::PopulateStaticFields();
   CJNIWindowManagerLayoutParams::PopulateStaticFields();
   CJNIDisplayHdrCapabilities::PopulateStaticFields();
+  CJNIMediaDrmKeyStatus::PopulateStaticFields();
 }
 
 CJNIPackageManager CJNIContext::GetPackageManager()

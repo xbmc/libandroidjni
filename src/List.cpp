@@ -28,6 +28,7 @@
 #include "RouteInfo.h"
 #include "InetAddress.h"
 #include "StorageVolume.h"
+#include "MediaDrmKeyStatus.h"
 
 #include "jutils-details.hpp"
 
@@ -57,3 +58,4 @@ template class CJNIList<CJNILinkAddress>;
 template class CJNIList<CJNIRouteInfo>;
 template class CJNIList<CJNIInetAddress>;
 template class CJNIList<CJNIStorageVolume>;
+template class CJNIList<CJNIMediaDrmKeyStatus>;
