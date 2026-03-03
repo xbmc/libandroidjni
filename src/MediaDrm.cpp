@@ -20,6 +20,7 @@
 
 #include "MediaDrm.h"
 #include "MediaDrmOnEventListener.h"
+#include "MediaDrmOnKeyStatusChangeListener.h"
 #include "UUID.h"
 #include "HashMap.h"
 
@@ -185,6 +186,14 @@ void CJNIMediaDrm::setOnEventListener(const CJNIMediaDrmOnEventListener &listene
   call_method<void>(m_object, "setOnEventListener",
     "(Landroid/media/MediaDrm$OnEventListener;)V",
     listener.get_raw());
+}
+
+void CJNIMediaDrm::setOnKeyStatusChangeListener(
+    const CJNIMediaDrmOnKeyStatusChangeListener& listener) const
+{
+  call_method<void>(m_object, "setOnKeyStatusChangeListener",
+                    "(Landroid/media/MediaDrm$OnKeyStatusChangeListener;Landroid/os/Handler;)V",
+                    listener.get_raw(), jhobject(nullptr));
 }
 
 std::map<std::string, std::string> CJNIMediaDrm::queryKeyStatus(const std::vector<char>& sessionId) const

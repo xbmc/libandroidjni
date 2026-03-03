@@ -27,6 +27,7 @@
 
 class CJNIUUID;
 class CJNIMediaDrmOnEventListener;
+class CJNIMediaDrmOnKeyStatusChangeListener;
 
 class CJNIMediaDrm : public CJNIBase
 {
@@ -74,6 +75,7 @@ public:
   void removeKeys(const std::vector<char> &sessionId) const;
 
   void setOnEventListener(const CJNIMediaDrmOnEventListener &listener) const;
+  void setOnKeyStatusChangeListener(const CJNIMediaDrmOnKeyStatusChangeListener& listener) const;
 
   std::map<std::string, std::string> queryKeyStatus(const std::vector<char>& sessionId) const;
 

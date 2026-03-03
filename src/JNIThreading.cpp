@@ -37,10 +37,13 @@
 
 #define HAVE_INTTYPES_H 1
 
+#include "jlog.hpp"
+
+#include <stdlib.h>
+
 #include <jni.h>
 #include <pthread.h>
-#include <stdlib.h>
-#include <android/log.h>
+
 namespace xbmcjni
 {
 
@@ -58,7 +61,8 @@ static void jnienv_detach_thread(void *arg)
   (void)arg;
   if (!jvm())
     return;
-  __android_log_print(ANDROID_LOG_VERBOSE, "XBMC","detaching thread");
+
+  LOGVERB("JNI env detaching thread");
   jvm()->DetachCurrentThread();
 }
 
