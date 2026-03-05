@@ -111,7 +111,7 @@ void xbmc_save_jnienv(JNIEnv *env)
 
 jint xbmc_jni_on_load(JavaVM *vm, JNIEnv *env)
 {
-    jint jversion = JNI_VERSION_1_4;
+    jint jversion = JNI_VERSION_1_6;
 
     if (!env)
         return -1;
