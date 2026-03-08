@@ -22,7 +22,7 @@
 
 #include <android/log.h>
 
-#define LOG_TAG "org.xbmc.kodi [libandroidjni]"
+#define LOG_TAG "Kodi [libandroidjni]"
 #define LOGVERB(...) __android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__)
 #define LOGDEBUG(...) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__)
 #define LOGINFO(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)

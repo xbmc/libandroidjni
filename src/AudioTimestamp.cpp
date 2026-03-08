@@ -22,7 +22,7 @@
 
 using namespace jni;
 
-CJNIAudioTimestamp::CJNIAudioTimestamp() : CJNIBase("android.media.AudioTimestamp")
+CJNIAudioTimestamp::CJNIAudioTimestamp() : CJNIBase("android/media/AudioTimestamp")
 {
   m_object = new_object(GetClassName());
   m_object.setGlobal();
