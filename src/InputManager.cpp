@@ -33,12 +33,9 @@ using namespace jni;
 CJNIInputManagerInputDeviceListener* CJNIInputManagerInputDeviceListener::m_listenerInstance = nullptr;
 
 CJNIInputManagerInputDeviceListener::CJNIInputManagerInputDeviceListener()
-  : CJNIBase(CJNIContext::getPackageName() + ".XBMCInputDeviceListener")
+  : CJNIBase("/XBMCInputDeviceListener")
 {
-  // Convert "the/class/name" to "the.class.name" as loadClass() expects it.
-  std::string dotClassName = GetClassName();
-  std::replace(dotClassName.begin(), dotClassName.end(), '/', '.');
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(dotClassName));
+  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetClassNameAsPath()));
   m_object.setGlobal();
 
   m_listenerInstance = this;

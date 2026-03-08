@@ -22,17 +22,26 @@
 #include "jutils-details.hpp"
 
 #include <algorithm>
+#include <cassert>
 
 using namespace jni;
 int CJNIBase::m_sdk_version = -1;
 int CJNIBase::RESULT_OK = -1;
 int CJNIBase::RESULT_CANCELED = 0;
 
-CJNIBase::CJNIBase(std::string classname)
+CJNIBase::CJNIBase(std::string className)
 {
-  // Convert "the.class.name" to "the/class/name"
-  m_className = classname;
-  std::replace(m_className.begin(), m_className.end(), '.', '/');
+  // If starts with "/" add the base class name prefix (e.g. org/xbmc/kodi)
+  if (!className.empty() && className.front() == '/')
+  {
+    assert(
+        !m_baseClassName.empty() &&
+        "SetBaseClassName() must be called before instantiating classes with a relative '/' path. "
+        "The SetBaseClassName() should be set from CJNIContext or independently from CJNIBase.");
+    className = GetBaseClassName() + className;
+  }
+
+  m_className = className;
 }
 
 CJNIBase::CJNIBase(const jhobject &object):
@@ -47,6 +56,13 @@ CJNIBase::~CJNIBase()
     return;
 }
 
+std::string CJNIBase::GetClassNameAsPath() const
+{
+  std::string classPath = m_className;
+  std::replace(classPath.begin(), classPath.end(), '.', '/');
+  return classPath;
+}
+
 void CJNIBase::SetSDKVersion(int version)
 {
   m_sdk_version = version;
@@ -57,11 +73,28 @@ int CJNIBase::GetSDKVersion()
   return m_sdk_version;
 }
 
-const std::string CJNIBase::GetDotClassName(const std::string & classname)
+const std::string CJNIBase::GetBaseClassName()
 {
-  std::string dotClassName = classname;
-  std::replace(dotClassName.begin(), dotClassName.end(), '/', '.');
-  return dotClassName;
+  return m_baseClassName;
+}
+
+void CJNIBase::SetBaseClassName(const std::string& baseClassName)
+{
+  m_baseClassName = baseClassName;
+  if (!m_baseClassName.empty() && m_baseClassName.back() == '/')
+    m_baseClassName.pop_back();
+}
+
+std::string CJNIBase::ClassNameToPath(std::string className)
+{
+  std::replace(className.begin(), className.end(), '/', '.');
+  return className;
+}
+
+std::string CJNIBase::ClassPathToName(std::string classPath)
+{
+  std::replace(classPath.begin(), classPath.end(), '.', '/');
+  return classPath;
 }
 
 const std::string CJNIBase::ExceptionToString()

@@ -27,12 +27,12 @@
 
 using namespace jni;
 
-static std::string s_className =  "org/xbmc/kodi/interfaces/XBMCMediaDrmOnKeyStatusChangeListener";
+static std::string s_className =  "/interfaces/XBMCMediaDrmOnKeyStatusChangeListener";
 
 CJNIMediaDrmOnKeyStatusChangeListener::CJNIMediaDrmOnKeyStatusChangeListener(CJNIClassLoader &loader)
   : CJNIBase(s_className)
 {
-  jhclass clazz = loader.loadClass(GetDotClassName(s_className));
+  jhclass clazz = loader.loadClass(GetClassNameAsPath());
 
   JNINativeMethod methods[] = 
   {

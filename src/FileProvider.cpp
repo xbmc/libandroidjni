@@ -16,7 +16,7 @@ const std::string CJNIFileProvider::m_classname = "androidx/core/content/FilePro
 
 const CJNIURI CJNIFileProvider::getUriForFile(const CJNIContext& context, const std::string& authority, const CJNIFile& file)
 {
-  const jhclass clazz = CJNIContext::getClassLoader().loadClass(m_classname);
+  const jhclass clazz = CJNIContext::getClassLoader().loadClass(ClassNameToPath(m_classname));
 
   return call_static_method<jhobject>(clazz,
     "getUriForFile", "(Landroid/content/Context;Ljava/lang/String;Ljava/io/File;)Landroid/net/Uri;",

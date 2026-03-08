@@ -28,7 +28,12 @@ public:
   CJNIClassLoader(const std::string& dexPath);
   ~CJNIClassLoader() {};
 
-  jni::jhclass loadClass(std::string className);
+  /*!
+   * \brief Load the class at specified fully qualified class name path.
+   * \param classPath The fully qualified class name path (this.is.an.example).
+   * \return The class, otherwise throws an exception for class not found.
+   */
+  jni::jhclass loadClass(std::string classPath);
 
 private:
   CJNIClassLoader();

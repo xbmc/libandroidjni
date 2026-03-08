@@ -32,9 +32,8 @@ CJNIClassLoader::CJNIClassLoader(const std::string& dexPath) : CJNIBase("dalvik/
 	m_object.setGlobal();
 }
 
-jhclass CJNIClassLoader::loadClass(std::string className)
+jhclass CJNIClassLoader::loadClass(std::string classPath)
 {
-  return call_method<jhclass>(m_object,
-    "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;",
-    jcast<jhstring>(className)); 
+  return call_method<jhclass>(m_object, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;",
+                              jcast<jhstring>(classPath));
 }
