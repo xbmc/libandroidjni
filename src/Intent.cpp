@@ -162,11 +162,29 @@ bool CJNIIntent::hasCategory(const std::string &category) const
                                jcast<jhstring>(category));
 }
 
-CJNIIntent CJNIIntent::putExtra(const std::string &name, const std::string &value)
+CJNIIntent CJNIIntent::putExtra(const std::string& name, const std::string& value)
 {
   return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
     "putExtra", "(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
     jcast<jhstring>(name), jcast<jhstring>(value)));
+}
+
+CJNIIntent CJNIIntent::putExtra(const std::string& name, bool value)
+{
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
+    "putExtra", "(Ljava/lang/String;Z)Landroid/content/Intent;", jcast<jhstring>(name), value));
+}
+
+CJNIIntent CJNIIntent::putExtra(const std::string& name, int value)
+{
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
+    "putExtra", "(Ljava/lang/String;I)Landroid/content/Intent;", jcast<jhstring>(name), value));
+}
+
+CJNIIntent CJNIIntent::putExtra(const std::string& name, int64_t value)
+{
+  return static_cast<CJNIIntent>(call_method<jhobject>(m_object,
+    "putExtra", "(Ljava/lang/String;J)Landroid/content/Intent;", jcast<jhstring>(name), value));
 }
 
 CJNIIntent CJNIIntent::addFlags(int flags)

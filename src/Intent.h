@@ -47,7 +47,10 @@ public:
   bool hasExtra(const std::string &name) const;
   bool hasCategory(const std::string &category) const;
 
-  CJNIIntent putExtra(const std::string &name, const std::string &value);
+  CJNIIntent putExtra(const std::string& name, const std::string& value);
+  CJNIIntent putExtra(const std::string& name, bool value);
+  CJNIIntent putExtra(const std::string& name, int value);
+  CJNIIntent putExtra(const std::string& name, int64_t value);
 
   CJNIIntent addFlags(int flags);
   CJNIIntent addCategory(const std::string &category);
