@@ -24,12 +24,17 @@
 #include "UUID.h"
 #include "HashMap.h"
 
+#include "jlog.hpp"
 #include "jutils-details.hpp"
 
 using namespace jni;
 
-CJNIMediaDrm::CJNIMediaDrm(const CJNIUUID& uuid)
-  : CJNIBase("android/media/MediaDrm")
+namespace
+{
+std::string CLASS_NAME = "android/media/MediaDrm";
+} // unnamed namespace
+
+CJNIMediaDrm::CJNIMediaDrm(const CJNIUUID& uuid) : CJNIBase(CLASS_NAME)
 {
   m_object = new_object(GetClassName(), "<init>", "(Ljava/util/UUID;)V",
                         uuid.get_raw());
@@ -235,4 +240,25 @@ int CJNIMediaDrm::getMaxSecurityLevel() const
 
 	return call_static_method<int>(GetClassName().c_str(),
 		"getMaxSecurityLevel", "()I");
+}
+
+bool CJNIMediaDrm::isCryptoSchemeSupported(const CJNIUUID& uuid)
+{
+  if (CJNIBase::GetSDKVersion() < 29)
+    return false;
+
+  jboolean ret = call_static_method<jboolean>(CLASS_NAME.c_str(), "isCryptoSchemeSupported",
+                                              "(Ljava/util/UUID;)Z", uuid.get_raw());
+
+  // Catch a possible IllegalArgumentException exception
+  JNIEnv* jenv = xbmc_jnienv();
+  jthrowable exception = jenv->ExceptionOccurred();
+  if (exception)
+  {
+    jenv->ExceptionDescribe();
+    jenv->ExceptionClear();
+    return false;
+  }
+
+  return ret;
 }

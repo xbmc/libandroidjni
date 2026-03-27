@@ -81,6 +81,8 @@ public:
 
   int getSecurityLevel(const std::vector<char>& sessionId) const;
   int getMaxSecurityLevel() const;
+
+  static bool isCryptoSchemeSupported(const CJNIUUID& uuid);
 };
 
 
