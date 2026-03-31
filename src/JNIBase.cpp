@@ -59,7 +59,7 @@ CJNIBase::~CJNIBase()
 std::string CJNIBase::GetClassNameAsPath() const
 {
   std::string classPath = m_className;
-  std::replace(classPath.begin(), classPath.end(), '.', '/');
+  std::replace(classPath.begin(), classPath.end(), '/', '.');
   return classPath;
 }
 
