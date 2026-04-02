@@ -35,7 +35,7 @@ CJNIInputManagerInputDeviceListener* CJNIInputManagerInputDeviceListener::m_list
 CJNIInputManagerInputDeviceListener::CJNIInputManagerInputDeviceListener()
   : CJNIBase("/XBMCInputDeviceListener")
 {
-  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetClassNameAsPath()));
+  m_object = new_object(CJNIContext::getClassLoader().loadClass(GetDotClassName()));
   m_object.setGlobal();
 
   m_listenerInstance = this;

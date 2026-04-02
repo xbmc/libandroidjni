@@ -56,11 +56,11 @@ CJNIBase::~CJNIBase()
     return;
 }
 
-std::string CJNIBase::GetClassNameAsPath() const
+std::string CJNIBase::GetDotClassName() const
 {
-  std::string classPath = m_className;
-  std::replace(classPath.begin(), classPath.end(), '/', '.');
-  return classPath;
+  std::string className = m_className;
+  std::replace(className.begin(), className.end(), '/', '.');
+  return className;
 }
 
 void CJNIBase::SetSDKVersion(int version)
@@ -85,16 +85,16 @@ void CJNIBase::SetBaseClassName(const std::string& baseClassName)
     m_baseClassName.pop_back();
 }
 
-std::string CJNIBase::ClassNameToPath(std::string className)
+std::string CJNIBase::ToDotClassName(std::string className)
 {
   std::replace(className.begin(), className.end(), '/', '.');
   return className;
 }
 
-std::string CJNIBase::ClassPathToName(std::string classPath)
+std::string CJNIBase::ToClassName(std::string className)
 {
-  std::replace(classPath.begin(), classPath.end(), '.', '/');
-  return classPath;
+  std::replace(className.begin(), className.end(), '.', '/');
+  return className;
 }
 
 const std::string CJNIBase::ExceptionToString()

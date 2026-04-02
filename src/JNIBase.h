@@ -37,14 +37,14 @@ public:
   static void SetSDKVersion(int);
 
   /*!
-   * \brief Get fully qualified "base" class name path.
-   * \return The fully qualified base class name path (this/is/an/example)
+   * \brief Get the "base" class name with slash notation.
+   * \return The "base" class name with slash notation (this/is/an/example)
    */
   static const std::string GetBaseClassName();
 
   /*!
-   * \brief Set the fully qualified "base" class name path (e.g. Kodi package name).
-   * \param baseClassName The base class name (this/is/an/example)
+   * \brief Set the "base" class name with slash notation (e.g. Kodi package name).
+   * \param baseClassName The base class name with slash notation (this/is/an/example)
    */
   static void SetBaseClassName(const std::string& baseClassName);
 
@@ -65,27 +65,31 @@ protected:
   CJNIBase(std::string className);
   virtual ~CJNIBase();
 
+  /*!
+   * \brief Get the class name with slash notation.
+   * \return The class name (this/is/an/example)
+   */
   const std::string& GetClassName() const {return m_className;}
 
   /*!
-   * \brief Get class name as fully qualified class name path.
-   * \return The fully qualified class name path (this.is.an.example)
+   * \brief Get the class name with dot notation, as fully qualified class name.
+   * \return The fully qualified class name (this.is.an.example)
    */
-  std::string GetClassNameAsPath() const;
+  std::string GetDotClassName() const;
 
   /*!
-   * \brief Convert a class name to a fully qualified class name path.
+   * \brief Convert a class name to a class name with dot notation, as fully qualified class name.
    * \param className The class name (this/is/an/example)
-   * \return The fully qualified class name path (this.is.an.example)
+   * \return The fully qualified class name (this.is.an.example)
    */
-  static std::string ClassNameToPath(std::string className);
+  static std::string ToDotClassName(std::string className);
 
   /*!
-   * \brief Convert a fully qualified class name path to class name.
-   * \param classPath The fully qualified class name path (this.is.an.example)
-   * \return The class name (this/is/an/example)
+   * \brief Convert a fully qualified class name to class name with slash notation.
+   * \param className The fully qualified class name (this.is.an.example)
+   * \return The class name with slash notation (this/is/an/example)
    */
-  static std::string ClassPathToName(std::string classPath);
+  static std::string ToClassName(std::string className);
 
   jni::jhobject m_object;
 

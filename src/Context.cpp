@@ -95,7 +95,7 @@ CJNIContext::~CJNIContext()
 
 void CJNIContext::PopulateStaticFields()
 {
-  CJNIBase::SetBaseClassName(CJNIBase::ClassPathToName(CJNIContext::getPackageName()));
+  CJNIBase::SetBaseClassName(CJNIBase::ToClassName(CJNIContext::getPackageName()));
 
   jhclass clazz = find_class("android/content/Context");
   ACTIVITY_SERVICE = jcast<std::string>(get_static_field<jhstring>(clazz,"ACTIVITY_SERVICE"));
