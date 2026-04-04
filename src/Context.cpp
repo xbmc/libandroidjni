@@ -239,6 +239,11 @@ CJNIFile CJNIContext::getCacheDir()
     "getCacheDir", "()Ljava/io/File;");
 }
 
+CJNIFile CJNIContext::getFilesDir()
+{
+  return call_method<jhobject>(m_context, "getFilesDir", "()Ljava/io/File;");
+}
+
 CJNIFile CJNIContext::getDir(const std::string &path, int mode)
 {
   return call_method<jhobject>(m_context,
