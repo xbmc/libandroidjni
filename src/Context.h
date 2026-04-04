@@ -65,6 +65,7 @@ public:
   static std::string getPackageName();
   static std::string getPackageResourcePath();
   static CJNIFile getCacheDir();
+  static CJNIFile getFilesDir();
   static CJNIFile getDir(const std::string &path, int mode);
   static CJNIFile getExternalFilesDir(const std::string &path);
   static CJNIContentResolver getContentResolver();
