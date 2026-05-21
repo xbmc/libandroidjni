@@ -244,9 +244,6 @@ int CJNIMediaDrm::getMaxSecurityLevel() const
 
 bool CJNIMediaDrm::isCryptoSchemeSupported(const CJNIUUID& uuid)
 {
-  if (CJNIBase::GetSDKVersion() < 29)
-    return false;
-
   jboolean ret = call_static_method<jboolean>(CLASS_NAME.c_str(), "isCryptoSchemeSupported",
                                               "(Ljava/util/UUID;)Z", uuid.get_raw());
 
