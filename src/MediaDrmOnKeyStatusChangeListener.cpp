@@ -32,7 +32,7 @@ static std::string s_className =  "/interfaces/XBMCMediaDrmOnKeyStatusChangeList
 CJNIMediaDrmOnKeyStatusChangeListener::CJNIMediaDrmOnKeyStatusChangeListener(CJNIClassLoader &loader)
   : CJNIBase(s_className)
 {
-  jhclass clazz = loader.loadClass(GetClassNameAsPath());
+  jhclass clazz = loader.loadClass(GetDotClassName());
 
   JNINativeMethod methods[] = 
   {

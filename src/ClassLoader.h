@@ -30,10 +30,10 @@ public:
 
   /*!
    * \brief Load the class at specified fully qualified class name path.
-   * \param classPath The fully qualified class name path (this.is.an.example).
+   * \param className The fully qualified class name (this.is.an.example).
    * \return The class, otherwise throws an exception for class not found.
    */
-  jni::jhclass loadClass(std::string classPath);
+  jni::jhclass loadClass(std::string className);
 
 private:
   CJNIClassLoader();
