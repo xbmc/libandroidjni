@@ -41,6 +41,7 @@ std::string CJNIMediaFormat::KEY_CHANNEL_MASK;
 std::string CJNIMediaFormat::KEY_AAC_PROFILE;
 std::string CJNIMediaFormat::KEY_FLAC_COMPRESSION_LEVEL;
 std::string CJNIMediaFormat::KEY_ROTATION;
+std::string CJNIMediaFormat::KEY_AUDIO_SESSION_ID;
 std::string CJNIMediaFormat::KEY_COLOR_RANGE;
 std::string CJNIMediaFormat::KEY_COLOR_STANDARD;
 std::string CJNIMediaFormat::KEY_COLOR_TRANSFER;
@@ -107,6 +108,7 @@ void CJNIMediaFormat::PopulateStaticFields()
       MIMETYPE_VIDEO_RAW = jcast<std::string>(get_static_field<jhstring>(clazz, "MIMETYPE_VIDEO_RAW"));
       MIMETYPE_VIDEO_VP8 = jcast<std::string>(get_static_field<jhstring>(clazz, "MIMETYPE_VIDEO_VP8"));
       MIMETYPE_VIDEO_VP9 = jcast<std::string>(get_static_field<jhstring>(clazz, "MIMETYPE_VIDEO_VP9"));
+      KEY_AUDIO_SESSION_ID = jcast<std::string>(get_static_field<jhstring>(clazz, "KEY_AUDIO_SESSION_ID"));
     }
 
     if (GetSDKVersion() >= 23)

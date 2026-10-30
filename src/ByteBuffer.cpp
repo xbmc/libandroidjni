@@ -46,9 +46,13 @@ CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array, int start, i
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&array[0]);
 
-  return CJNIByteBuffer(call_static_method<jhobject>(m_classname,
+  CJNIByteBuffer buffer(call_static_method<jhobject>(m_classname,
     "wrap","([BII)Ljava/nio/ByteBuffer;",
     bytearray, start, byteCount));
+  // The buffer references the array. Native threads that don't return to
+  // Java would otherwise keep every array alive.
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array)
@@ -58,9 +62,12 @@ CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array)
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&array[0]);
 
-  return CJNIByteBuffer(call_static_method<jhobject>(m_classname,
-    "wrap","([B)Ljava/nio/ByteBuffer;",
-                                                     bytearray));
+  CJNIByteBuffer buffer(call_static_method<jhobject>(m_classname,
+    "wrap","([B)Ljava/nio/ByteBuffer;", bytearray));
+  // The buffer references the array. Native threads that don't return to
+  // Java would otherwise keep every array alive.
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::wrap(const jharray &array)

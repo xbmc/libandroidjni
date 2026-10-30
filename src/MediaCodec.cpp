@@ -29,6 +29,7 @@
 using namespace jni;
 
 int CJNIMediaCodec::BUFFER_FLAG_CODEC_CONFIG(2);
+int CJNIMediaCodec::BUFFER_FLAG_DECODE_ONLY(0);
 int CJNIMediaCodec::BUFFER_FLAG_END_OF_STREAM(4);
 int CJNIMediaCodec::BUFFER_FLAG_SYNC_FRAME(1);
 int CJNIMediaCodec::CONFIGURE_FLAG_ENCODE(1);
@@ -63,6 +64,10 @@ void CJNIMediaCodec::PopulateStaticFields()
     if(GetSDKVersion() >= 24)
     {
       CRYPTO_MODE_AES_CBC = (get_static_field<int>(clazz, "CRYPTO_MODE_AES_CBC"));
+    }
+    if(GetSDKVersion() >= 34)
+    {
+      BUFFER_FLAG_DECODE_ONLY = (get_static_field<int>(clazz, "BUFFER_FLAG_DECODE_ONLY"));
     }
   }
 }

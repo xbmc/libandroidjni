@@ -64,6 +64,7 @@ public:
   static std::string KEY_AAC_PROFILE;
   static std::string KEY_FLAC_COMPRESSION_LEVEL;
   static std::string KEY_ROTATION;
+  static std::string KEY_AUDIO_SESSION_ID;
   static std::string KEY_COLOR_RANGE;
   static std::string KEY_COLOR_STANDARD;
   static std::string KEY_COLOR_TRANSFER;

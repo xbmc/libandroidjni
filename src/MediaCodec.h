@@ -63,6 +63,7 @@ public:
   static const CJNIMediaCodec createByCodecName(  const std::string &name);
 
   static int BUFFER_FLAG_CODEC_CONFIG;
+  static int BUFFER_FLAG_DECODE_ONLY;
   static int BUFFER_FLAG_END_OF_STREAM;
   // Deprecated in API level 21
   static int BUFFER_FLAG_SYNC_FRAME;
