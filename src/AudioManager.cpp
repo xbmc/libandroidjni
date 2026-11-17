@@ -79,6 +79,11 @@ void CJNIAudioManager::PopulateStaticFields()
   }
 }
 
+int CJNIAudioManager::generateAudioSessionId()
+{
+  return call_method<jint>(m_object, "generateAudioSessionId", "()I");
+}
+
 int CJNIAudioManager::getStreamMaxVolume()
 {
   return call_method<jint>(m_object,

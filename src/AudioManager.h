@@ -42,6 +42,8 @@ public:
   int  getStreamVolume();
   void setStreamVolume(int index = 0, int flags = 0);
 
+  int generateAudioSessionId();
+
   int requestAudioFocus(const jni::CJNIAudioFocusRequestClass& request);
   // Deprecated in API level 26
   int requestAudioFocus(const CJNIAudioManagerAudioFocusChangeListener& listener, int streamType, int durationHint);

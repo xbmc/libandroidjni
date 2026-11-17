@@ -46,9 +46,11 @@ CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array, int start, i
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&array[0]);
 
-  return CJNIByteBuffer(call_static_method<jhobject>(m_classname,
+  CJNIByteBuffer buffer(call_static_method<jhobject>(m_classname,
     "wrap","([BII)Ljava/nio/ByteBuffer;",
     bytearray, start, byteCount));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array)
@@ -58,9 +60,10 @@ CJNIByteBuffer CJNIByteBuffer::wrap(const std::vector<char> &array)
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&array[0]);
 
-  return CJNIByteBuffer(call_static_method<jhobject>(m_classname,
-    "wrap","([B)Ljava/nio/ByteBuffer;",
-                                                     bytearray));
+  CJNIByteBuffer buffer(call_static_method<jhobject>(m_classname,
+    "wrap","([B)Ljava/nio/ByteBuffer;", bytearray));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::wrap(const jharray &array)
@@ -82,9 +85,11 @@ CJNIByteBuffer CJNIByteBuffer::get(const std::vector<char> &dst, int dstOffset, 
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&dst[0]);
 
-  return CJNIByteBuffer(call_method<jhobject>(m_object,
+  CJNIByteBuffer buffer(call_method<jhobject>(m_object,
     "get","([BII)Ljava/nio/ByteBuffer;",
     bytearray, dstOffset, byteCount));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::get(const std::vector<char> &dst)
@@ -94,9 +99,11 @@ CJNIByteBuffer CJNIByteBuffer::get(const std::vector<char> &dst)
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)&dst[0]);
 
-  return CJNIByteBuffer(call_method<jhobject>(m_object,
+  CJNIByteBuffer buffer(call_method<jhobject>(m_object,
     "get","([B)Ljava/nio/ByteBuffer;",
     bytearray));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::put(const CJNIByteBuffer &src)
@@ -113,9 +120,11 @@ CJNIByteBuffer CJNIByteBuffer::put(const std::vector<char> &src, int srcOffset, 
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)src.data());
 
-  return CJNIByteBuffer(call_method<jhobject>(m_object,
+  CJNIByteBuffer buffer(call_method<jhobject>(m_object,
     "put","([BII)Ljava/nio/ByteBuffer;",
     bytearray, srcOffset, byteCount));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 CJNIByteBuffer CJNIByteBuffer::put(const std::vector<char> &src)
@@ -125,9 +134,11 @@ CJNIByteBuffer CJNIByteBuffer::put(const std::vector<char> &src)
   jbyteArray bytearray = env->NewByteArray(size);
   env->SetByteArrayRegion(bytearray, 0, size, (jbyte*)src.data());
 
-  return CJNIByteBuffer(call_method<jhobject>(m_object,
+  CJNIByteBuffer buffer(call_method<jhobject>(m_object,
     "put","([B)Ljava/nio/ByteBuffer;",
     bytearray));
+  env->DeleteLocalRef(bytearray);
+  return buffer;
 }
 
 bool CJNIByteBuffer::hasArray()
