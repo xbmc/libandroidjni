@@ -209,3 +209,8 @@ void CJNIMediaCodec::setVideoScalingMode(int mode)
     "setVideoScalingMode", "(I)V",
     mode);
 }
+
+void CJNIMediaCodec::setCallback(const jni::jhobject& cb)
+{
+  call_method<void>(m_object, "setCallback", "(Landroid/media/MediaCodec$Callback;)V", cb);
+}
