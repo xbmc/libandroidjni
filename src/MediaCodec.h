@@ -55,7 +55,8 @@ public:
   std::vector<CJNIByteBuffer> getOutputBuffers();
   const CJNIByteBuffer getInputBuffer(int index); // API 21+
   const CJNIByteBuffer getOutputBuffer(int index); // API 21+
-  void  setVideoScalingMode(int mode);
+  void setVideoScalingMode(int mode);
+  void setCallback(const jni::jhobject& cb);
 
   static void  PopulateStaticFields();
   static const CJNIMediaCodec createDecoderByType(const std::string &type);
